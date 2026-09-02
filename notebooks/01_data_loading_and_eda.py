@@ -31,7 +31,8 @@ import seaborn as sns
 
 sys.path.insert(0, str(Path.cwd().parent / "src"))
 from data_loader import load_lca, load_perm, annual_wage  # noqa: E402
-from employer_canonicalization import add_canonical_employer  # noqa: E402
+from employer_canonicalization import add_canonical_employer, build_canonical_map  # noqa: E402
+from employer_brand_rollup import apply_brand_rollup  # noqa: E402
 
 sns.set_theme(style="whitegrid")
 plt.rcParams["figure.figsize"] = (10, 5)
@@ -71,16 +72,23 @@ perm.groupby(["FISCAL_YEAR", "FISCAL_QUARTER"]).size().unstack(fill_value=0)
 # People, Inc" / "Hire IT People, Inc." / "HIRE IT PEOPLE INC" all show up as different strings
 # for the same employer, which understates their true filing volume in any employer-level
 # ranking. `add_canonical_employer` (see `src/employer_canonicalization.py`) collapses these
-# safely — it does *not* attempt to merge distinct legal subsidiaries under one brand (e.g.
-# "Amazon Web Services, Inc." vs "Amazon.com Services LLC" stay separate), since that's a
-# harder problem where naive matching produces false merges (a real risk here: "Apple American
-# Group LLC" is an Applebee's franchisee, not Apple Inc.).
+# safely. It's applied here from ONE shared mapping across both LCA and PERM, not one map per
+# dataset — canonicalizing each independently lets the same employer settle on a *different*
+# display spelling in each (e.g. "Apple Inc." in LCA vs "APPLE INC." in PERM), which then never
+# merges when the two are compared. On top of that, `employer_brand_rollup.py` applies a
+# manually-curated rollup of known multi-subsidiary brands (e.g. "Amazon Web Services, Inc." and
+# "Amazon.com Services LLC" -> "Amazon") — curated rather than automated, since naive brand-token
+# matching produces false merges (a real risk here: "Apple American Group LLC" is an Applebee's
+# franchisee, not Apple Inc. — see that module for the specific exclusions found during review).
 
 # %%
 lca_raw_employers = lca["EMPLOYER_NAME"].nunique()
-lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL")
 perm_raw_employers = perm["EMP_BUSINESS_NAME"].nunique()
-perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL")
+employer_mapping = build_canonical_map(lca["EMPLOYER_NAME"], perm["EMP_BUSINESS_NAME"])
+lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+lca["EMPLOYER_CANONICAL"] = apply_brand_rollup(lca["EMPLOYER_CANONICAL"])
+perm["EMPLOYER_CANONICAL"] = apply_brand_rollup(perm["EMPLOYER_CANONICAL"])
 
 print(f"LCA employers: {lca_raw_employers:,} raw names -> {lca['EMPLOYER_CANONICAL'].nunique():,} canonical")
 print(f"PERM employers: {perm_raw_employers:,} raw names -> {perm['EMPLOYER_CANONICAL'].nunique():,} canonical")

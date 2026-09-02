@@ -26,7 +26,8 @@ import streamlit as st
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 from data_loader import load_lca, load_perm, annual_wage  # noqa: E402
 from mba_occupations import classify_mba_relevance  # noqa: E402
-from employer_canonicalization import add_canonical_employer  # noqa: E402
+from employer_canonicalization import add_canonical_employer, build_canonical_map  # noqa: E402
+from employer_brand_rollup import apply_brand_rollup  # noqa: E402
 from naics_sectors import naics_sector  # noqa: E402
 
 st.set_page_config(page_title="Sponsorship Explorer (local, full data)", layout="wide")
@@ -38,8 +39,18 @@ DECIDED_PERM = {"Certified", "Certified - Expired", "Denied"}
 @st.cache_data(show_spinner="Loading and preparing full LCA + PERM data (first run only)...")
 def load_data():
     lca = load_lca()
+    perm = load_perm()
+
+    # Build ONE shared canonical mapping across both datasets so the same
+    # employer settles on one display spelling in both (canonicalizing each
+    # dataset independently can pick a different most-common raw variant in
+    # each, e.g. "Apple Inc." in LCA vs "APPLE INC." in PERM, which then
+    # never merges).
+    employer_mapping = build_canonical_map(lca["EMPLOYER_NAME"], perm["EMP_BUSINESS_NAME"])
+
     lca["MBA_TIER"] = classify_mba_relevance(lca["SOC_CODE"], lca["SOC_TITLE"])
-    lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL")
+    lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+    lca["EMPLOYER_CANONICAL"] = apply_brand_rollup(lca["EMPLOYER_CANONICAL"])
     lca["NAICS_SECTOR"] = naics_sector(lca["NAICS_CODE"])
     lca["ANNUAL_WAGE"] = annual_wage(lca["WAGE_RATE_OF_PAY_FROM"], lca["WAGE_UNIT_OF_PAY"])
     lca["ANNUAL_WAGE"] = lca["ANNUAL_WAGE"].where(
@@ -50,9 +61,9 @@ def load_data():
     lca["DECIDED"] = lca["CASE_STATUS"].isin(DECIDED_LCA)
     lca["CERTIFIED"] = lca["DECIDED"] & (lca["CASE_STATUS"] != "Denied")
 
-    perm = load_perm()
     perm["MBA_TIER"] = classify_mba_relevance(perm["PWD_SOC_CODE"], perm["PWD_SOC_TITLE"])
-    perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL")
+    perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+    perm["EMPLOYER_CANONICAL"] = apply_brand_rollup(perm["EMPLOYER_CANONICAL"])
     perm["NAICS_SECTOR"] = naics_sector(perm["EMP_NAICS"])
     perm_mult = {"Hour": 2080, "Week": 52, "Bi-Weekly": 26, "Month": 12, "Year": 1}
     perm["ANNUAL_WAGE"] = perm["JOB_OPP_WAGE_FROM"] * perm["JOB_OPP_WAGE_PER"].map(perm_mult)

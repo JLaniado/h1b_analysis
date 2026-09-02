@@ -23,7 +23,8 @@ import pandas as pd
 
 from data_loader import load_lca, load_perm, annual_wage
 from mba_occupations import classify_mba_relevance
-from employer_canonicalization import add_canonical_employer
+from employer_canonicalization import add_canonical_employer, build_canonical_map
+from employer_brand_rollup import apply_brand_rollup
 from naics_sectors import naics_sector
 from employer_matching import match_employers
 
@@ -41,10 +42,11 @@ def _wage_annualized_perm(df: pd.DataFrame) -> pd.Series:
     return df["JOB_OPP_WAGE_FROM"] * mult
 
 
-def _prep_lca() -> pd.DataFrame:
+def _prep_lca(employer_mapping: pd.Series) -> pd.DataFrame:
     lca = load_lca()
     lca["MBA_TIER"] = classify_mba_relevance(lca["SOC_CODE"], lca["SOC_TITLE"])
-    lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL")
+    lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+    lca["EMPLOYER_CANONICAL"] = apply_brand_rollup(lca["EMPLOYER_CANONICAL"])
     lca["NAICS_SECTOR"] = naics_sector(lca["NAICS_CODE"])
     lca["ANNUAL_WAGE"] = annual_wage(lca["WAGE_RATE_OF_PAY_FROM"], lca["WAGE_UNIT_OF_PAY"])
     lca["ANNUAL_WAGE"] = lca["ANNUAL_WAGE"].where(
@@ -57,10 +59,11 @@ def _prep_lca() -> pd.DataFrame:
     return lca
 
 
-def _prep_perm() -> pd.DataFrame:
+def _prep_perm(employer_mapping: pd.Series) -> pd.DataFrame:
     perm = load_perm()
     perm["MBA_TIER"] = classify_mba_relevance(perm["PWD_SOC_CODE"], perm["PWD_SOC_TITLE"])
-    perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL")
+    perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+    perm["EMPLOYER_CANONICAL"] = apply_brand_rollup(perm["EMPLOYER_CANONICAL"])
     perm["NAICS_SECTOR"] = naics_sector(perm["EMP_NAICS"])
     perm["ANNUAL_WAGE"] = _wage_annualized_perm(perm)
     perm["ANNUAL_WAGE"] = perm["ANNUAL_WAGE"].where(
@@ -199,8 +202,16 @@ def build_employer_meta(lca_full: pd.DataFrame, perm_full: pd.DataFrame, lca_mba
 
 
 def main():
-    lca_full = _prep_lca()
-    perm_full = _prep_perm()
+    # A cheap names-only pass so both datasets settle on ONE shared canonical
+    # spelling per employer — canonicalizing each dataset independently lets
+    # the same company end up displayed differently in each (e.g. "Apple
+    # Inc." in LCA vs "APPLE INC." in PERM), which then never merges.
+    lca_names = load_lca(usecols=["EMPLOYER_NAME"])["EMPLOYER_NAME"]
+    perm_names = load_perm(usecols=["EMP_BUSINESS_NAME"])["EMP_BUSINESS_NAME"]
+    employer_mapping = build_canonical_map(lca_names, perm_names)
+
+    lca_full = _prep_lca(employer_mapping)
+    perm_full = _prep_perm(employer_mapping)
     lca = lca_full[lca_full["MBA_TIER"] != "excluded"].copy()
     perm = perm_full[perm_full["MBA_TIER"] != "excluded"].copy()
 

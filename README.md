@@ -67,8 +67,17 @@ python -m ipykernel install --user --name h1b_analysis --display-name "h1b_analy
   sources (see Data sources above)
 - `src/data_loader.py` — loaders for the consolidated master CSVs
 - `src/employer_canonicalization.py` — collapses casing/punctuation/legal-suffix duplicate
-  employer name strings into one canonical name per employer (does *not* merge distinct legal
-  subsidiaries of the same brand — see caveats in that file)
+  employer name strings into one canonical name per employer. Build the mapping across *all*
+  datasets at once (`build_canonical_map(lca[...], perm[...])`), not one map per dataset — doing
+  it separately lets the same company settle on a different display spelling in each (e.g.
+  "Apple Inc." in LCA vs "APPLE INC." in PERM), which then never merges when compared or combined.
+- `src/employer_brand_rollup.py` — manually-reviewed rollup of distinct legal subsidiaries to one
+  brand label (e.g. "Amazon Web Services, Inc." + "Amazon.com Services LLC" -> "Amazon"), applied
+  on top of `employer_canonicalization`. Every group was built by hand-reviewing the top ~400
+  employers by volume — the module's docstring lists specific look-alike names that were
+  deliberately *excluded* (e.g. "Apple American Group LLC" is an Applebee's franchisee, not Apple
+  Inc.; "The Citadel" is a military college, not the hedge fund) so a future edit doesn't
+  accidentally add them back in.
 - `src/mba_occupations.py` — heuristic for classifying occupations as MBA "core" / "adjacent" /
   "excluded" (see caveats in that file — neither disclosure extract has a real minimum-degree
   field, so this is a SOC-code + title proxy, not ground truth)
@@ -200,8 +209,17 @@ Headline findings:
   pathway), out of ~45K MBA-relevant LCA filers — most H-1B business-role sponsors show no
   matched PERM presence, worth double-checking rather than treating as confirmed "no path."
 
-Open questions/next steps: a curated brand-alias layer on top of employer canonicalization (e.g.
-Amazon Web Services vs. Amazon.com Services LLC), a better MBA-relevance signal than SOC/title
-regex if a cleaner minimum-education proxy is worth integrating, and — deferred by design this
-round — choosing and building the actual interactive dashboard technology on top of this
-analysis layer.
+- **Employer consolidation**: canonicalization now builds one shared mapping across LCA and PERM
+  together (previously each dataset picked its own display spelling independently, so the same
+  company could show up unmerged when compared — e.g. "Apple Inc." vs "APPLE INC."), plus a
+  manually-reviewed brand rollup (`src/employer_brand_rollup.py`) for 20 major employers whose
+  filings were split across multiple legal subsidiaries — Amazon, Goldman Sachs, Deloitte, PwC,
+  Citigroup, Capital One, Wells Fargo, Morgan Stanley, Bank of America, Deutsche Bank, Visa,
+  Mastercard, Dell, Samsung, HCL, Capgemini, Wipro, Fidelity Investments, TikTok, CVS Health, and
+  Citadel. Amazon alone went from its largest single entity showing ~29,600 filings to ~43,400
+  once its subsidiaries were combined.
+
+Open questions/next steps: a better MBA-relevance signal than SOC/title regex if a cleaner
+minimum-education proxy is worth integrating, and — deferred by design this round — choosing and
+building the actual interactive dashboard technology on top of this analysis layer (since
+resolved: see the Dashboard and Local dashboard sections above).

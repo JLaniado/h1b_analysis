@@ -26,7 +26,8 @@ import seaborn as sns
 sys.path.insert(0, str(Path.cwd().parent / "src"))
 from data_loader import load_lca, load_perm, annual_wage  # noqa: E402
 from mba_occupations import classify_mba_relevance  # noqa: E402
-from employer_canonicalization import add_canonical_employer  # noqa: E402
+from employer_canonicalization import add_canonical_employer, build_canonical_map  # noqa: E402
+from employer_brand_rollup import apply_brand_rollup  # noqa: E402
 
 sns.set_theme(style="whitegrid")
 plt.rcParams["figure.figsize"] = (10, 5)
@@ -41,8 +42,11 @@ perm = load_perm()
 lca["MBA_TIER"] = classify_mba_relevance(lca["SOC_CODE"], lca["SOC_TITLE"])
 perm["MBA_TIER"] = classify_mba_relevance(perm["PWD_SOC_CODE"], perm["PWD_SOC_TITLE"])
 
-lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL")
-perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL")
+employer_mapping = build_canonical_map(lca["EMPLOYER_NAME"], perm["EMP_BUSINESS_NAME"])
+lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL", mapping=employer_mapping)
+lca["EMPLOYER_CANONICAL"] = apply_brand_rollup(lca["EMPLOYER_CANONICAL"])
+perm["EMPLOYER_CANONICAL"] = apply_brand_rollup(perm["EMPLOYER_CANONICAL"])
 
 # %% [markdown]
 # ## How much of the market is actually MBA-relevant?

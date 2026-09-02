@@ -8,13 +8,14 @@ Microsoft Corporation,4840
 "Stoughton Trailers, LLC",1590
 "WAL-MART ASSOCIATES, INC.",1564
 "Oracle America, Inc.",1557
-JPMORGAN CHASE & CO.,1489
+JPMorgan Chase & Co.,1489
 NVIDIA Corporation,1461
 South Georgia Pecan Company,1389
 Intel Corporation,1365
 "Salesforce, Inc.",1290
-APPLE INC.,1286
-Deloitte Consulting LLP,993
+Apple Inc.,1286
+Deloitte,1254
+Goldman Sachs,1057
 FMR LLC,960
 "Cisco Systems, Inc.",932
 "Case Farms Processing, Inc",893
@@ -22,38 +23,43 @@ MERIT LOGISTICS,874
 "Koch Foods of Gadsden, LLC",862
 Ernst & Young U.S. LLP,852
 Akash Management LLC,837
-"TESLA, INC.",800
+"Tesla, Inc.",800
 "Uber Technologies, Inc.",763
 "NORMAN W. FRIES, INC",756
-"Citibank, N.A.",686
-COMPUNNEL SOFTWARE GROUP INC.,671
+Citigroup,752
+"COMPUNNEL SOFTWARE GROUP, INC",671
 Conexus MedStaff LLC,669
 Adobe Inc.,649
 ByteDance Inc.,640
 "MCKINSEY & COMPANY, INC. UNITED STATES",622
 Bloomberg L.P.,594
 LinkedIn Corporation,592
-"Meta Platforms, Inc.",576
-Goldman Sachs & Co. LLC,556
+"Meta Platforms, Inc",576
+Wipro,536
 Accenture LLP,528
-Wipro Limited,523
+PwC,523
 TATA CONSULTANCY SERVICES LIMITED,515
 Skilled IN Management Co LLC,510
+HCL,507
 "ServiceNow, Inc.",486
 IBM Corporation,481
 "Palo Alto Networks, Inc.",470
 Phase Three Star LLC,464
-"Capgemini America, Inc.",459
+Capgemini,459
 GDI Services Inc.,449
+TikTok,446
 "PayPal, Inc.",445
 "NATURE'S WAY FARMS, LLC",434
+Visa,424
+CVS Health,422
+"Boston Consulting Group, Inc.",415
 LTIMindtree Limited,406
+Bank of America,403
 "Comcast Cable Communications, LLC",399
 Intuit Inc.,399
-"THE BOSTON CONSULTING GROUP, INC.",396
-"RIVIAN AUTOMOTIVE, LLC",383
-"HCL America, Inc.",382
+"Rivian Automotive, LLC",383
 "Applied Materials, Inc",381
+Morgan Stanley,372
 "AT&T SERVICES, INC.",369
 Concord Hospitality Enterprises Company LLC,369
 U.S. Bank National Association,368
@@ -61,29 +67,27 @@ U.S. Bank National Association,368
 THE DEVEREUX FOUNDATION,363
 CGI Technologies and Solutions Inc.,359
 eBay Inc.,357
-Goldman Sachs Services LLC,356
 "Sapphire Software Solutions, Inc.",356
 Cummins Inc.,352
-PricewaterhouseCoopers Advisory Services LLC,350
-TikTok Inc.,340
 "TW Services, Inc",340
-"Wells Fargo Bank, N.A.",335
+Wells Fargo,337
 "DoorDash, Inc.",328
 OMEGA COMPLIANCE SOLUTIONS LLC,326
 "EPAM Systems, Inc.",324
+Samsung,323
 "PECO FOODS, INC",323
+Citadel,319
 "Charter Communications, Inc.",317
-BANK OF AMERICA N.A.,316
 "PRESTIGIOUS PLACEMENT, INC",312
 "ASML US, LP",299
 DFS Corporate Services LLC,292
+Mastercard,292
 "NIKE, Inc.",291
 "Synopsys, Inc.",289
 Hewlett Packard Enterprise Company,285
 KLA Corporation,285
 "Lucid USA, Inc.",281
 MORGAN TRUCK BODY LLC,279
-Visa Technology & Operations LLC,276
 "Optum Services, Inc.",275
 "Dakota Provisions, LLC",274
 "Expedia, Inc.",271
@@ -95,22 +99,20 @@ CORE TECH INTERNATIONAL CORPORATION,260
 "Abbyland Foods, Inc",259
 "Charles Schwab & Company, Inc.",257
 "Stripe, Inc.",253
-Morgan Stanley Services Group Inc.,252
 AA Transportation Co Inc,250
 KFORCE INC.,248
 "Health Carousel, LLC",245
-Mastercard International Incorporated,240
 Chula Vista Inc,236
 Snowflake Inc.,234
 Zoox Inc.,229
 SAVANNAH CHATHAM COUNTY PUBLIC SCHOOL SYSTEM,227
 Safeway Inc.,227
-"VMware, Inc.",225
+VMware LLC,225
 "Workday, Inc.",225
 "Databricks, Inc.",225
 "Crestline Hotels & Resort, LLC",224
 "Verizon Communications, Inc. and all its subsidiaries and affiliates",223
-The Vanguard Group,222
+"The Vanguard Group, Inc.",222
 United Methodist Homes & Services,220
 SDC Restaurants LLC,218
 "Micron Technology, Inc.",217
@@ -121,47 +123,44 @@ STS Technical Services,212
 "SPACE COAST SERVICES MANAGEMENT, INC.",209
 Homes for Independent Living of Wisconsin LLC,206
 "Cadence Design Systems, Inc.",205
-Caremark LLC,205
-"INTUITIVE SURGICAL OPERATIONS, INC",201
+"Intuitive Surgical Operations, Inc.",201
 National Healthcare Corporation,201
 Barclays Services Corp.,200
-"CVS Pharmacy, Inc.",199
 "The MathWorks, Inc.",197
 VIRTUSA CORPORATION,194
 Primary Aim LLC,191
 "Pinterest, Inc.",184
 "Gateway Care Center, LLC",184
-"Randstad Digital, LLC",182
+"RANDSTAD DIGITAL, LLC",182
 "Riverview, LLP",182
 "ADP Technology Services, Inc.",179
-General Motors Company,179
+General Motors,179
 "American Airlines, Inc.",177
-Deloitte Tax LLP,175
 "RESER'S FINE FOODS, INC.",175
 "Mastech Digital Technologies, Inc.",173
 "Comtrix Solutions, Inc.",172
 "Fortinet, Inc.",171
-PricewaterhouseCoopers LLP,171
 Harrison Poultry Inc,171
 "WILDERNESS HOTEL & RESORT, INC.",170
 Caterpillar Inc.,169
 "American Express Travel Related Services Company, Inc.",168
 WSP USA Inc.,167
 GlobalLogic Inc.,167
-"LOWE'S COMPANIES, INC.",167
+"Lowe's Companies, Inc.",167
 Humana Inc.,167
 Controlled Contamination Services,167
+Amazon,167
 SNAP INC.,165
 "BEST BUY CO., INC.",163
 "Chewy, Inc.",163
 United Services Automobile Association,163
 "BlackRock Financial Management, Inc.",162
-NOKIA OF AMERICA CORPORATION,161
+Nokia of America Corporation,161
 Lam Research Corporation,161
 Government Employees Insurance Company (GEICO),160
 Amgen Inc.,158
 KPMG LLP,158
-Eficens Systems Inc.,157
+EFICENS SYSTEMS INC,157
 Dallas Independent School District,157
 Aetna Resources LLC,157
 CitiusTech Inc.,155
@@ -175,12 +174,10 @@ ARUP Laboratories,150
 "Opportunity of North Central Wisconsin, Inc.",150
 Truist Bank,149
 "Rotolo Consultants, Inc.",149
-Visa U.S.A. Inc.,148
 Yahoo Holdings Inc.,148
 Delight LI Management LLC,148
 "Fiserv Solutions, LLC",146
 "AWAD Holdings, Inc.",146
-"SAMSUNG AUSTIN SEMICONDUCTOR, L.L.C.",145
 "Gilead Sciences, Inc.",143
 "SWEET VIRGINIA CARE, LLC",143
 "BDQ, Inc.",142
@@ -191,11 +188,14 @@ Omni Hotels Management Corp.,141
 "ALLEN HARIM FOODS, LLC",140
 Wayfair LLC,139
 "Block, Inc.",139
-CITADEL SECURITIES AMERICAS SERVICES LLC,138
 DocuSign Inc.,138
-"Innova Solutions, Inc.",137
-"INFINITE COMPUTER SOLUTIONS, INC",136
+"INNOVA SOLUTIONS, INC.",137
+"Infinite Computer Solutions, Inc.",136
 White Lodging Services Corporation,135
 Deere & Company,134
 "Nutanix, Inc.",133
 "Polmax, LLC",133
+Consumer Product Distributors LLC,132
+Hyder Investments Inc.,132
+"ZS Associates, Inc.",130
+"Carolina Foods, LLC",130

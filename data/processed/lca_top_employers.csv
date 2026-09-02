@@ -1,76 +1,74 @@
 EMPLOYER_CANONICAL,filings
-Amazon.com Services LLC,29458
+Amazon,43441
 COGNIZANT TECHNOLOGY SOLUTIONS US CORP,16918
 Google LLC,16421
 Ernst & Young U.S. LLP,15846
 Microsoft Corporation,14461
 Apple Inc.,11999
 "Meta Platforms, Inc",11908
+Deloitte,11172
 TATA CONSULTANCY SERVICES LIMITED,10806
 INFOSYS LIMITED,10377
-Deloitte Consulting LLP,6919
 "WAL-MART ASSOCIATES, INC.",6466
 JPMorgan Chase & Co.,6341
-"Amazon Web Services, Inc.",6255
 "Tesla, Inc.",5676
-"Amazon Development Center U.S., Inc.",5075
+Fidelity Investments,4954
+HCL,4897
 Intel Corporation,4533
-CAPGEMINI AMERICA INC,4483
+Capgemini,4484
+Goldman Sachs,4429
 Accenture LLP,4409
 NVIDIA Corporation,4356
-HCL AMERICA INC,4355
 "COMPUNNEL SOFTWARE GROUP, INC",4225
 IBM Corporation,4104
-WIPRO LIMITED,3931
-"Fidelity Technology Group, LLC d/b/a Fidelity Investments",3912
+Wipro,3994
 LTIMindtree Limited,3802
 "Salesforce, Inc.",3499
 "Grandison Management, Inc.",3456
+Citigroup,2822
 Mphasis Corporation,2803
 "Qualcomm Technologies, Inc.",2746
-"Citibank, N.A.",2518
-GOLDMAN SACHS & CO. LLC,2447
+Capital One,2493
 "Cisco Systems, Inc.",2444
+CVS Health,2387
 "PayPal, Inc.",2326
-"Amazon Data Services, Inc",2237
 Adobe Inc.,2234
-Deloitte & Touche LLP,2216
+Morgan Stanley,2153
 "Oracle America, Inc.",2061
 LinkedIn Corporation,1992
+PwC,1979
 ByteDance Inc.,1957
 "TECH MAHINDRA (AMERICAS), INC",1943
-PRICEWATERHOUSECOOPERS ADVISORY SERVICES LLC,1731
+TikTok,1913
+Bank of America,1784
+Visa,1681
 FORD MOTOR COMPANY,1662
-Deloitte Tax LLP,1642
 Federal Express Corporation,1593
-"Capital One Services, LLC",1566
 Cummins Inc.,1563
 "Uber Technologies, Inc.",1560
 "RANDSTAD DIGITAL, LLC",1464
 "ServiceNow, Inc.",1460
-Morgan Stanley Services Group Inc.,1413
 General Motors,1410
 KFORCE INC.,1399
 TT Commerce & Global Services LLC,1390
-TikTok Inc.,1380
 UST Global Inc,1376
 "Advanced Micro Devices, Inc.",1336
 CGI Technologies and Solutions Inc.,1313
-"Boston Consulting Group, Inc.",1310
+"Boston Consulting Group, Inc.",1311
 Intuit Inc.,1302
 U.S. Bank National Association,1290
 eBay Inc.,1248
 VIRTUSA CORPORATION,1243
-BANK OF AMERICA N.A.,1227
-GOLDMAN SACHS SERVICES LLC,1223
 L&T Technology Services Limited,1202
 University of Michigan,1200
 "American Express Travel Related Services Company, Inc.",1181
+Wells Fargo,1154
+Samsung,1138
 "Infinite Computer Solutions, Inc.",1105
-"WELLS FARGO BANK, N.A.",1104
 Barclays Services Corp.,1098
 "Lucid USA, Inc.",1092
-"McKinsey & Company, Inc. United States",1091
+"MCKINSEY & COMPANY, INC. UNITED STATES",1091
+Deutsche Bank,1077
 "Rivian Automotive, LLC",1063
 "Comcast Cable Communications, LLC",1052
 "Charter Communications, Inc.",1051
@@ -78,22 +76,21 @@ Barclays Services Corp.,1098
 Hewlett Packard Enterprise Company,1033
 "Hexaware Technologies, Inc.",1031
 "Palo Alto Networks, Inc.",1025
+Mastercard,1002
 "Optum Services, Inc.",999
 "AT&T SERVICES, INC.",973
 Mayo Clinic,967
 "DoorDash, Inc.",949
 "Charles Schwab & Company, Inc.",942
 "ASML US, LP",933
-"Capital One, National Association",927
-Visa Technology & Operations LLC,920
 "FIS Management Services, LLC",916
 Synechron Inc.,914
 "Applied Materials, Inc",913
 "T-Mobile USA, Inc.",893
 Snowflake Inc.,893
 "Expedia, Inc.",875
-CVS Shared Services Resources LLC,860
-Washington University,851
+Dell,859
+Washington University,859
 "BlackRock Financial Management, Inc.",850
 "Databricks, Inc.",847
 "People Tech Group, Inc",842
@@ -106,7 +103,6 @@ Johns Hopkins University,823
 Bloomberg L.P.,819
 "INNOVA SOLUTIONS, INC.",802
 Government Employee Insurance Company (GEICO),791
-Visa U.S.A. Inc.,761
 "SAP America, Inc.",759
 "ADP Technology Services, Inc.",749
 Amgen Inc.,745
@@ -115,7 +111,6 @@ Amgen Inc.,745
 "Fiserv Solutions, LLC",727
 "The MathWorks, Inc.",716
 "American Airlines, Inc.",715
-"Mastercard Technologies, LLC",713
 "ExlService.com, LLC",711
 KPMG LLP,702
 UBS Business Solutions US LLC,701
@@ -127,11 +122,10 @@ GP TECHNOLOGIES LLC,687
 Columbia University,668
 SNAP INC.,663
 HTC GLOBAL SERVICES INC.,660
-Caremark LLC,658
 "Pinterest, Inc.",655
 Cigna-Evernorth Services Inc.,654
 Zoox Inc.,652
-GOLDMAN SACHS BANK USA,644
+Citadel,652
 "Cadence Design Systems, Inc.",642
 UNIVERSITY OF FLORIDA,640
 KLA Corporation,637
@@ -142,27 +136,26 @@ UT Southwestern Medical Center,626
 ST. JUDE CHILDREN'S RESEARCH HOSPITAL,618
 Yale University,617
 Populus Group LLC,615
-Docusign Inc.,615
+DocuSign Inc.,615
 "Medline Industries, LP.",609
 Coforge Limited,606
 University of Wisconsin System,603
 State Street Bank and Trust Company,603
+The University of Iowa,601
 GlobalLogic Inc.,600
 "Workday, Inc.",599
-The University of Iowa,595
-CVS Pharmacy Inc.,594
 Northwestern University,593
 Nokia of America Corporation,587
 Dallas Independent School District,585
 The University of Alabama at Birmingham,580
 Purdue University,577
+The University of Chicago,566
 "Medtronic, Inc.",566
 "ZS Associates, Inc.",565
 Truist Bank,560
 "Stripe, Inc.",556
 Home Depot Management Company LLC,555
 "Arm, Inc.",552
-"BOFA SECURITIES, INC.",551
 "Mastech Digital Technologies, Inc.",547
 University of Pittsburgh,547
 "Intuitive Surgical Operations, Inc.",546
@@ -183,19 +176,26 @@ Yahoo Holdings Inc.,512
 "Marvell Semiconductor, Inc.",510
 Icahn School of Medicine at Mount Sinai,509
 "Analog Devices, Inc.",507
-The University of Chicago,499
 "UNIVERSITY OF CALIFORNIA, SAN DIEGO",496
-HCL GLOBAL SYSTEMS INC,494
 DFS Corporate Services LLC,487
-"Morgan Stanley & Co., LLC",484
 The University of Texas at Austin,483
-"Fidelity Technology Group, LLC",479
 Brookhaven National Laboratory,479
 Wayfair LLC,475
 FCA US LLC,475
 "The Vanguard Group, Inc.",470
 MPG Operations LLC,469
 The Trustees of Princeton University,467
+General Hospital Corporation,464
 The University of Texas M.D. Anderson Cancer Center,463
 Lam Research Corporation,462
 "University of California, Los Angeles",461
+"NIKE, Inc.",457
+University of Illinois,451
+"Regeneron Pharmaceuticals, Inc.",451
+Duke University,446
+"AECOM Technical Services, Inc.",445
+Roblox Corporation,444
+Quadrant Technologies LLC,444
+Verizon Data Services LLC,443
+"Gilead Sciences, Inc.",442
+"Tiger Analytics, Inc.",435
