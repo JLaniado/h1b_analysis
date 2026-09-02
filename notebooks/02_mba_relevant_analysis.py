@@ -140,16 +140,25 @@ plt.show()
 # are small and safe to exclude (already implicit in the certification-rate calc above), but
 # that's not actually the biggest gap between "a filing exists" and "there's a real open seat."
 #
-# For LCA: `NEW_EMPLOYMENT` counts new-position slots on a filing, separate from
-# `CONTINUED_EMPLOYMENT` (extension for someone already there) and `CHANGE_EMPLOYER` (an H-1B
-# transfer for someone already employed elsewhere on H-1B). Only `NEW_EMPLOYMENT > 0` filings
-# represent a position genuinely open to an outside candidate.
+# For LCA, "first-time hire at this employer" = `NEW_EMPLOYMENT` (a genuinely new position, e.g.
+# straight from OPT) **or** `CHANGE_EMPLOYER` (an H-1B transfer *in* from another employer — still
+# a real hire for the receiving company, even though the worker already held H-1B status
+# elsewhere) **or** `NEW_CONCURRENT_EMPLOYMENT` (a new concurrent position). All three mean the
+# worker is joining this employer for the first time. `CONTINUED_EMPLOYMENT` (an extension for
+# someone already there) and petition amendments are the ones that don't represent a real
+# opportunity. An earlier pass at this analysis excluded `CHANGE_EMPLOYER` entirely, which
+# undercounted real hiring by nearly a third of filings — it's a genuine new hire for the
+# employer doing the hiring, DOL's form just buckets it separately from `NEW_EMPLOYMENT`.
 
 # %%
-lca_mba["IS_NEW_POSITION"] = lca_mba["NEW_EMPLOYMENT"].fillna(0) > 0
+lca_mba["IS_NEW_POSITION"] = (
+    lca_mba["NEW_EMPLOYMENT"].fillna(0)
+    + lca_mba["CHANGE_EMPLOYER"].fillna(0)
+    + lca_mba["NEW_CONCURRENT_EMPLOYMENT"].fillna(0)
+) > 0
 new_position_share = lca_mba["IS_NEW_POSITION"].mean()
-print(f"Share of MBA-relevant LCA filings that include a new position: {new_position_share:.1%}")
-print("(the rest are pure extensions/amendments/transfers of people already employed there)")
+print(f"Share of MBA-relevant LCA filings that are a first-time hire at that employer: {new_position_share:.1%}")
+print("(the rest are pure extensions/amendments for people already employed there)")
 
 # %% [markdown]
 # For PERM, the more important nuance is `OTHER_REQ_IS_FW_CURRENTLY_WRK`: whether the foreign
@@ -164,9 +173,10 @@ print(f"\nShare of MBA-relevant PERM filings for someone NOT already at that emp
       f"{perm_mba_working_flag.get('N', 0):.1%}")
 
 # %% [markdown]
-# **Bottom line for the dashboard**: treat `NEW_EMPLOYMENT > 0` (LCA) and
-# `OTHER_REQ_IS_FW_CURRENTLY_WRK == 'N'` (PERM) as the "real new opportunity" filters, not
-# `CASE_STATUS`. Full employer-level breakdowns of both live in notebook 04.
+# **Bottom line for the dashboard**: treat `(NEW_EMPLOYMENT + CHANGE_EMPLOYER +
+# NEW_CONCURRENT_EMPLOYMENT) > 0` (LCA) and `OTHER_REQ_IS_FW_CURRENTLY_WRK == 'N'` (PERM) as the
+# "real new opportunity" filters, not `CASE_STATUS`. Full employer-level breakdowns of both live
+# in notebook 04, and both dashboards (static + local Streamlit) let you filter to just these.
 
 # %% [markdown]
 # ## Which functions within "core" and "adjacent" see the most volume?

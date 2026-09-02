@@ -196,11 +196,19 @@ top of it, answering the core recruiting-strategy questions (occupation fit, emp
 industry, geography, timing) generically rather than for one fixed persona.
 
 Headline findings:
-- **Real hiring signal matters more than excluding withdrawn/denied cases.** Only ~35-39% of
-  MBA-relevant LCA filings are genuinely new positions (`NEW_EMPLOYMENT > 0`) rather than
-  extensions/transfers of existing employees; only ~14% of MBA-relevant PERM filings are for a
-  worker not already employed there (`OTHER_REQ_IS_FW_CURRENTLY_WRK`) — most PERM sponsorship is
-  green-card conversion for existing H-1B staff, not an offer to an external candidate.
+- **Real hiring signal matters more than excluding withdrawn/denied cases.** ~54% of MBA-relevant
+  LCA filings are a first-time hire at that employer — `NEW_EMPLOYMENT` (a genuinely new position)
+  *or* `CHANGE_EMPLOYER` (an H-1B transfer in from another employer, still a real hire for the
+  receiving company) *or* `NEW_CONCURRENT_EMPLOYMENT`. An earlier pass at this only counted
+  `NEW_EMPLOYMENT`, undercounting real hiring by nearly a third of filings since `CHANGE_EMPLOYER`
+  is a genuine new hire too — DOL's form just buckets it separately since the worker already held
+  H-1B status somewhere else. Only ~14% of MBA-relevant PERM filings are for a worker not already
+  employed there (`OTHER_REQ_IS_FW_CURRENTLY_WRK`) — most PERM sponsorship is green-card
+  conversion for existing H-1B staff, not an offer to an external candidate (and that share skews
+  even lower, to ~4%, among the large repeat filers the dashboards' top-employer scope covers —
+  smaller one-off PERM filers are more likely to be for a specific external hire). Both dashboards
+  now have a "show only first-time hires" / "show only external hires" filter, not just a
+  displayed percentage.
 - **Corrected year-over-year picture** (after fixing the FY2025-Q2 data bug — see Data sources):
   MBA-core LCA filings are roughly flat YoY (Q1-Q3 FY2025 vs FY2026: -1.8%, previously
   mis-reported as +34% before the bug fix), while PERM core filings are up +24%. Adjacent-tier

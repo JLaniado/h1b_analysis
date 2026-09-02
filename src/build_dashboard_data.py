@@ -52,7 +52,20 @@ def _prep_lca(employer_mapping: pd.Series) -> pd.DataFrame:
     lca["ANNUAL_WAGE"] = lca["ANNUAL_WAGE"].where(
         (lca["ANNUAL_WAGE"] > 20_000) & (lca["ANNUAL_WAGE"] < 500_000)
     )
-    lca["IS_NEW_POSITION"] = lca["NEW_EMPLOYMENT"].fillna(0) > 0
+    # "New hire at this employer" = a genuinely new position (NEW_EMPLOYMENT) OR an H-1B
+    # transfer in from another employer (CHANGE_EMPLOYER) OR a new concurrent position
+    # (NEW_CONCURRENT_EMPLOYMENT) -- all three mean the worker is joining *this* employer for
+    # the first time. CONTINUED_EMPLOYMENT (extension) and CHANGE_PREVIOUS_EMPLOYMENT/
+    # AMENDED_PETITION (amendments) are excluded since those are for someone already there.
+    # Excluding CHANGE_EMPLOYER (undercounting real hiring by nearly a third of filings) was an
+    # earlier mistake in this analysis -- it's a genuine new hire for the receiving employer,
+    # DOL's form just buckets it separately from NEW_EMPLOYMENT because the worker already held
+    # H-1B status somewhere else.
+    lca["IS_NEW_HIRE"] = (
+        lca["NEW_EMPLOYMENT"].fillna(0)
+        + lca["CHANGE_EMPLOYER"].fillna(0)
+        + lca["NEW_CONCURRENT_EMPLOYMENT"].fillna(0)
+    ) > 0
     lca["WAGE_LEVEL"] = lca["PW_WAGE_LEVEL"].fillna("Unspecified")
     lca["STATE"] = lca["WORKSITE_STATE"]
     lca["OCC_TITLE"] = lca["SOC_TITLE"]
@@ -112,9 +125,11 @@ def build_lca_cube(lca: pd.DataFrame, lookups: dict) -> list:
     sub["decided"] = sub["CASE_STATUS"].isin(DECIDED_LCA)
     sub["certified"] = sub["decided"] & (sub["CASE_STATUS"] != "Denied")
 
-    g = sub.groupby(["OCC_TITLE", "EMPLOYER_CANONICAL", "STATE", "NAICS_SECTOR", "WAGE_LEVEL"], observed=True).agg(
+    g = sub.groupby(
+        ["OCC_TITLE", "EMPLOYER_CANONICAL", "STATE", "NAICS_SECTOR", "WAGE_LEVEL", "IS_NEW_HIRE"],
+        observed=True,
+    ).agg(
         filings=("CASE_NUMBER", "count"),
-        new_pos=("IS_NEW_POSITION", "sum"),
         certified=("certified", "sum"),
         decided=("decided", "sum"),
         wage_sum=("ANNUAL_WAGE", "sum"),
@@ -125,8 +140,8 @@ def build_lca_cube(lca: pd.DataFrame, lookups: dict) -> list:
     for r in g.itertuples(index=False):
         rows.append([
             occ_idx[r.OCC_TITLE], emp_idx[r.EMPLOYER_CANONICAL], state_idx.get(r.STATE, -1),
-            sector_idx.get(r.NAICS_SECTOR, -1), wage_idx.get(r.WAGE_LEVEL, 4),
-            int(r.filings), int(r.new_pos), int(r.certified), int(r.decided),
+            sector_idx.get(r.NAICS_SECTOR, -1), wage_idx.get(r.WAGE_LEVEL, 4), int(r.IS_NEW_HIRE),
+            int(r.filings), int(r.certified), int(r.decided),
             round(float(r.wage_sum), 0), int(r.wage_n),
         ])
     return rows, wage_levels
@@ -142,9 +157,11 @@ def build_perm_cube(perm: pd.DataFrame, lookups: dict) -> list:
     sub["decided"] = sub["CASE_STATUS"].isin(DECIDED_PERM)
     sub["certified"] = sub["decided"] & (sub["CASE_STATUS"] != "Denied")
 
-    g = sub.groupby(["OCC_TITLE", "EMPLOYER_CANONICAL", "STATE", "NAICS_SECTOR"], observed=True).agg(
+    g = sub.groupby(
+        ["OCC_TITLE", "EMPLOYER_CANONICAL", "STATE", "NAICS_SECTOR", "IS_EXTERNAL_HIRE"],
+        observed=True,
+    ).agg(
         filings=("CASE_NUMBER", "count"),
-        external_hire=("IS_EXTERNAL_HIRE", "sum"),
         certified=("certified", "sum"),
         decided=("decided", "sum"),
         wage_sum=("ANNUAL_WAGE", "sum"),
@@ -155,8 +172,8 @@ def build_perm_cube(perm: pd.DataFrame, lookups: dict) -> list:
     for r in g.itertuples(index=False):
         rows.append([
             occ_idx[r.OCC_TITLE], emp_idx[r.EMPLOYER_CANONICAL], state_idx.get(r.STATE, -1),
-            sector_idx.get(r.NAICS_SECTOR, -1),
-            int(r.filings), int(r.external_hire), int(r.certified), int(r.decided),
+            sector_idx.get(r.NAICS_SECTOR, -1), int(r.IS_EXTERNAL_HIRE),
+            int(r.filings), int(r.certified), int(r.decided),
             round(float(r.wage_sum), 0), int(r.wage_n),
         ])
     return rows
@@ -240,20 +257,20 @@ def main():
         "meta": {
             "lca_mba_total": int(len(lca)),
             "perm_mba_total": int(len(perm)),
-            "lca_cube_coverage": round(sum(r[5] for r in lca_rows) / len(lca), 3),
-            "perm_cube_coverage": round(sum(r[4] for r in perm_rows) / len(perm), 3),
+            "lca_cube_coverage": round(sum(r[6] for r in lca_rows) / len(lca), 3),
+            "perm_cube_coverage": round(sum(r[5] for r in perm_rows) / len(perm), 3),
         },
         "yoy": {"lca": yoy(lca), "perm": yoy(perm)},
         "lca": {
             "lookups": lca_lookups,
             "wage_levels": wage_levels,
             "facts": lca_rows,
-            "fact_fields": ["occ", "emp", "state", "sector", "wage_level", "filings", "new_pos", "certified", "decided", "wage_sum", "wage_n"],
+            "fact_fields": ["occ", "emp", "state", "sector", "wage_level", "new_hire", "filings", "certified", "decided", "wage_sum", "wage_n"],
         },
         "perm": {
             "lookups": perm_lookups,
             "facts": perm_rows,
-            "fact_fields": ["occ", "emp", "state", "sector", "filings", "external_hire", "certified", "decided", "wage_sum", "wage_n"],
+            "fact_fields": ["occ", "emp", "state", "sector", "external_hire", "filings", "certified", "decided", "wage_sum", "wage_n"],
         },
         "employer_meta": employer_meta,
     }

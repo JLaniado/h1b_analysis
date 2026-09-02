@@ -48,23 +48,29 @@ lca["EMPLOYER_CANONICAL"] = apply_brand_rollup(lca["EMPLOYER_CANONICAL"])
 perm["EMPLOYER_CANONICAL"] = apply_brand_rollup(perm["EMPLOYER_CANONICAL"])
 
 lca["ANNUAL_WAGE_FROM"] = annual_wage(lca["WAGE_RATE_OF_PAY_FROM"], lca["WAGE_UNIT_OF_PAY"])
-lca["IS_NEW_POSITION"] = lca["NEW_EMPLOYMENT"].fillna(0) > 0
+# "First-time hire at this employer" = NEW_EMPLOYMENT (genuinely new position) + CHANGE_EMPLOYER
+# (an H-1B transfer in from another employer -- still a real hire for the receiving company) +
+# NEW_CONCURRENT_EMPLOYMENT. CONTINUED_EMPLOYMENT (extension) and amendments are excluded.
+# Excluding CHANGE_EMPLOYER entirely (an earlier mistake here) undercounted real hiring by
+# nearly a third of filings.
+lca["IS_NEW_POSITION"] = (
+    lca["NEW_EMPLOYMENT"].fillna(0) + lca["CHANGE_EMPLOYER"].fillna(0) + lca["NEW_CONCURRENT_EMPLOYMENT"].fillna(0)
+) > 0
 
 lca_mba = lca[lca["MBA_TIER"] != "excluded"].copy()
 perm_mba = perm[perm["MBA_TIER"] != "excluded"].copy()
 
 # %% [markdown]
-# ## What share of "MBA-relevant" LCA filings are actually new positions?
+# ## What share of "MBA-relevant" LCA filings are actually first-time hires?
 #
-# `NEW_EMPLOYMENT` counts new-position slots on a filing; `CONTINUED_EMPLOYMENT`/
-# `CHANGE_EMPLOYER` cover extensions and transfers for people already employed. A filing with
-# `NEW_EMPLOYMENT > 0` is the closer proxy to "there's a real open seat here" — this is a
-# stronger signal than excluding `Withdrawn` status, which the original data-quality question
-# was really asking about.
+# `NEW_EMPLOYMENT` + `CHANGE_EMPLOYER` + `NEW_CONCURRENT_EMPLOYMENT` all mean the worker is
+# joining this employer for the first time; `CONTINUED_EMPLOYMENT` (an extension) and petition
+# amendments don't. This is a stronger "is there a real open seat here" signal than excluding
+# `Withdrawn` status, which the original data-quality question was really asking about.
 
 # %%
 new_position_share = lca_mba["IS_NEW_POSITION"].mean()
-print(f"Share of MBA-relevant LCA filings that include a new position: {new_position_share:.1%}")
+print(f"Share of MBA-relevant LCA filings that are a first-time hire: {new_position_share:.1%}")
 
 # %% [markdown]
 # ## PERM: existing employee vs. genuinely new hire

@@ -56,7 +56,18 @@ def load_data():
     lca["ANNUAL_WAGE"] = lca["ANNUAL_WAGE"].where(
         (lca["ANNUAL_WAGE"] > 20_000) & (lca["ANNUAL_WAGE"] < 500_000)
     )
-    lca["IS_NEW_POSITION"] = lca["NEW_EMPLOYMENT"].fillna(0) > 0
+    # "New hire at this employer" = a genuinely new position (NEW_EMPLOYMENT) OR an H-1B
+    # transfer in from another employer (CHANGE_EMPLOYER) OR a new concurrent position
+    # (NEW_CONCURRENT_EMPLOYMENT) -- all three mean the worker is joining THIS employer for the
+    # first time. CONTINUED_EMPLOYMENT (extension) and amendments are excluded since those are
+    # for someone already there. Excluding CHANGE_EMPLOYER alone would undercount real hiring by
+    # nearly a third of filings -- it's a genuine new hire for the receiving employer, DOL's form
+    # just buckets it separately since the worker already held H-1B status somewhere else.
+    lca["IS_NEW_POSITION"] = (
+        lca["NEW_EMPLOYMENT"].fillna(0)
+        + lca["CHANGE_EMPLOYER"].fillna(0)
+        + lca["NEW_CONCURRENT_EMPLOYMENT"].fillna(0)
+    ) > 0
     lca["WAGE_LEVEL"] = lca["PW_WAGE_LEVEL"].fillna("Unspecified")
     lca["DECIDED"] = lca["CASE_STATUS"].isin(DECIDED_LCA)
     lca["CERTIFIED"] = lca["DECIDED"] & (lca["CASE_STATUS"] != "Denied")
@@ -132,7 +143,27 @@ with st.sidebar:
 
     min_employer_filings = st.slider("Min. filings to show an employer in the leaderboard", 1, 50, 3)
 
+    if dataset == "H-1B (LCA)":
+        first_time_only = st.checkbox(
+            "Show only first-time hires",
+            help="Keeps NEW_EMPLOYMENT (genuinely new position) and CHANGE_EMPLOYER (an H-1B "
+                 "transfer in from another employer) filings — both mean the worker is joining "
+                 "this employer for the first time. Excludes CONTINUED_EMPLOYMENT (an extension "
+                 "for someone already there) and petition amendments.",
+        )
+    else:
+        first_time_only = st.checkbox(
+            "Show only external hires",
+            help="Keeps only filings where the foreign worker was NOT already employed by that "
+                 "employer at filing time. Most PERM filings (~86% among MBA-relevant roles) are "
+                 "green-card conversions for an existing H-1B employee, not offers to outside "
+                 "candidates — check this to see only the latter.",
+        )
+
 mask = df["MBA_TIER"].isin(tiers)
+if first_time_only:
+    hire_col = "IS_NEW_POSITION" if dataset == "H-1B (LCA)" else "IS_EXTERNAL_HIRE"
+    mask &= df[hire_col]
 if keyword:
     kw_mask = pd.Series(False, index=df.index)
     for col in title_cols:
@@ -160,8 +191,8 @@ c3.metric("Avg. annual wage", f"${wage_valid.mean():,.0f}" if len(wage_valid) el
           help=f"from {len(wage_valid):,} filings with wage data")
 if dataset == "H-1B (LCA)":
     extra_share = filtered["IS_NEW_POSITION"].mean() if len(filtered) else None
-    c4.metric("Genuinely new positions", f"{extra_share:.1%}" if extra_share is not None else "—",
-              help="vs. renewals/transfers")
+    c4.metric("First-time hires", f"{extra_share:.1%}" if extra_share is not None else "—",
+              help="New positions + H-1B transfers in, vs. extensions/amendments for someone already there")
 else:
     extra_share = filtered["IS_EXTERNAL_HIRE"].mean() if len(filtered) else None
     c4.metric("External-hire share", f"{extra_share:.1%}" if extra_share is not None else "—",
@@ -238,7 +269,7 @@ if dataset == "H-1B (LCA)":
         Filings=("CASE_NUMBER", "count"),
         Certified=("CERTIFIED", "sum"),
         Decided=("DECIDED", "sum"),
-        **{"New position share": ("IS_NEW_POSITION", "mean")},
+        **{"First-time hire share": ("IS_NEW_POSITION", "mean")},
         **{"Avg wage": ("ANNUAL_WAGE", "mean")},
         **{"Willful violator": ("WILLFUL_VIOLATOR", lambda s: (s == "Y").any())},
         **{"H-1B dependent": ("H_1B_DEPENDENT", lambda s: (s == "Y").any())},
@@ -260,7 +291,7 @@ g["MBA mix"] = (emp_mba_totals / emp_all_totals).reindex(g.index)
 g = g.sort_values("Filings", ascending=False).drop(columns=["Certified", "Decided"])
 
 display_cols = ["Filings", "MBA mix", "Cert rate"]
-display_cols += ["New position share"] if "New position share" in g.columns else ["External hire share"]
+display_cols += ["First-time hire share"] if "First-time hire share" in g.columns else ["External hire share"]
 display_cols += ["Avg wage"]
 if "Willful violator" in g.columns:
     display_cols += ["Willful violator", "H-1B dependent"]
@@ -272,7 +303,7 @@ st.dataframe(
     column_config={
         "MBA mix": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
         "Cert rate": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
-        "New position share": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
+        "First-time hire share": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
         "External hire share": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
         "Avg wage": st.column_config.NumberColumn(format="$%d"),
     },
@@ -281,13 +312,18 @@ st.dataframe(
 st.divider()
 with st.expander("Reading this responsibly"):
     st.markdown("""
-- **PERM ≠ "will sponsor an outside hire."** Most PERM filings are green-card conversions for
-  someone *already* employed there.
-- **"New position" (H-1B) filters out renewals/transfers.**
+- **PERM ≠ "will sponsor an outside hire."** ~86% of PERM filings are green-card conversions for
+  someone *already* employed there, not offers to outside candidates. Check "Show only external
+  hires" in the sidebar to see just that ~14%.
+- **"First-time hire" (H-1B) = NEW_EMPLOYMENT + CHANGE_EMPLOYER (an H-1B transfer in from another
+  employer) + NEW_CONCURRENT_EMPLOYMENT** — all three mean the worker is joining this employer for
+  the first time. It excludes CONTINUED_EMPLOYMENT (an extension for someone already there) and
+  petition amendments. Check "Show only first-time hires" in the sidebar to filter to just those.
 - **Wage level is a role proxy, not an employer's actual bar.**
 - **MBA-relevance tiers are a heuristic** (SOC code + title matching) — include "excluded" above
   and search your own keywords if your background is non-obvious (e.g. data science, engineering).
-- **Employer names are canonicalized** for casing/punctuation, but distinct legal subsidiaries of
-  the same brand (e.g. separate Amazon entities) are not merged.
+- **Employer names are canonicalized and known multi-subsidiary brands are rolled up** (e.g.
+  Amazon's subsidiaries, Goldman Sachs's legal entities) — see `src/employer_brand_rollup.py` for
+  the specific groups and the look-alike names deliberately kept separate.
 - Wage figures are means (not medians) of annualized pay.
 """)

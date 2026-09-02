@@ -292,6 +292,11 @@
       <div class="checklist filter-scroll" id="state-list"></div>
     </div>
 
+    <div class="filter-group">
+      <label id="first-time-label"><input type="checkbox" id="first-time-only" onchange="onFilterChange()"> <span id="first-time-text">Show only first-time hires</span></label>
+      <p class="hint" id="first-time-hint"></p>
+    </div>
+
     <button class="reset-link" onclick="resetFilters()">Reset all filters</button>
   </aside>
 
@@ -346,11 +351,11 @@
     <section class="panel caveats">
       <h2 style="font-size:14px;">Reading this responsibly</h2>
       <ul>
-        <li><strong>PERM ≠ "will sponsor an outside hire."</strong> Most PERM filings are green-card conversions for someone <em>already</em> employed there. Use the PERM tab to gauge which employers see H-1B sponsorship through to a green card, not as a source of new-hire leads.</li>
-        <li><strong>"New position" (H-1B) filters out renewals/transfers.</strong> LCA filings also cover extensions and transfers for people already employed — the average wage and volume numbers here include those unless you interpret the new-position figures separately.</li>
+        <li><strong>PERM ≠ "will sponsor an outside hire."</strong> ~86% of PERM filings are green-card conversions for someone <em>already</em> employed there, not offers to outside candidates — and that share is even higher among the large repeat filers this dashboard covers (the smaller, one-off filers not shown here skew more external). Check "Show only external hires" to see just that minority.</li>
+        <li><strong>"First-time hire" (H-1B) = a new position, or an H-1B transfer in from another employer, or a new concurrent position</strong> — all three mean the worker is joining this employer for the first time. It excludes extensions and petition amendments for someone already there. Check "Show only first-time hires" to filter to just those.</li>
         <li><strong>Wage level is a role proxy, not an employer's actual bar.</strong> Two employers filing "Level II" for the same title can still have very different real hiring bars.</li>
         <li><strong>MBA-relevance tiers are a heuristic</strong> (SOC code + title matching), not a real minimum-degree field, and <strong>this explorer only covers occupations in the core/adjacent tiers</strong> — technical titles like "Data Scientists" or "Software Developers" are excluded here even though a business-analytics or quant background might realistically target them. If that's your profile, treat this tool as one input, not the full picture, and cross-check DOL's LCA/PERM disclosure data directly for those titles.</li>
-        <li><strong>Employer names are canonicalized</strong> for casing/punctuation, but distinct legal subsidiaries of the same brand (e.g. separate Amazon entities) are not merged — a company may appear as more than one row.</li>
+        <li><strong>Employer names are canonicalized and known multi-subsidiary brands are rolled up</strong> (e.g. Amazon's, Goldman Sachs's, and Deloitte's legal entities all combine into one row) — but this covers a manually-reviewed list of ~20 major employers, not every subsidiary in the dataset.</li>
         <li>Averages shown are means of annualized wage, not medians (only sums/counts are pre-aggregated for performance) — treat them as directional.</li>
       </ul>
       <p class="footer-meta" id="footer-meta"></p>
@@ -373,6 +378,7 @@ let state = {
   sectors: new Set(),
   states: new Set(),
   wageLevels: new Set(),
+  firstTimeOnly: false,
   sortCol: "filings",
   sortDir: "desc",
 };
@@ -425,6 +431,17 @@ function buildSidebar() {
     wagePanel.style.display = "none";
     document.getElementById("wage-level-label").parentElement.style.display = "none";
   }
+
+  document.getElementById("first-time-only").checked = state.firstTimeOnly;
+  if (state.dataset === "lca") {
+    document.getElementById("first-time-text").textContent = "Show only first-time hires";
+    document.getElementById("first-time-hint").textContent =
+      "Keeps new positions and H-1B transfers in from another employer; excludes extensions and amendments for someone already there.";
+  } else {
+    document.getElementById("first-time-text").textContent = "Show only external hires";
+    document.getElementById("first-time-hint").textContent =
+      "Keeps only filings where the worker was NOT already employed there — most PERM filings are green-card conversions for existing staff.";
+  }
 }
 
 function makeCheckbox(group, value, checked) {
@@ -449,6 +466,7 @@ function setDataset(ds) {
   state.sectors = new Set();
   state.states = new Set();
   state.wageLevels = new Set();
+  state.firstTimeOnly = false;
   buildSidebar();
   render();
 }
@@ -461,6 +479,7 @@ function onKeywordInput() {
 function onFilterChange() {
   state.tiers.core = document.getElementById("tier-core").checked;
   state.tiers.adjacent = document.getElementById("tier-adjacent").checked;
+  state.firstTimeOnly = document.getElementById("first-time-only").checked;
   render();
 }
 
@@ -473,6 +492,7 @@ function resetFilters() {
   state.sectors = new Set();
   state.states = new Set();
   state.wageLevels = new Set();
+  state.firstTimeOnly = false;
   buildSidebar();
   render();
 }
@@ -510,6 +530,10 @@ function getFilteredRows() {
     if (state.dataset === "lca" && state.wageLevels.size > 0) {
       const wName = wageLevels[row[wlI]];
       if (!state.wageLevels.has(wName)) return false;
+    }
+    if (state.firstTimeOnly) {
+      const hireI = state.dataset === "lca" ? F.indexOf("new_hire") : F.indexOf("external_hire");
+      if (row[hireI] !== 1) return false;
     }
     return true;
   });
@@ -551,16 +575,16 @@ function renderKpis(bundle, rows, idx) {
   const filingsI = idx("filings"), certI = idx("certified"), decI = idx("decided"),
         wageSumI = idx("wage_sum"), wageNI = idx("wage_n");
   const isLca = state.dataset === "lca";
-  const extraI = isLca ? idx("new_pos") : idx("external_hire");
+  const extraI = isLca ? idx("new_hire") : idx("external_hire");
 
-  let totalFilings = 0, totalCert = 0, totalDec = 0, wageSum = 0, wageN = 0, extra = 0;
+  let totalFilings = 0, totalCert = 0, totalDec = 0, wageSum = 0, wageN = 0, extraFilings = 0;
   rows.forEach(r => {
     totalFilings += r[filingsI];
     totalCert += r[certI];
     totalDec += r[decI];
     wageSum += r[wageSumI];
     wageN += r[wageNI];
-    extra += r[extraI];
+    if (r[extraI] === 1) extraFilings += r[filingsI];
   });
 
   const kpis = [
@@ -568,8 +592,8 @@ function renderKpis(bundle, rows, idx) {
     { label: "Certification rate", value: totalDec > 0 ? fmtPct(totalCert / totalDec) : "—", note: `of ${fmtInt(totalDec)} decided cases` },
     { label: "Avg. annual wage", value: wageN > 0 ? fmtMoney(wageSum / wageN) : "—", note: `from ${fmtInt(wageN)} filings with wage data` },
     isLca
-      ? { label: "Genuinely new positions", value: totalFilings > 0 ? fmtPct(extra / totalFilings) : "—", note: "vs. renewals/transfers" }
-      : { label: "External-hire share", value: totalFilings > 0 ? fmtPct(extra / totalFilings) : "—", note: "not already employed there" },
+      ? { label: "First-time hires", value: totalFilings > 0 ? fmtPct(extraFilings / totalFilings) : "—", note: "new positions + H-1B transfers in" }
+      : { label: "External-hire share", value: totalFilings > 0 ? fmtPct(extraFilings / totalFilings) : "—", note: "not already employed there" },
   ];
 
   const el = document.getElementById("kpi-row");
@@ -694,7 +718,7 @@ function renderEmployerTable(bundle, rows, idx) {
   const empI = idx("emp"), filingsI = idx("filings"), certI = idx("certified"), decI = idx("decided"),
         wageSumI = idx("wage_sum"), wageNI = idx("wage_n");
   const isLca = state.dataset === "lca";
-  const extraI = isLca ? idx("new_pos") : idx("external_hire");
+  const extraI = isLca ? idx("new_hire") : idx("external_hire");
   const empNames = bundle.lookups.employers;
 
   const agg = new Map();
@@ -703,7 +727,8 @@ function renderEmployerTable(bundle, rows, idx) {
     if (!agg.has(e)) agg.set(e, { filings: 0, cert: 0, dec: 0, wageSum: 0, wageN: 0, extra: 0 });
     const a = agg.get(e);
     a.filings += r[filingsI]; a.cert += r[certI]; a.dec += r[decI];
-    a.wageSum += r[wageSumI]; a.wageN += r[wageNI]; a.extra += r[extraI];
+    a.wageSum += r[wageSumI]; a.wageN += r[wageNI];
+    if (r[extraI] === 1) a.extra += r[filingsI];
   });
 
   let list = Array.from(agg.entries()).map(([e, a]) => {
@@ -736,7 +761,7 @@ function renderEmployerTable(bundle, rows, idx) {
   list = list.slice(0, 40);
 
   const thead = document.getElementById("employer-thead");
-  const extraLabel = isLca ? "New position" : "External hire";
+  const extraLabel = isLca ? "First-time hire" : "External hire";
   const cols = [
     ["name", "Employer"], ["filings", "Filings"], ["mixShare", "MBA mix"],
     ["certRate", "Cert. rate"], ["extraShare", extraLabel], ["avgWage", "Avg. wage"], ["flags", "Flags"],
