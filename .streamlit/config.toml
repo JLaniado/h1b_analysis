@@ -1,0 +1,13 @@
+# Headless by default: `streamlit run` otherwise auto-opens your default
+# browser via a subprocess fork+exec (webbrowser.open -> `/usr/bin/open`).
+# On some macOS versions, forking from Streamlit's multi-threaded process
+# crashes inside Apple's Network framework fork-handler before exec even
+# runs (a SIGSEGV reported by macOS as "Python quit unexpectedly", with
+# `subprocess_fork_exec` / "multi-threaded process forked" in the crash
+# trace) -- disabling the auto-open sidesteps it entirely. Open
+# http://localhost:8501 yourself once the server starts.
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

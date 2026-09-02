@@ -164,9 +164,20 @@ pip install -r requirements.txt  # first time only
 streamlit run app.py
 ```
 
-It opens at `http://localhost:8501`. First load takes a few seconds while it reads and prepares
-the full master CSVs (cached after that — subsequent filter changes are instant). This isn't
-deployed anywhere; it's meant to run on your own machine.
+Open `http://localhost:8501` once the server starts (`.streamlit/config.toml` runs it headless —
+see below for why). First load takes a few seconds while it reads and prepares the full master
+CSVs (cached after that — subsequent filter changes are instant). This isn't deployed anywhere;
+it's meant to run on your own machine.
+
+**Known macOS crash and why it's disabled by default**: `streamlit run` normally auto-opens your
+browser, which forks a subprocess to run `/usr/bin/open`. On some macOS versions this crashes —
+macOS reports it as "Python quit unexpectedly" with a SIGSEGV, and the crash log shows `*** 
+multi-threaded process forked ***` / `subprocess_fork_exec` — because forking a multi-threaded
+process (which Streamlit's server is) races with a fork-handler Apple's Network framework
+registers, and that handler isn't safe to run before the subsequent `exec`. `.streamlit/config.toml`
+sets `headless = true` to skip the auto-open entirely and sidestep it; open the URL yourself
+instead. If you ever pass a config flag that re-enables the browser auto-open, you may hit this
+again.
 
 ## Status
 
