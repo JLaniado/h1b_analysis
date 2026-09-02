@@ -140,6 +140,34 @@ including those (very high-volume, very high cardinality) occupations would blow
 past a size a static page can embed. This is called out directly in the page's own copy so it
 doesn't read as a bug.
 
+**Coverage**: because of that sampling, the static page covers 184,015 of 1,023,639 total LCA
+records (**18.0%**) and 25,134 of 259,489 total PERM records (**9.7%**) — see `app.py` below for
+the full-data alternative.
+
+## Local dashboard (full data)
+
+`app.py` is a [Streamlit](https://streamlit.io/) app with no sampling: it loads the complete
+consolidated master data directly and filters/aggregates live with pandas, so it has no
+embed-size constraint to work around. Compared to the static page, it covers:
+
+- **Every record** in both datasets, not a ~150-occupation/3+-filing sample.
+- **Every MBA tier, including "excluded"** — technical titles like Data Scientists or Software
+  Developers are searchable (toggle the tier filter), which the static page can't offer at all.
+- **Free-text job-title search**, not just standardized SOC/occupation titles — "credit risk" and
+  "data scientist" work here even though they don't match any SOC title string directly.
+
+Run it with:
+
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt  # first time only
+streamlit run app.py
+```
+
+It opens at `http://localhost:8501`. First load takes a few seconds while it reads and prepares
+the full master CSVs (cached after that — subsequent filter changes are instant). This isn't
+deployed anywhere; it's meant to run on your own machine.
+
 ## Status
 
 Exploration and analysis-layer phase complete, now covering full FY2025 + FY2026 through Q3, with
