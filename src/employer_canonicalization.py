@@ -66,7 +66,7 @@ def build_canonical_map(names: pd.Series) -> pd.Series:
     (ties broken in favor of a variant that isn't ALL CAPS, since that's
     usually a data-entry artifact rather than the employer's real styling).
     """
-    raw_counts = names.dropna().value_counts()
+    raw_counts = names.dropna().str.strip().value_counts()
     df = raw_counts.rename("count").reset_index()
     df.columns = ["raw_name", "count"]
     df["core"] = df["raw_name"].map(clean_name).map(core_key)
@@ -83,5 +83,5 @@ def build_canonical_map(names: pd.Series) -> pd.Series:
 def add_canonical_employer(df: pd.DataFrame, raw_col: str, out_col: str) -> pd.DataFrame:
     """Add a canonical employer name column, deduplicating naming noise in raw_col."""
     mapping = build_canonical_map(df[raw_col])
-    df[out_col] = df[raw_col].map(mapping)
+    df[out_col] = df[raw_col].str.strip().map(mapping)
     return df

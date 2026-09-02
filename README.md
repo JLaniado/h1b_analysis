@@ -2,8 +2,12 @@
 
 Analysis of DOL OFLC disclosure data (H-1B/LCA and PERM) to help Tepper School of Business
 international MBA students target employers and role functions with realistic odds of visa
-sponsorship. End goal is a public dashboard; this repo currently holds the data-exploration
-phase.
+sponsorship, plus an interactive explorer built on top of it.
+
+**[Open the Sponsorship Explorer dashboard →](https://claude.ai/code/artifact/3e07185f-f13a-4454-bfe6-5bb776429ef6)**
+Filter H-1B and PERM filings by occupation keyword, industry, state, and wage level; see a
+ranked employer leaderboard with certification rate, real-new-position share, and H-1B→green-card
+pipeline status.
 
 ## Data sources
 
@@ -74,6 +78,8 @@ python -m ipykernel install --user --name h1b_analysis --display-name "h1b_analy
   human-readable industry names)
 - `src/employer_matching.py` — matches employers across LCA and PERM (by the same cleaned/
   suffix-stripped key as canonicalization) to see who sponsors *both* H-1B and green cards
+- `src/build_dashboard_data.py` / `src/build_dashboard_html.py` — build the interactive dashboard
+  (see Dashboard section below)
 - `notebooks/01_data_loading_and_eda.py` — general EDA: data quality, case status/certification
   rates, top occupations, filing trends over time and year-over-year, seasonality, wages,
   geography, top employers
@@ -98,15 +104,36 @@ python -m ipykernel install --user --name h1b_analysis --display-name "h1b_analy
   jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=h1b_analysis notebooks/*.ipynb
   ```
   (Edit the `.py` files, not the `.ipynb` files directly, then regenerate — keeps diffs readable.)
-- `data/processed/` — small aggregate CSVs saved from the notebooks (safe to commit, meant to
-  seed the eventual dashboard)
+- `data/processed/` — small aggregate CSVs saved from the notebooks (safe to commit)
 - `outputs/figures/` — PNG charts saved from the notebooks
+
+## Dashboard
+
+The Sponsorship Explorer (linked above) is a static, client-side-filtered page — no backend, so
+it's just a link to share. It's built in three steps, each re-runnable independently:
+
+1. `python src/build_dashboard_data.py` — aggregates the LCA/PERM master data into a compact,
+   dictionary-encoded JSON "cube" at the grain (occupation, employer, state, industry sector,
+   wage level), restricted to the ~150 highest-volume occupations and employers with 3+ filings
+   (covers 81% of MBA-relevant LCA filings, 57% of PERM — the long tail is dropped to keep the
+   page small enough to embed client-side). Writes `outputs/dashboard_data.json`.
+2. `python src/build_dashboard_html.py` — injects that JSON into `outputs/dashboard_template.html`
+   (the actual page source — edit this file for any markup/style/logic change, not the generated
+   output) to produce `outputs/dashboard.html`.
+3. Publish `outputs/dashboard.html` as a Claude Artifact.
+
+The page is deliberately scoped to occupations in the core/adjacent MBA tiers — a search for a
+more technical title like "Data Scientists" or "Software Developers" won't return results, since
+including those (very high-volume, very high cardinality) occupations would blow the data cube
+past a size a static page can embed. This is called out directly in the page's own copy so it
+doesn't read as a bug.
 
 ## Status
 
-Exploration phase, now covering full FY2025 + FY2026 through Q3, with an analysis layer answering
-the core recruiting-strategy questions (occupation fit, employer targeting, industry, geography,
-timing) generically rather than for one fixed persona — see notebooks 02-05.
+Exploration and analysis-layer phase complete, now covering full FY2025 + FY2026 through Q3, with
+both a notebook-based analysis layer (notebooks 02-05) and a shareable interactive dashboard on
+top of it, answering the core recruiting-strategy questions (occupation fit, employer targeting,
+industry, geography, timing) generically rather than for one fixed persona.
 
 Headline findings:
 - **Real hiring signal matters more than excluding withdrawn/denied cases.** Only ~35-39% of

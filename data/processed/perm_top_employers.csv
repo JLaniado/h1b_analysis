@@ -1,7 +1,7 @@
 EMPLOYER_CANONICAL,filings
 Microsoft Corporation,4840
 "Management Health Systems, LLC",2624
-"FPL Food, LLC ",2322
+"FPL Food, LLC",2322
 "JCG Foods of Georgia, LLC",2159
 "Labor Guys, LLC",2072
 "Consolidated Catfish Producers, LLC",2057
@@ -19,7 +19,7 @@ FMR LLC,960
 "Cisco Systems, Inc.",932
 "Case Farms Processing, Inc",893
 MERIT LOGISTICS,874
-" Koch Foods of Gadsden, LLC",862
+"Koch Foods of Gadsden, LLC",862
 Ernst & Young U.S. LLP,852
 Akash Management LLC,837
 "TESLA, INC.",800
@@ -28,7 +28,7 @@ Akash Management LLC,837
 "Citibank, N.A.",686
 COMPUNNEL SOFTWARE GROUP INC.,671
 Conexus MedStaff LLC,669
-Adobe Inc. ,649
+Adobe Inc.,649
 ByteDance Inc.,640
 "MCKINSEY & COMPANY, INC. UNITED STATES",622
 Bloomberg L.P.,594
@@ -50,7 +50,7 @@ GDI Services Inc.,449
 LTIMindtree Limited,406
 "Comcast Cable Communications, LLC",399
 Intuit Inc.,399
-"THE BOSTON CONSULTING GROUP, INC. ",396
+"THE BOSTON CONSULTING GROUP, INC.",396
 "RIVIAN AUTOMOTIVE, LLC",383
 "HCL America, Inc.",382
 "Applied Materials, Inc",381
@@ -67,7 +67,7 @@ Cummins Inc.,352
 PricewaterhouseCoopers Advisory Services LLC,350
 TikTok Inc.,340
 "TW Services, Inc",340
-"Wells Fargo Bank, N.A. ",335
+"Wells Fargo Bank, N.A.",335
 "DoorDash, Inc.",328
 OMEGA COMPLIANCE SOLUTIONS LLC,326
 "EPAM Systems, Inc.",324
@@ -84,9 +84,9 @@ KLA Corporation,285
 "Lucid USA, Inc.",281
 MORGAN TRUCK BODY LLC,279
 Visa Technology & Operations LLC,276
-"Optum Services, Inc. ",275
+"Optum Services, Inc.",275
 "Dakota Provisions, LLC",274
-"Expedia, Inc. ",271
+"Expedia, Inc.",271
 Napoli PSC Series LLC,270
 FH Miami Operations LLC,269
 Rely Workforce Group LLC,269
@@ -97,14 +97,14 @@ CORE TECH INTERNATIONAL CORPORATION,260
 "Stripe, Inc.",253
 Morgan Stanley Services Group Inc.,252
 AA Transportation Co Inc,250
-KFORCE INC. ,248
+KFORCE INC.,248
 "Health Carousel, LLC",245
 Mastercard International Incorporated,240
 Chula Vista Inc,236
 Snowflake Inc.,234
 Zoox Inc.,229
 SAVANNAH CHATHAM COUNTY PUBLIC SCHOOL SYSTEM,227
-Safeway Inc. ,227
+Safeway Inc.,227
 "VMware, Inc.",225
 "Workday, Inc.",225
 "Databricks, Inc.",225
@@ -113,8 +113,8 @@ Safeway Inc. ,227
 The Vanguard Group,222
 United Methodist Homes & Services,220
 SDC Restaurants LLC,218
-"Micron Technology, Inc. ",217
-Mphasis Corporation ,215
+"Micron Technology, Inc.",217
+Mphasis Corporation,215
 Cigna-Evernorth Services Inc.,212
 STS Technical Services,212
 "Omnipotent Brands ESO, LLC",210
@@ -124,8 +124,8 @@ Homes for Independent Living of Wisconsin LLC,206
 Caremark LLC,205
 "INTUITIVE SURGICAL OPERATIONS, INC",201
 National Healthcare Corporation,201
-Barclays Services Corp. ,200
-"CVS Pharmacy, Inc. ",199
+Barclays Services Corp.,200
+"CVS Pharmacy, Inc.",199
 "The MathWorks, Inc.",197
 VIRTUSA CORPORATION,194
 Primary Aim LLC,191
@@ -133,7 +133,7 @@ Primary Aim LLC,191
 "Gateway Care Center, LLC",184
 "Randstad Digital, LLC",182
 "Riverview, LLP",182
-"ADP Technology Services, Inc. ",179
+"ADP Technology Services, Inc.",179
 General Motors Company,179
 "American Airlines, Inc.",177
 Deloitte Tax LLP,175
@@ -155,9 +155,9 @@ SNAP INC.,165
 "BEST BUY CO., INC.",163
 "Chewy, Inc.",163
 United Services Automobile Association,163
-"BlackRock Financial Management, Inc. ",162
+"BlackRock Financial Management, Inc.",162
 NOKIA OF AMERICA CORPORATION,161
-Lam Research Corporation ,161
+Lam Research Corporation,161
 Government Employees Insurance Company (GEICO),160
 Amgen Inc.,158
 KPMG LLP,158
@@ -172,7 +172,7 @@ Equifax Inc.,155
 Home Depot Management Company LLC,151
 "Indeed, Inc.",150
 ARUP Laboratories,150
-"Opportunity of North Central Wisconsin, Inc. ",150
+"Opportunity of North Central Wisconsin, Inc.",150
 Truist Bank,149
 "Rotolo Consultants, Inc.",149
 Visa U.S.A. Inc.,148
@@ -192,7 +192,7 @@ Omni Hotels Management Corp.,141
 Wayfair LLC,139
 "Block, Inc.",139
 CITADEL SECURITIES AMERICAS SERVICES LLC,138
-DocuSign Inc. ,138
+DocuSign Inc.,138
 "Innova Solutions, Inc.",137
 "INFINITE COMPUTER SOLUTIONS, INC",136
 White Lodging Services Corporation,135

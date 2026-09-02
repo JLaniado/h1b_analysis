@@ -1,0 +1,789 @@
+<title>Sponsorship Explorer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root {
+    --ink: #16211D;
+    --paper: #F3F5EF;
+    --surface: #FFFFFF;
+    --surface-2: #EAEDE3;
+    --line: #D8DCD0;
+    --muted: #5C6760;
+    --accent: #1F5C4A;
+    --accent-strong: #123B2F;
+    --accent-soft: #DCEAE2;
+    --good: #2E7D46;
+    --warn: #93650E;
+    --bad: #AE3A2E;
+    --focus: #1F5C4A;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #E7ECE5;
+      --paper: #10150F;
+      --surface: #171D16;
+      --surface-2: #1F2A1E;
+      --line: #2B362C;
+      --muted: #9AA79E;
+      --accent: #5FC996;
+      --accent-strong: #83DFB4;
+      --accent-soft: #1E3A2C;
+      --good: #57C77D;
+      --warn: #D9A441;
+      --bad: #E5776B;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #E7ECE5;
+    --paper: #10150F;
+    --surface: #171D16;
+    --surface-2: #1F2A1E;
+    --line: #2B362C;
+    --muted: #9AA79E;
+    --accent: #5FC996;
+    --accent-strong: #83DFB4;
+    --accent-soft: #1E3A2C;
+    --good: #57C77D;
+    --warn: #D9A441;
+    --bad: #E5776B;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  h1, h2, h3 { font-family: "IBM Plex Serif", Georgia, serif; text-wrap: balance; margin: 0; }
+  .mono, .tnum { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  a { color: var(--accent); }
+
+  .app {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Header ---------- */
+  .topbar {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    flex-wrap: wrap;
+  }
+  .topbar h1 { font-size: 22px; font-weight: 600; }
+  .topbar .kicker {
+    display: block;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .topbar .sub { color: var(--muted); font-size: 13px; max-width: 46ch; }
+  .dataset-toggle {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .dataset-toggle button {
+    appearance: none;
+    border: none;
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  .dataset-toggle button + button { border-left: 1px solid var(--line); }
+  .dataset-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  .dataset-toggle button:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    padding: 24px 20px;
+    border-right: 1px solid var(--line);
+    background: var(--surface);
+  }
+  @media (max-width: 860px) {
+    .sidebar { border-right: none; border-bottom: 1px solid var(--line); }
+  }
+  .filter-group { margin-bottom: 22px; }
+  .filter-group > label, .filter-group > .label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .search-box {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+  }
+  .search-box:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  .checklist { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow-y: auto; padding-right: 4px; }
+  .checklist label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; cursor: pointer; padding: 3px 0;
+  }
+  .checklist input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; }
+  .filter-scroll::-webkit-scrollbar { width: 6px; }
+  .filter-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+  .reset-link {
+    font-size: 12px; color: var(--muted); background: none; border: none;
+    text-decoration: underline; cursor: pointer; padding: 0; font-family: inherit;
+  }
+  .reset-link:hover { color: var(--accent); }
+
+  /* ---------- Main ---------- */
+  .main { padding: 24px 28px 60px; max-width: 1180px; }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .kpi .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 6px; }
+  .kpi .kpi-value { font-size: 26px; font-weight: 600; font-family: "IBM Plex Mono", monospace; }
+  .kpi .kpi-note { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 20px;
+  }
+  .panel h2 { font-size: 16px; margin-bottom: 4px; }
+  .panel .panel-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 14px; max-width: 68ch; }
+  .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 760px) { .panel-grid { grid-template-columns: 1fr; } }
+  .chart-wrap { position: relative; height: 320px; }
+  .chart-wrap.short { height: 240px; }
+
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table-scroll { overflow-x: auto; }
+  table.data-table th, table.data-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+  table.data-table th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); cursor: pointer; user-select: none; }
+  table.data-table th:hover { color: var(--accent); }
+  table.data-table td.num, table.data-table th.num { text-align: right; font-family: "IBM Plex Mono", monospace; }
+  table.data-table tbody tr:hover { background: var(--surface-2); }
+
+  .badge {
+    display: inline-block; font-size: 10.5px; font-weight: 600; padding: 2px 7px;
+    border-radius: 999px; letter-spacing: 0.02em;
+  }
+  .badge.pipeline { background: var(--accent-soft); color: var(--accent-strong); }
+  .badge.warn { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
+  .badge.bad { background: color-mix(in srgb, var(--bad) 16%, transparent); color: var(--bad); }
+  .badge-row { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .rate-pill { display: inline-flex; align-items: center; gap: 5px; }
+  .rate-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .rate-dot.good { background: var(--good); }
+  .rate-dot.warn { background: var(--warn); }
+  .rate-dot.bad { background: var(--bad); }
+
+  .yoy-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .yoy-card { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .yoy-card .yoy-tier { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .yoy-card .yoy-change { font-family: "IBM Plex Mono", monospace; font-size: 22px; font-weight: 600; margin-top: 4px; }
+  .yoy-change.up { color: var(--good); }
+  .yoy-change.down { color: var(--bad); }
+  .yoy-card .yoy-detail { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .empty-state { padding: 40px 10px; text-align: center; color: var(--muted); font-size: 13.5px; }
+
+  .caveats { font-size: 12.5px; color: var(--muted); }
+  .caveats ul { margin: 8px 0 0; padding-left: 18px; }
+  .caveats li { margin-bottom: 6px; }
+  .footer-meta { font-size: 11.5px; color: var(--muted); margin-top: 18px; }
+
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+
+<div class="app">
+  <header class="topbar">
+    <div>
+      <span class="kicker">DOL FY2025–FY2026 Q3 disclosure data</span>
+      <h1>Sponsorship Explorer</h1>
+      <p class="sub">Filter H-1B (LCA) and green-card (PERM) filings by occupation, industry, state, and wage level to find where international MBA sponsorship actually concentrates.</p>
+    </div>
+    <div class="dataset-toggle" role="group" aria-label="Choose dataset">
+      <button id="btn-lca" aria-pressed="true" onclick="setDataset('lca')">H-1B (LCA)</button>
+      <button id="btn-perm" aria-pressed="false" onclick="setDataset('perm')">Green card (PERM)</button>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="filter-group">
+      <label for="keyword">Occupation keyword</label>
+      <input id="keyword" class="search-box" type="text" placeholder="e.g. financial risk, market research…" oninput="onKeywordInput()">
+      <p class="hint">Matches DOL's standardized occupation titles within the tiers below — not free-text job titles. A search like "credit risk" or "data scientist" won't match; try "financial risk" or "business intelligence" instead.</p>
+      <div class="chip-row" id="example-chips"></div>
+    </div>
+
+    <div class="filter-group">
+      <span class="label">MBA-relevance tier</span>
+      <div class="checklist">
+        <label><input type="checkbox" id="tier-core" checked onchange="onFilterChange()"> Core (management &amp; business roles)</label>
+        <label><input type="checkbox" id="tier-adjacent" checked onchange="onFilterChange()"> Adjacent (business-facing tech/analytics)</label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <span class="label" id="wage-level-label">Wage level (I = entry … IV = expert)</span>
+      <div class="checklist" id="wage-level-list"></div>
+    </div>
+
+    <div class="filter-group">
+      <span class="label">Industry sector</span>
+      <div class="checklist filter-scroll" id="sector-list"></div>
+    </div>
+
+    <div class="filter-group">
+      <span class="label">Worksite state</span>
+      <div class="checklist filter-scroll" id="state-list"></div>
+    </div>
+
+    <button class="reset-link" onclick="resetFilters()">Reset all filters</button>
+  </aside>
+
+  <main class="main">
+    <section class="kpi-row" id="kpi-row"></section>
+
+    <section class="panel">
+      <h2>Is sponsorship growing or shrinking?</h2>
+      <p class="panel-sub">Fixed year-over-year view (Q1–Q3 of each fiscal year, so FY2026's partial year compares fairly) — not affected by the filters above.</p>
+      <div class="yoy-row" id="yoy-row"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Top occupations</h2>
+      <p class="panel-sub" id="occ-panel-sub">Matched filings by SOC occupation title, under the current filters.</p>
+      <div class="chart-wrap"><canvas id="chart-occupations"></canvas></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-grid">
+        <div>
+          <h2>Top industries</h2>
+          <p class="panel-sub">By 2-digit NAICS sector.</p>
+          <div class="chart-wrap short"><canvas id="chart-sectors"></canvas></div>
+        </div>
+        <div>
+          <h2>Top states</h2>
+          <p class="panel-sub">Filing volume by worksite state.</p>
+          <div class="chart-wrap short"><canvas id="chart-states"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="wage-level-panel">
+      <h2>Wage-level mix</h2>
+      <p class="panel-sub">DOL's own I–IV classification of experience/responsibility expected — the closest available proxy for seniority, since no applicant-experience field exists in this data.</p>
+      <div class="chart-wrap short"><canvas id="chart-wagelevels"></canvas></div>
+    </section>
+
+    <section class="panel">
+      <h2>Employer leaderboard</h2>
+      <p class="panel-sub">Ranked by matched filings under current filters. <strong>Mix</strong> is that employer's overall share of filings that are MBA-relevant (any tier) — a small employer at 100% mix is a stronger lead than a huge filer where business roles are a rounding error. Click a column to sort.</p>
+      <div class="table-scroll">
+        <table class="data-table" id="employer-table">
+          <thead id="employer-thead"></thead>
+          <tbody id="employer-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="employer-empty" style="display:none;">No employers match the current filters — try widening your keyword or clearing a filter.</div>
+    </section>
+
+    <section class="panel caveats">
+      <h2 style="font-size:14px;">Reading this responsibly</h2>
+      <ul>
+        <li><strong>PERM ≠ "will sponsor an outside hire."</strong> Most PERM filings are green-card conversions for someone <em>already</em> employed there. Use the PERM tab to gauge which employers see H-1B sponsorship through to a green card, not as a source of new-hire leads.</li>
+        <li><strong>"New position" (H-1B) filters out renewals/transfers.</strong> LCA filings also cover extensions and transfers for people already employed — the average wage and volume numbers here include those unless you interpret the new-position figures separately.</li>
+        <li><strong>Wage level is a role proxy, not an employer's actual bar.</strong> Two employers filing "Level II" for the same title can still have very different real hiring bars.</li>
+        <li><strong>MBA-relevance tiers are a heuristic</strong> (SOC code + title matching), not a real minimum-degree field, and <strong>this explorer only covers occupations in the core/adjacent tiers</strong> — technical titles like "Data Scientists" or "Software Developers" are excluded here even though a business-analytics or quant background might realistically target them. If that's your profile, treat this tool as one input, not the full picture, and cross-check DOL's LCA/PERM disclosure data directly for those titles.</li>
+        <li><strong>Employer names are canonicalized</strong> for casing/punctuation, but distinct legal subsidiaries of the same brand (e.g. separate Amazon entities) are not merged — a company may appear as more than one row.</li>
+        <li>Averages shown are means of annualized wage, not medians (only sums/counts are pre-aggregated for performance) — treat them as directional.</li>
+      </ul>
+      <p class="footer-meta" id="footer-meta"></p>
+    </section>
+  </main>
+</div>
+
+<script>
+const DATA = /*__DASHBOARD_DATA__*/;
+
+const EXAMPLE_KEYWORDS = [
+  "financial risk", "management analyst", "business intelligence", "project manager",
+  "marketing manager", "supply chain", "market research", "human resources",
+];
+
+let state = {
+  dataset: "lca",
+  keyword: "",
+  tiers: { core: true, adjacent: true },
+  sectors: new Set(),
+  states: new Set(),
+  wageLevels: new Set(),
+  sortCol: "filings",
+  sortDir: "desc",
+};
+
+let charts = {};
+
+function currentBundle() { return DATA[state.dataset]; }
+
+function fieldIndex(name) {
+  return currentBundle().fact_fields.indexOf(name);
+}
+
+function buildSidebar() {
+  const chipRow = document.getElementById("example-chips");
+  chipRow.innerHTML = "";
+  EXAMPLE_KEYWORDS.forEach(k => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.type = "button";
+    chip.textContent = k;
+    chip.onclick = () => { document.getElementById("keyword").value = k; state.keyword = k.toLowerCase(); onFilterChange(); };
+    chipRow.appendChild(chip);
+  });
+
+  const bundle = currentBundle();
+
+  const sectorList = document.getElementById("sector-list");
+  sectorList.innerHTML = "";
+  bundle.lookups.sectors.forEach(s => {
+    sectorList.appendChild(makeCheckbox("sector", s, state.sectors.has(s)));
+  });
+
+  const stateList = document.getElementById("state-list");
+  stateList.innerHTML = "";
+  bundle.lookups.states.forEach(s => {
+    stateList.appendChild(makeCheckbox("stateval", s, state.states.has(s)));
+  });
+
+  const wagePanel = document.getElementById("wage-level-panel");
+  const wageLabel = document.getElementById("wage-level-label");
+  const wageList = document.getElementById("wage-level-list");
+  wageList.innerHTML = "";
+  if (state.dataset === "lca") {
+    wagePanel.style.display = "";
+    document.getElementById("wage-level-label").parentElement.style.display = "";
+    bundle.wage_levels.forEach(w => {
+      wageList.appendChild(makeCheckbox("wagelevel", w, state.wageLevels.has(w)));
+    });
+  } else {
+    wagePanel.style.display = "none";
+    document.getElementById("wage-level-label").parentElement.style.display = "none";
+  }
+}
+
+function makeCheckbox(group, value, checked) {
+  const label = document.createElement("label");
+  const input = document.createElement("input");
+  input.type = "checkbox";
+  input.checked = checked;
+  input.onchange = () => {
+    const setRef = group === "sector" ? state.sectors : group === "stateval" ? state.states : state.wageLevels;
+    if (input.checked) setRef.add(value); else setRef.delete(value);
+    onFilterChange();
+  };
+  label.appendChild(input);
+  label.appendChild(document.createTextNode(" " + value));
+  return label;
+}
+
+function setDataset(ds) {
+  state.dataset = ds;
+  document.getElementById("btn-lca").setAttribute("aria-pressed", ds === "lca");
+  document.getElementById("btn-perm").setAttribute("aria-pressed", ds === "perm");
+  state.sectors = new Set();
+  state.states = new Set();
+  state.wageLevels = new Set();
+  buildSidebar();
+  render();
+}
+
+function onKeywordInput() {
+  state.keyword = document.getElementById("keyword").value.trim().toLowerCase();
+  onFilterChange();
+}
+
+function onFilterChange() {
+  state.tiers.core = document.getElementById("tier-core").checked;
+  state.tiers.adjacent = document.getElementById("tier-adjacent").checked;
+  render();
+}
+
+function resetFilters() {
+  document.getElementById("keyword").value = "";
+  state.keyword = "";
+  document.getElementById("tier-core").checked = true;
+  document.getElementById("tier-adjacent").checked = true;
+  state.tiers = { core: true, adjacent: true };
+  state.sectors = new Set();
+  state.states = new Set();
+  state.wageLevels = new Set();
+  buildSidebar();
+  render();
+}
+
+function getFilteredRows() {
+  const bundle = currentBundle();
+  const F = bundle.fact_fields;
+  const occI = F.indexOf("occ"), empI = F.indexOf("emp"), stateI = F.indexOf("state"),
+        sectorI = F.indexOf("sector"), wlI = F.indexOf("wage_level");
+
+  const occNames = bundle.lookups.occupations;
+  const occTiers = bundle.lookups.occupation_tiers;
+  const stateNames = bundle.lookups.states;
+  const sectorNames = bundle.lookups.sectors;
+  const wageLevels = bundle.wage_levels;
+
+  const kw = state.keyword;
+  const wantTierCore = state.tiers.core, wantTierAdjacent = state.tiers.adjacent;
+
+  return bundle.facts.filter(row => {
+    const occName = occNames[row[occI]];
+    const tier = occTiers[row[occI]];
+    if (tier === "core" && !wantTierCore) return false;
+    if (tier === "adjacent" && !wantTierAdjacent) return false;
+    if (kw && !occName.toLowerCase().includes(kw)) return false;
+
+    if (state.sectors.size > 0) {
+      const sName = row[sectorI] >= 0 ? sectorNames[row[sectorI]] : null;
+      if (!sName || !state.sectors.has(sName)) return false;
+    }
+    if (state.states.size > 0) {
+      const stName = row[stateI] >= 0 ? stateNames[row[stateI]] : null;
+      if (!stName || !state.states.has(stName)) return false;
+    }
+    if (state.dataset === "lca" && state.wageLevels.size > 0) {
+      const wName = wageLevels[row[wlI]];
+      if (!state.wageLevels.has(wName)) return false;
+    }
+    return true;
+  });
+}
+
+function sumBy(rows, keyFn, valFn) {
+  const m = new Map();
+  rows.forEach(r => {
+    const k = keyFn(r);
+    m.set(k, (m.get(k) || 0) + valFn(r));
+  });
+  return m;
+}
+
+function fmtInt(n) { return Math.round(n).toLocaleString("en-US"); }
+function fmtPct(n) { return (n * 100).toFixed(1) + "%"; }
+function fmtMoney(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+
+function safeCall(fn, ...args) {
+  try { fn(...args); } catch (e) { console.error(fn.name, e); }
+}
+
+function render() {
+  const bundle = currentBundle();
+  const F = bundle.fact_fields;
+  const rows = getFilteredRows();
+  const idx = name => F.indexOf(name);
+
+  safeCall(renderKpis, bundle, rows, idx);
+  safeCall(renderYoy);
+  safeCall(renderOccupations, bundle, rows, idx);
+  safeCall(renderSectorsStates, bundle, rows, idx);
+  safeCall(renderWageLevels, bundle, rows, idx);
+  safeCall(renderEmployerTable, bundle, rows, idx);
+  safeCall(renderFooterMeta);
+}
+
+function renderKpis(bundle, rows, idx) {
+  const filingsI = idx("filings"), certI = idx("certified"), decI = idx("decided"),
+        wageSumI = idx("wage_sum"), wageNI = idx("wage_n");
+  const isLca = state.dataset === "lca";
+  const extraI = isLca ? idx("new_pos") : idx("external_hire");
+
+  let totalFilings = 0, totalCert = 0, totalDec = 0, wageSum = 0, wageN = 0, extra = 0;
+  rows.forEach(r => {
+    totalFilings += r[filingsI];
+    totalCert += r[certI];
+    totalDec += r[decI];
+    wageSum += r[wageSumI];
+    wageN += r[wageNI];
+    extra += r[extraI];
+  });
+
+  const kpis = [
+    { label: "Matched filings", value: fmtInt(totalFilings), note: "under current filters" },
+    { label: "Certification rate", value: totalDec > 0 ? fmtPct(totalCert / totalDec) : "—", note: `of ${fmtInt(totalDec)} decided cases` },
+    { label: "Avg. annual wage", value: wageN > 0 ? fmtMoney(wageSum / wageN) : "—", note: `from ${fmtInt(wageN)} filings with wage data` },
+    isLca
+      ? { label: "Genuinely new positions", value: totalFilings > 0 ? fmtPct(extra / totalFilings) : "—", note: "vs. renewals/transfers" }
+      : { label: "External-hire share", value: totalFilings > 0 ? fmtPct(extra / totalFilings) : "—", note: "not already employed there" },
+  ];
+
+  const el = document.getElementById("kpi-row");
+  el.innerHTML = "";
+  kpis.forEach(k => {
+    const card = document.createElement("div");
+    card.className = "kpi";
+    card.innerHTML = `<div class="kpi-label">${k.label}</div><div class="kpi-value">${k.value}</div><div class="kpi-note">${k.note}</div>`;
+    el.appendChild(card);
+  });
+}
+
+function renderYoy() {
+  const el = document.getElementById("yoy-row");
+  el.innerHTML = "";
+  const yoy = DATA.yoy[state.dataset];
+  ["core", "adjacent"].forEach(tier => {
+    const d = yoy[tier];
+    if (!d) return;
+    const up = d.pct_change >= 0;
+    const card = document.createElement("div");
+    card.className = "yoy-card";
+    card.innerHTML = `
+      <div class="yoy-tier">${tier === "core" ? "Core" : "Adjacent"} MBA-relevant</div>
+      <div class="yoy-change ${up ? "up" : "down"}">${up ? "+" : ""}${d.pct_change.toFixed(1)}%</div>
+      <div class="yoy-detail">${fmtInt(d.fy2025_q1_3)} (FY25 Q1-3) &rarr; ${fmtInt(d.fy2026_q1_3)} (FY26 Q1-3)</div>
+    `;
+    el.appendChild(card);
+  });
+}
+
+function topNMap(map, n) {
+  return Array.from(map.entries()).sort((a, b) => b[1] - a[1]).slice(0, n);
+}
+
+function barChart(id, labels, values, colorVar, horizontal) {
+  if (typeof Chart === "undefined") {
+    const canvas = document.getElementById(id);
+    if (canvas && !canvas.dataset.fallbackShown) {
+      canvas.dataset.fallbackShown = "1";
+      canvas.insertAdjacentHTML("afterend", '<p class="hint">Chart library did not load — the rest of the dashboard (KPIs, tables) is unaffected.</p>');
+    }
+    return;
+  }
+  if (charts[id]) charts[id].destroy();
+  const ctx = document.getElementById(id).getContext("2d");
+  const css = getComputedStyle(document.documentElement);
+  const accent = css.getPropertyValue(colorVar || "--accent").trim() || "#1F5C4A";
+  const ink = css.getPropertyValue("--ink").trim() || "#16211D";
+  const line = css.getPropertyValue("--line").trim() || "#D8DCD0";
+  charts[id] = new Chart(ctx, {
+    type: "bar",
+    data: { labels, datasets: [{ data: values, backgroundColor: accent, borderRadius: 4, maxBarThickness: 26 }] },
+    options: {
+      indexAxis: horizontal ? "y" : "x",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => fmtInt(c.parsed[horizontal ? "x" : "y"]) + " filings" } } },
+      scales: {
+        x: { grid: { color: horizontal ? line : "transparent" }, ticks: { color: ink, font: { family: "IBM Plex Sans" } } },
+        y: { grid: { color: horizontal ? "transparent" : line }, ticks: { color: ink, font: { family: "IBM Plex Sans" } } },
+      },
+    },
+  });
+}
+
+function renderOccupations(bundle, rows, idx) {
+  const occI = idx("occ"), filingsI = idx("filings");
+  const names = bundle.lookups.occupations;
+  const m = sumBy(rows, r => r[occI], r => r[filingsI]);
+  const top = topNMap(m, 12).reverse();
+  document.getElementById("occ-panel-sub").textContent = state.keyword
+    ? `Occupations matching "${state.keyword}" under current filters.`
+    : "Matched filings by SOC occupation title, under the current filters.";
+  barChart("chart-occupations", top.map(t => names[t[0]]), top.map(t => t[1]), "--accent", true);
+}
+
+function renderSectorsStates(bundle, rows, idx) {
+  const sectorI = idx("sector"), stateI = idx("state"), filingsI = idx("filings");
+  const sectorNames = bundle.lookups.sectors, stateNames = bundle.lookups.states;
+
+  const sm = sumBy(rows.filter(r => r[sectorI] >= 0), r => r[sectorI], r => r[filingsI]);
+  const topS = topNMap(sm, 8).reverse();
+  barChart("chart-sectors", topS.map(t => sectorNames[t[0]]), topS.map(t => t[1]), "--accent-strong", true);
+
+  const stm = sumBy(rows.filter(r => r[stateI] >= 0), r => r[stateI], r => r[filingsI]);
+  const topSt = topNMap(stm, 10).reverse();
+  barChart("chart-states", topSt.map(t => stateNames[t[0]]), topSt.map(t => t[1]), "--accent", true);
+}
+
+function renderWageLevels(bundle, rows, idx) {
+  if (state.dataset !== "lca") return;
+  if (typeof Chart === "undefined") return;
+  const wlI = idx("wage_level"), filingsI = idx("filings");
+  const wageLevels = bundle.wage_levels;
+  const m = new Map();
+  wageLevels.forEach((_, i) => m.set(i, 0));
+  rows.forEach(r => m.set(r[wlI], (m.get(r[wlI]) || 0) + r[filingsI]));
+  const labels = wageLevels;
+  const values = wageLevels.map((_, i) => m.get(i) || 0);
+  if (charts["chart-wagelevels"]) charts["chart-wagelevels"].destroy();
+  const ctx = document.getElementById("chart-wagelevels").getContext("2d");
+  const css = getComputedStyle(document.documentElement);
+  const ink = css.getPropertyValue("--ink").trim();
+  const line = css.getPropertyValue("--line").trim();
+  const palette = ["#1F5C4A", "#3E8168", "#79AD8E", "#B7D2C1", "#D8DCD0"];
+  charts["chart-wagelevels"] = new Chart(ctx, {
+    type: "bar",
+    data: { labels, datasets: [{ data: values, backgroundColor: labels.map((_, i) => palette[i % palette.length]), borderRadius: 4, maxBarThickness: 60 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => fmtInt(c.parsed.y) + " filings" } } },
+      scales: {
+        x: { grid: { color: "transparent" }, ticks: { color: ink } },
+        y: { grid: { color: line }, ticks: { color: ink } },
+      },
+    },
+  });
+}
+
+function renderEmployerTable(bundle, rows, idx) {
+  const empI = idx("emp"), filingsI = idx("filings"), certI = idx("certified"), decI = idx("decided"),
+        wageSumI = idx("wage_sum"), wageNI = idx("wage_n");
+  const isLca = state.dataset === "lca";
+  const extraI = isLca ? idx("new_pos") : idx("external_hire");
+  const empNames = bundle.lookups.employers;
+
+  const agg = new Map();
+  rows.forEach(r => {
+    const e = r[empI];
+    if (!agg.has(e)) agg.set(e, { filings: 0, cert: 0, dec: 0, wageSum: 0, wageN: 0, extra: 0 });
+    const a = agg.get(e);
+    a.filings += r[filingsI]; a.cert += r[certI]; a.dec += r[decI];
+    a.wageSum += r[wageSumI]; a.wageN += r[wageNI]; a.extra += r[extraI];
+  });
+
+  let list = Array.from(agg.entries()).map(([e, a]) => {
+    const name = empNames[e];
+    const meta = DATA.employer_meta[name] || {};
+    const mixShare = isLca ? meta.lca_mba_share : meta.perm_mba_share;
+    return {
+      name,
+      filings: a.filings,
+      certRate: a.dec > 0 ? a.cert / a.dec : null,
+      extraShare: a.filings > 0 ? a.extra / a.filings : null,
+      avgWage: a.wageN > 0 ? a.wageSum / a.wageN : null,
+      mixShare: mixShare,
+      bothPipelines: meta.both_pipelines,
+      willfulViolator: meta.willful_violator,
+      h1bDependent: meta.h1b_dependent,
+    };
+  });
+
+  const dir = state.sortDir === "asc" ? 1 : -1;
+  const col = state.sortCol;
+  list.sort((a, b) => {
+    const av = a[col], bv = b[col];
+    if (av == null && bv == null) return 0;
+    if (av == null) return 1;
+    if (bv == null) return -1;
+    if (typeof av === "string") return av.localeCompare(bv) * dir;
+    return (av - bv) * dir;
+  });
+  list = list.slice(0, 40);
+
+  const thead = document.getElementById("employer-thead");
+  const extraLabel = isLca ? "New position" : "External hire";
+  const cols = [
+    ["name", "Employer"], ["filings", "Filings"], ["mixShare", "MBA mix"],
+    ["certRate", "Cert. rate"], ["extraShare", extraLabel], ["avgWage", "Avg. wage"], ["flags", "Flags"],
+  ];
+  thead.innerHTML = "<tr>" + cols.map(([key, label]) => {
+    const numClass = key === "name" || key === "flags" ? "" : "num";
+    return `<th class="${numClass}" onclick="${key === "flags" ? "" : `sortEmployers('${key}')`}">${label}${state.sortCol === key ? (state.sortDir === "desc" ? " ↓" : " ↑") : ""}</th>`;
+  }).join("") + "</tr>";
+
+  const tbody = document.getElementById("employer-tbody");
+  document.getElementById("employer-empty").style.display = list.length ? "none" : "block";
+  tbody.innerHTML = list.map(r => {
+    const flags = [];
+    if (r.bothPipelines) flags.push('<span class="badge pipeline">H-1B→PERM</span>');
+    if (r.h1bDependent) flags.push('<span class="badge warn">H-1B dependent</span>');
+    if (r.willfulViolator) flags.push('<span class="badge bad">DOL violation history</span>');
+    const certDot = r.certRate == null ? "" : r.certRate >= 0.9 ? "good" : r.certRate >= 0.7 ? "warn" : "bad";
+    return `<tr>
+      <td>${r.name}</td>
+      <td class="num tnum">${fmtInt(r.filings)}</td>
+      <td class="num tnum">${r.mixShare != null ? fmtPct(r.mixShare) : "—"}</td>
+      <td class="num tnum"><span class="rate-pill">${certDot ? `<span class="rate-dot ${certDot}"></span>` : ""}${r.certRate != null ? fmtPct(r.certRate) : "—"}</span></td>
+      <td class="num tnum">${r.extraShare != null ? fmtPct(r.extraShare) : "—"}</td>
+      <td class="num tnum">${r.avgWage != null ? fmtMoney(r.avgWage) : "—"}</td>
+      <td><div class="badge-row">${flags.join("") || "—"}</div></td>
+    </tr>`;
+  }).join("");
+}
+
+function sortEmployers(col) {
+  if (state.sortCol === col) {
+    state.sortDir = state.sortDir === "desc" ? "asc" : "desc";
+  } else {
+    state.sortCol = col;
+    state.sortDir = "desc";
+  }
+  render();
+}
+
+function renderFooterMeta() {
+  const el = document.getElementById("footer-meta");
+  const coverage = state.dataset === "lca" ? DATA.meta.lca_cube_coverage : DATA.meta.perm_cube_coverage;
+  el.textContent = `Data covers full FY2025 plus FY2026 through Q3. This view samples the top ~150 occupations and employers with 3+ filings, covering ${fmtPct(coverage)} of all MBA-relevant ${state.dataset === "lca" ? "LCA" : "PERM"} filings.`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  buildSidebar();
+  render();
+});
+</script>

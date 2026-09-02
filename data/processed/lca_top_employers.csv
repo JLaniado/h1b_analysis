@@ -14,7 +14,7 @@ JPMorgan Chase & Co.,6341
 "Amazon Web Services, Inc.",6255
 "Tesla, Inc.",5676
 "Amazon Development Center U.S., Inc.",5075
-Intel Corporation ,4533
+Intel Corporation,4533
 CAPGEMINI AMERICA INC,4483
 Accenture LLP,4409
 NVIDIA Corporation,4356
@@ -50,7 +50,7 @@ Cummins Inc.,1563
 "ServiceNow, Inc.",1460
 Morgan Stanley Services Group Inc.,1413
 General Motors,1410
-KFORCE INC. ,1399
+KFORCE INC.,1399
 TT Commerce & Global Services LLC,1390
 TikTok Inc.,1380
 UST Global Inc,1376
@@ -68,7 +68,7 @@ University of Michigan,1200
 "American Express Travel Related Services Company, Inc.",1181
 "Infinite Computer Solutions, Inc.",1105
 "WELLS FARGO BANK, N.A.",1104
-Barclays Services Corp. ,1098
+Barclays Services Corp.,1098
 "Lucid USA, Inc.",1092
 "McKinsey & Company, Inc. United States",1091
 "Rivian Automotive, LLC",1063
@@ -78,7 +78,7 @@ Barclays Services Corp. ,1098
 Hewlett Packard Enterprise Company,1033
 "Hexaware Technologies, Inc.",1031
 "Palo Alto Networks, Inc.",1025
-"Optum Services, Inc. ",999
+"Optum Services, Inc.",999
 "AT&T SERVICES, INC.",973
 Mayo Clinic,967
 "DoorDash, Inc.",949
@@ -91,7 +91,7 @@ Synechron Inc.,914
 "Applied Materials, Inc",913
 "T-Mobile USA, Inc.",893
 Snowflake Inc.,893
-"Expedia, Inc. ",875
+"Expedia, Inc.",875
 CVS Shared Services Resources LLC,860
 Washington University,851
 "BlackRock Financial Management, Inc.",850
@@ -108,7 +108,7 @@ Bloomberg L.P.,819
 Government Employee Insurance Company (GEICO),791
 Visa U.S.A. Inc.,761
 "SAP America, Inc.",759
-"ADP Technology Services, Inc. ",749
+"ADP Technology Services, Inc.",749
 Amgen Inc.,745
 "Elevance Health, Inc.",743
 "Insight Global, LLC",732
@@ -142,7 +142,7 @@ UT Southwestern Medical Center,626
 ST. JUDE CHILDREN'S RESEARCH HOSPITAL,618
 Yale University,617
 Populus Group LLC,615
-Docusign Inc. ,615
+Docusign Inc.,615
 "Medline Industries, LP.",609
 Coforge Limited,606
 University of Wisconsin System,603
@@ -180,7 +180,7 @@ University of Minnesota,526
 Harvard University,524
 "INTELLECTT, INC.",523
 Yahoo Holdings Inc.,512
-"Marvell Semiconductor, Inc. ",510
+"Marvell Semiconductor, Inc.",510
 Icahn School of Medicine at Mount Sinai,509
 "Analog Devices, Inc.",507
 The University of Chicago,499
@@ -197,5 +197,5 @@ FCA US LLC,475
 MPG Operations LLC,469
 The Trustees of Princeton University,467
 The University of Texas M.D. Anderson Cancer Center,463
-Lam Research Corporation ,462
+Lam Research Corporation,462
 "University of California, Los Angeles",461
