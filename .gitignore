@@ -1,0 +1,17 @@
+# Raw source data (too large for GitHub, not redistributable at full size)
+data/raw/
+
+# Large processed intermediates (keep only small, dashboard-ready aggregates)
+data/interim/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Jupyter
+*.egg-info/

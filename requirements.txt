@@ -1,0 +1,9 @@
+pandas>=3.0
+numpy
+matplotlib
+seaborn
+plotly
+jupyter
+ipykernel
+nbformat
+pyarrow

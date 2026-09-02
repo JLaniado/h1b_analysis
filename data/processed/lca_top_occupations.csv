@@ -1,0 +1,800 @@
+SOC_TITLE,filings
+Software Developers,128109
+Data Scientists,19752
+Information Technology Project Managers,14387
+Computer Systems Engineers/Architects,13778
+Software Quality Assurance Analysts and Testers,13745
+Computer Programmers,11325
+Computer and Information Systems Managers,9014
+Computer Systems Analysts,8754
+Business Intelligence Analysts,8640
+Financial and Investment Analysts,7953
+Mechanical Engineers,7257
+Accountants and Auditors,6712
+"Electronics Engineers, Except Computer",6257
+Electrical Engineers,5766
+Management Analysts,5722
+Operations Research Analysts,5703
+Market Research Analysts and Marketing Specialists,5223
+Computer and Information Research Scientists,4770
+Civil Engineers,4705
+Database Administrators,4704
+Industrial Engineers,4696
+Network and Computer Systems Administrators,4664
+"Medical Scientists, Except Epidemiologists",4118
+Project Management Specialists,4037
+"Physicians, All Other",3393
+Financial Quantitative Analysts,3225
+Database Architects,3061
+Information Security Analysts,2945
+Lawyers,2458
+Biochemists and Biophysicists,2229
+Sales Engineers,2137
+Manufacturing Engineers,2133
+Architectural and Engineering Managers,2043
+Marketing Managers,1872
+Statisticians,1854
+Computer Network Architects,1820
+Physical Therapists,1811
+"Elementary School Teachers, Except Special Education",1780
+Validation Engineers,1776
+Medical and Clinical Laboratory Technologists,1747
+Chemists,1686
+General and Operations Managers,1685
+Web and Digital Interface Designers,1661
+Information Security Engineers,1591
+"Health Specialties Teachers, Postsecondary",1574
+Materials Engineers,1507
+"Secondary School Teachers, Except Special and Career/Technical Education",1490
+Molecular and Cellular Biologists,1444
+"Architects, Except Landscape and Naval",1427
+Hospitalists,1394
+Financial Risk Specialists,1309
+"Computer Occupations, All Other",1306
+Construction Managers,1274
+Logisticians,1261
+Financial Managers,1255
+Computer Hardware Engineers,1209
+Bioinformatics Scientists,1176
+Occupational Therapists,1154
+Bioengineers and Biomedical Engineers,1130
+Graphic Designers,1124
+"Business Teachers, Postsecondary",1120
+General Internal Medicine Physicians,1100
+"Dentists, General",1065
+"Engineering Teachers, Postsecondary",1043
+Robotics Engineers,1012
+Physicists,1005
+Logistics Analysts,1001
+"Computer Science Teachers, Postsecondary",946
+Biological Technicians,939
+Supply Chain Managers,917
+Cost Estimators,878
+Mechatronics Engineers,847
+Data Warehousing Specialists,813
+Chemical Engineers,807
+"Middle School Teachers, Except Special and Career/Technical Education",760
+Registered Nurses,757
+Regulatory Affairs Specialists,748
+Computer Network Support Specialists,743
+"Biological Scientists, All Other",743
+Web Developers,734
+Automotive Engineers,717
+Biostatisticians,715
+Industrial Production Managers,707
+Human Resources Specialists,699
+Economists,699
+"Mathematical Science Teachers, Postsecondary",669
+Materials Scientists,639
+Commercial and Industrial Designers,627
+Sales Managers,596
+"Business Operations Specialists, All Other",551
+Mental Health Counselors,508
+Clinical Data Managers,504
+Public Relations Specialists,497
+Chief Executives,488
+Cardiologists,485
+Veterinarians,484
+Radiologists,471
+Family Medicine Physicians,464
+Judicial Law Clerks,462
+Rehabilitation Counselors,454
+"Transportation, Storage, and Distribution Managers",451
+"Pediatricians, General",425
+"Foreign Language and Literature Teachers, Postsecondary",418
+Food Scientists and Technologists,416
+Compliance Officers,412
+"Economics Teachers, Postsecondary",409
+"Purchasing Agents, Except Wholesale, Retail, and Farm Products",408
+Interior Designers,406
+Natural Sciences Managers,402
+Training and Development Specialists,401
+Logistics Engineers,401
+Medical and Health Services Managers,399
+Neurologists,392
+Pharmacists,390
+"Surgeons, All Other",375
+Soil and Plant Scientists,374
+Speech-Language Pathologists,357
+"Biological Science Teachers, Postsecondary",342
+Credit Analysts,341
+Actuaries,336
+Transportation Engineers,329
+Social Science Research Assistants,327
+Anesthesiologists,319
+"Special Education Teachers, Elementary School",317
+Instructional Coordinators,315
+Environmental Engineers,311
+"Art, Drama, and Music Teachers, Postsecondary",310
+Landscape Architects,300
+Paralegals and Legal Assistants,295
+Architectural and Civil Drafters,294
+Microbiologists,293
+Budget Analysts,290
+Psychiatrists,283
+Epidemiologists,281
+Photonics Engineers,279
+"Environmental Scientists and Specialists, Including Health",277
+"Engineers, All Other",269
+"Geoscientists, Except Hydrologists and Geographers",267
+"Healthcare Practitioners and Technical Workers, All Other",267
+Exercise Physiologists,265
+Search Marketing Strategists,263
+Coaches and Scouts,258
+"Educational, Guidance, and Career Counselors and Advisors",256
+"Software Developers, Non R&D",253
+Purchasing Managers,248
+Aerospace Engineers,241
+Quality Control Systems Managers,237
+"Financial Specialists, All Other",236
+"Communications Teachers, Postsecondary",234
+Human Factors Engineers and Ergonomists,231
+Urban and Regional Planners,229
+"Education Teachers, Postsecondary",216
+"Energy Engineers, Except Wind and Solar",208
+Sustainability Specialists,208
+Clergy,207
+"Software Developers, Applications",205
+Human Resources Managers,202
+Mathematicians,201
+"Physicians, Pathologists",199
+Special Effects Artists and Animators,194
+Water/Wastewater Engineers,193
+"Education Administrators, Postsecondary",193
+"Physics Teachers, Postsecondary",192
+"Securities, Commodities, and Financial Services Sales Agents",186
+Clinical Research Coordinators,185
+Social and Community Service Managers,184
+"Chemistry Teachers, Postsecondary",183
+Critical Care Nurses,183
+Biologists,179
+"Mechanical Engineers, R&D",177
+Technical Writers,177
+"Political Science Teachers, Postsecondary",176
+Art Directors,174
+"Healthcare Diagnosing or Treating Practitioners, All Other",174
+"Special Education Teachers, Secondary School",174
+"Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",170
+Atmospheric and Space Scientists,164
+"Airline Pilots, Copilots, and Flight Engineers",159
+"Compensation, Benefits, and Job Analysis Specialists",154
+"English Language and Literature Teachers, Postsecondary",152
+Computer User Support Specialists,151
+Regulatory Affairs Managers,150
+Agricultural Inspectors,150
+Producers and Directors,148
+"Psychology Teachers, Postsecondary",145
+Compliance Managers,143
+"Electrical Engineers, R&D",140
+"Kindergarten Teachers, Except Special Education",140
+"Mining and Geological Engineers, Including Mining Safety Engineers",137
+Survey Researchers,137
+"Postsecondary Teachers, All Other",136
+"Agricultural Sciences Teachers, Postsecondary",135
+"Philosophy and Religion Teachers, Postsecondary",135
+Health Informatics Specialists,127
+Statistical Assistants,125
+Astronomers,124
+Transportation Planners,124
+"Architecture Teachers, Postsecondary",122
+Health Education Specialists,117
+"Preschool Teachers, Except Special Education",116
+"Software Developers, R&D",115
+"Health and Safety Engineers, Except Mining Safety Engineers and Inspectors",114
+Occupational Health and Safety Specialists,113
+Investment Fund Managers,109
+"History Teachers, Postsecondary",109
+Dietitians and Nutritionists,104
+"Meeting, Convention, and Event Planners",104
+"Special Education Teachers, Middle School",104
+Editors,103
+Advertising and Promotions Managers,102
+Clinical and Counseling Psychologists,102
+Geneticists,101
+Financial Examiners,100
+Obstetricians and Gynecologists,100
+Public Relations Managers,99
+"Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary",97
+Optometrists,96
+Solar Energy Systems Engineers,96
+Personal Financial Advisors,95
+Animal Scientists,93
+Treasurers and Controllers,92
+"Area, Ethnic, and Cultural Studies Teachers, Postsecondary",91
+Emergency Medicine Physicians,91
+"Designers, All Other",91
+Healthcare Social Workers,90
+Nanosystems Engineers,90
+Mental Health and Substance Abuse Social Workers,88
+"Recreation and Fitness Studies Teachers, Postsecondary",87
+Petroleum Engineers,87
+Bioinformatics Technicians,86
+Fashion Designers,82
+"Environmental Science Teachers, Postsecondary",80
+Hydrologists,77
+Agricultural Engineers,73
+Aircraft Mechanics and Service Technicians,73
+Film and Video Editors,72
+"Dentists, All Other Specialists",72
+"Teachers and Instructors, All Other",71
+Political Scientists,69
+Quality Control Analysts,69
+"Social Scientists and Related Workers, All Other",68
+"Child, Family, and School Social Workers",66
+"Civil Engineers, R&D",64
+"Sociology Teachers, Postsecondary",63
+Document Management Specialists,63
+"Education Administrators, Kindergarten through Secondary",62
+"News Analysts, Reporters, and Journalists",62
+Interpreters and Translators,60
+Athletic Trainers,60
+Training and Development Managers,59
+Geographers,59
+"Special Education Teachers, All Other",59
+Geographic Information Systems Technologists and Technicians,58
+Insurance Underwriters,57
+Nuclear Engineers,56
+"Managers, All Other",56
+Web Administrators,55
+"Computer Systems Analysts, Non R&D",55
+Sociologists,55
+"Law Teachers, Postsecondary",55
+Video Game Designers,55
+Self-Enrichment Teachers,54
+Civil Engineering Technologists and Technicians,54
+"Geography Teachers, Postsecondary",53
+Remote Sensing Scientists and Technologists,53
+Climate Change Policy Analysts,52
+Nurse Practitioners,51
+Fundraisers,50
+Music Directors and Composers,49
+"Bookkeeping, Accounting, and Auditing Clerks",49
+"Life Scientists, All Other",49
+Paramedics,49
+"Orthopedic Surgeons, Except Pediatric",48
+"Education and Childcare Administrators, Preschool and Daycare",48
+Electrical and Electronic Engineering Technologists and Technicians,48
+"Ophthalmologists, Except Pediatric",48
+"Fraud Examiners, Investigators and Analysts",47
+"Anthropology and Archeology Teachers, Postsecondary",47
+"Legal Support Workers, All Other",47
+Urologists,47
+"Social Work Teachers, Postsecondary",47
+Blockchain Engineers,46
+Marriage and Family Therapists,46
+Librarians and Media Collections Specialists,46
+Physician Assistants,44
+"Social Sciences Teachers, Postsecondary, All Other",44
+Chefs and Head Cooks,44
+Marine Engineers and Naval Architects,43
+Lodging Managers,43
+Writers and Authors,42
+Curators,41
+SOFTWARE DEVELOPERS,40
+"Farmers, Ranchers, and Other Agricultural Managers",40
+Acupuncturists,39
+"Psychologists, All Other",38
+Microsystems Engineers,37
+Environmental Economists,37
+Commercial Pilots,36
+"Criminal Justice and Law Enforcement Teachers, Postsecondary",36
+"Nursing Instructors and Teachers, Postsecondary",36
+Zoologists and Wildlife Biologists,34
+"Directors, Religious Activities and Education",34
+"Wholesale and Retail Buyers, Except Farm Products",33
+"Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",33
+"Career/Technical Education Teachers, Secondary School",33
+"Physical Scientists, All Other",32
+Podiatrists,32
+Genetic Counselors,30
+"Property, Real Estate, and Community Association Managers",30
+Chiropractors,29
+Loan Officers,29
+Farm and Home Management Educators,28
+Industrial-Organizational Psychologists,28
+Business Continuity Planners,28
+Industrial Engineering Technologists and Technicians,27
+"Electronics Engineers, Except Computer, R&D",27
+Neuropsychologists,26
+"Family and Consumer Sciences Teachers, Postsecondary",26
+Acute Care Nurses,26
+Telecommunications Engineering Specialists,26
+Social and Human Service Assistants,26
+Administrative Services Managers,25
+Security Management Specialists,25
+"Mechanical Engineers, NonR&D",25
+"Community and Social Service Specialists, All Other",25
+Health Information Technologists and Medical Registrars,25
+Software Developer,25
+Substance Abuse and Behavioral Disorder Counselors,24
+Pediatric Surgeons,24
+"Education Administrators, All Other",24
+Fundraising Managers,24
+Conservation Scientists,24
+Cartographers and Photogrammetrists,23
+Orthodontists,23
+"Career/Technical Education Teachers, Postsecondary",23
+Mechanical Engineering Technologists and Technicians,23
+"Agents and Business Managers of Artists, Performers, and Athletes",23
+Compensation and Benefits Managers,23
+Tax Preparers,23
+Fuel Cell Engineers,22
+Food Service Managers,22
+Data Scientist,22
+"Media and Communication Workers, All Other",21
+Prosthodontists,21
+"Social Workers, All Other",21
+Medical and Clinical Laboratory Technicians,20
+"Software Developers, Systems Software",20
+"Life, Physical, and Social Science Technicians, All Other",20
+Veterinary Technologists and Technicians,20
+Music Therapists,20
+SPECIAL EFFECTS ARTISTS AND ANIMATORS,20
+Surveyors,20
+"Entertainment and Recreation Managers, Except Gambling",20
+Digital Forensics Analysts,20
+Software Quality Assurance Engineers and Testers,20
+Orthotists and Prosthetists,19
+School Psychologists,19
+Operations Research Analyst,18
+Oral and Maxillofacial Surgeons,18
+Chemical Technicians,18
+Penetration Testers,17
+"Production Workers, All Other",17
+Fire-Prevention and Protection Engineers,17
+"Special Education Teachers, Preschool",17
+"Computer Programmers, Non R&D",17
+Online Merchants,17
+Histotechnologists,16
+Agricultural Technicians,16
+Historians,16
+Physical Medicine and Rehabilitation Physicians,16
+"Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",15
+"Geological Technicians, Except Hydrologic Technicians",15
+"Environmental Science and Protection Technicians, Including Health",15
+"Computer Systems Analysts, R&D",15
+"Engineering Technologists and Technicians, Except Drafters, All Other",15
+Anthropologists and Archeologists,14
+"Cooks, Restaurant",14
+Environmental Engineering Technologists and Technicians,13
+Fitness and Wellness Coordinators,13
+"Library Science Teachers, Postsecondary",13
+"Software Quality Assurance Analysts and Testers, Non R&D",13
+Food Science Technicians,13
+Credit Counselors,13
+Aerospace Engineering and Operations Technologists and Technicians,13
+Museum Technicians and Conservators,13
+"Telecommunications Equipment Installers and Repairers, Except Line Installers",13
+Dermatologists,13
+Musicians and Singers,13
+"Mathematical Science Occupations, All Other",12
+Audiologists,12
+"Career/Technical Education Teachers, Middle School",12
+Recreation Workers,12
+"Adult Basic Education, Adult Secondary Education, and English as a Second Language Instructors",12
+Facilities Managers,12
+Medical Records Specialists,12
+Community Health Workers,11
+Archivists,11
+"Arbitrators, Mediators, and Conciliators",11
+"First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers",11
+"Sales and Related Workers, All Other",11
+Nanotechnology Engineering Technologists and Technicians,11
+Clinical Nurse Specialists,11
+"Educational Instruction and Library Workers, All Other",11
+Transportation Inspectors,11
+Advertising Sales Agents,11
+"Securities, Commodities, and Financial Services Sa",11
+Insurance Sales Agents,11
+Executive Secretaries and Executive Administrative Assistants,10
+Set and Exhibit Designers,10
+Allergists and Immunologists,10
+Wind Energy Engineers,10
+"Religious Workers, All Other",10
+Sports Medicine Physicians,9
+"Forestry and Conservation Science Teachers, Postsecondary",9
+"Special Education Teachers, Kindergarten",9
+Radiologic Technologists and Technicians,9
+Foresters,9
+First-Line Supervisors of Office and Administrative Support Workers,9
+"Health Technologists and Technicians, All Other",9
+Residential Advisors,9
+Water Resource Specialists,8
+Cytogenetic Technologists,8
+Preventive Medicine Physicians,8
+Industrial Ecologists,8
+Chief Sustainability Officers,8
+Media Technical Directors/Managers,8
+Medical Assistants,8
+"Claims Adjusters, Examiners, and Investigators",8
+Mechanical Drafters,8
+"Production, Planning, and Expediting Clerks",7
+"Computer Programmers, R&D",7
+First-Line Supervisors of Production and Operating Workers,7
+Medical Dosimetrists,7
+Art Therapists,7
+VIDEO GAME DESIGNERS,7
+Respiratory Therapists,7
+"Electrical Engineers, NonR&D",7
+"Buyers and Purchasing Agents, Farm Products",7
+Business Intelligence Analyst,7
+Financial Quantitative Analyst,7
+"Counselors, All Other",7
+Security Managers,7
+Legal Secretaries and Administrative Assistants,7
+Customer Service Representatives,6
+Speech-Language Pathology Assistants,6
+Sound Engineering Technicians,6
+Recreational Therapists,6
+Radiation Therapists,6
+"Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",6
+Nuclear Medicine Technologists,6
+Dental Hygienists,6
+Forensic Science Technicians,6
+"Foreign Language & Literature Teachers, Postsecondary",6
+Construction and Building Inspectors,6
+First-Line Supervisors of Retail Sales Workers,6
+Pharmacist,6
+Cytotechnologists,6
+Computer Systems Analyst,6
+Labor Relations Specialists,6
+Electrical Engineer,5
+DATA WAREHOUSING SPECIALISTS,5
+Industrial Machinery Mechanics,5
+Intelligence Analysts,5
+Automotive Service Technicians and Mechanics,5
+Precision Agriculture Technicians,5
+Registered Nurse,5
+Environmental Compliance Inspectors,5
+Wind Energy Development Managers,5
+Exercise Trainers and Group Fitness Instructors,5
+Molecular & Cellular Biologists,5
+"Computer Network Architects, Non R&D",5
+Electro-Mechanical and Mechatronics Technologists and Technicians,5
+Patient Representatives,5
+"Artists and Related Workers, All Other",5
+"Therapists, All Other",5
+Emergency Medicine Physician,5
+Medical Secretaries and Administrative Assistants,5
+"Financial Clerks, All Other",5
+"Media and Communication Equipment Workers, All Other",5
+Project Management Specialist,5
+"Fine Artists, Including Painters, Sculptors, and Illustrators",5
+Computer & Information Research Scientists,4
+Media Programming Directors,4
+Environmental Restoration Planners,4
+Radio Frequency Identification Device Specialists,4
+Anesthesiologist Assistants,4
+"Computer Network Architects, R&D",4
+Surveying and Mapping Technicians,4
+Regulatory Affairs Specialist,4
+Robotics Technicians,4
+Talent Directors,4
+"First-Line Supervisors of Farming, Fishing, and Forestry Workers",4
+Range Managers,4
+Photographers,4
+Electricians,4
+Financial & Investment Analysts,4
+"Physicians, All other",4
+ComputerSystemsEngineers/Architects,4
+CONSTRUCTION MANAGERS,4
+"Office and Administrative Support Workers, All Other",4
+Functional Consultant,4
+"Farmworkers, Farm, Ranch, and Aquacultural Animals",4
+Packaging and Filling Machine Operators and Tenders,4
+Physical Therapist Assistants,4
+Appraisers and Assessors of Real Estate,4
+"Separating, Filtering, Clarifying, Precipitating, and Still Machine Setters, Operators, and Tenders",4
+DATA SCIENTISTS,4
+"Personal Service Managers, All Other",4
+Softwater Developers,4
+"Computer Hardware Engineers, R&D",3
+"Radio, Cellular, and Tower Equipment Installers and Repairers",3
+Heavy and Tractor-Trailer Truck Drivers,3
+"Purchasing Agents, Except Wholesale, Retail, and F",3
+"Lifeguards, Ski Patrol, and Other Recreational Protective Service Workers",3
+"Human Resources Assistants, Except Payroll and Timekeeping",3
+Computer Numerically Controlled Tool Operators,3
+"Aircraft Structure, Surfaces, Rigging, and Systems Assemblers",3
+"First-Line Supervisors of Mechanics, Installers, and Repairers",3
+Bakers,3
+"Agricultural Workers, All Other",3
+Nurse Anesthetists,3
+Automotive Engineering Technicians,3
+Home Health Aides,3
+"Teaching Assistants, Postsecondary",3
+Tutors,3
+Craft Artists,3
+Financial and Investment Analyst,3
+Advanced Practice Psychiatric Nurses,3
+Clinical Neuropsychologists,3
+"Entertainers and Performers, Sports and Related Workers, All Other",3
+Diagnostic Medical Sonographers,3
+Emergency Medical Technicians,3
+First-Line Supervisors of Non-Retail Sales Workers,3
+"Civil Engineers, NonR&D",3
+"ENGINEERING TEACHERS, POSTSECONDARY",3
+BUSINESS INTELLIGENCE ANALYSTS,3
+Helpers--Production Workers,3
+Emergency Management Directors,3
+"Physicians, All Others",3
+Remote Sensing Technicians,3
+Psychiatric Technicians,3
+Civil Engineer,3
+Choreographers,3
+Nursing Assistants,3
+Appraisers of Personal and Business Property,3
+PRODUCERS AND DIRECTORS,3
+"Managers, All others",3
+Animal Caretakers,3
+Sales Manager,3
+Calibration Technologists and Technicians,3
+Financial Analysts,2
+Information technology Project Managers,2
+"ARCHITECTS, EXCEPT LANDSCAPE AND NAVAL",2
+"Environmental Scientists and Specialists, Includin",2
+Parts Salespersons,2
+Information Technology Project Manager,2
+Computer and Information System Managers,2
+"Software Developer, Non R&D",2
+"Administrative Law Judges, Adjudicators, and Hearing Officers",2
+Musical Instrument Repairers and Tuners,2
+Information Security Analyst,2
+Marketing Research Analysts and Marketing Specialists,2
+ELECTRONICS ENGINEERS,2
+"Textile, Apparel, and Furnishings Workers, All Other",2
+Adapted Physical Education Specialists,2
+Software Quality Assurance Analysts & Testers,2
+"Computer Occupations, ALL Other",2
+Medical Transcriptionists,2
+Biofuels Production Managers,2
+Computer & Information Systems Managers,2
+"Educational, Guidance, and Career Counselors and A",2
+"Physicians, all other",2
+"Personal Care and Service Workers, All Other",2
+Food Scientist and Technologist,2
+"Camera Operators, Television, Video, and Film",2
+Bioinformatics Scientist,2
+Medical Equipment Repairers,2
+Web and digital Interface Designers,2
+BusinessIntelligenceAnalysts,2
+Cardiovascular Technologists and Technicians,2
+"Software Quality Assurance Analysts and Testers, R&D",2
+"Secondary School Teachers, Except Special and Care",2
+Sales Engineer,2
+Environmental Scientists and Specialists,2
+Equal Opportunity Representatives and Officers,2
+"Drafters, All Other",2
+Audiovisual Equipment Installers and Repairers,2
+COMPUTER AND INFORMATION SYSTEMS MANAGERS,2
+Farm Equipment Mechanics and Service Technicians,2
+General and Operation Managers,2
+General Internal Medicine Physician,2
+Agricultural Equipment Operators,2
+Dancers,2
+Energy Auditors,2
+Telecommunications Line Installers and Repairers,2
+Procurement Clerks,2
+Legislators,2
+Electrical and Electronics Drafters,2
+Payroll and Timekeeping Clerks,2
+SPECIAL EFFECTS ARTIST AND ANIMATORS,2
+Market Research Analysts,2
+VETERINARIANS,2
+Slaughterers and Meat Packers,2
+Financial and Investment Anlaysts,2
+"Financial Specialist, All other",2
+Management Analyst,2
+SOFTWARE QUALITY ASSURANCE ANALYSTS AND TESTERS,2
+First-Line Supervisors of Construction Trades and Extraction Workers,2
+Animal Breeders,2
+Occupational Health and Safety Technicians,2
+Nurse Midwives,2
+Real Estate Brokers,2
+Proofreaders and Copy Markers,2
+Consultant,2
+"Hairdressers, Hairstylists, and Cosmetologists",2
+Civil Engineering Technolgists,2
+"Construction and Related Workers, All Other",2
+Broadcast Technicians,2
+Database Administrator,2
+Sofware Developers,1
+Purchasing Manager,1
+Psychiatrist,1
+Computer Systems Engineer/Architects,1
+"Social Scientists and Related Wokers, All Other",1
+Concierges,1
+Automotive Body and Related Repairers,1
+Amusement and Recreation Attendants,1
+AGRICULTURAL TECHNICIANS,1
+"AGRICULTURAL SCIENCE TEACHERS, POSTSECONDARY",1
+General Dentists,1
+"Educational, Guidance, School, and Vocational Counselors",1
+"Electronics Engineers, Except Computer2.00",1
+Construction Manager,1
+Desktop Publishers,1
+Statistician,1
+Computer Systems Administrators,1
+"Software Quality Assurance, Testing and Release",1
+"Airline Pilot, Copilots, and Flight Engineers",1
+"Secondary School Teachers, Except Special & Career/Technical Education",1
+Machinists,1
+Network and Computer System Administrators,1
+Web and Digital interface Designers,1
+"Office Clerks, General",1
+Personal Care Aides,1
+"Healthcare Support Workers, All Other",1
+Climate Change Analysts,1
+Mechanical Engineer II,1
+"Plant and System Operators, All Other",1
+Mechanical Enginers,1
+Occupational Therapy Assistants,1
+"Fine Artists, Including Painters, Sculptors, and I",1
+"Sales Representatives, Wholesale and Manufacturing, Technical, and Scientific Products",1
+"Postsecondary Teachers, All Others",1
+SPECIALL EFFECTS ARTISTS ADN ANIMATORS,1
+Prepress Technicians and Workers,1
+"Electrical Engineers, Non-R&D",1
+Probation Officers and Correctional Treatment Specialists,1
+"Geoscientists, except Hydrologists and Geographers",1
+"Foreign Language and Literature Teachers, Postseco",1
+Medical and Clinical Laboratory Technologist,1
+"Electronics Engineers, Except Computer, NonR&D",1
+Software Engineer,1
+"Social Scientists and Related Workers, All other",1
+Ship Engineers,1
+Medical and Health Services Manages,1
+"Assemblers and Fabricators, All Other",1
+Computer Systems Network Architect,1
+Spa Managers,1
+SOIL AND PLANT SCIENTISTS,1
+Material Scientists,1
+"Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",1
+CIVIL ENGINEERS,1
+"Internists, General",1
+Food Scientist and Technologists,1
+"Secondary School Teachers, Except Special and Career/Technical",1
+Carpenters,1
+"Teaching Assistants, Special Education",1
+"Financial Specialist, All Other",1
+Histology Technicians,1
+Computer Information Systems Managers,1
+Animal Trainers,1
+IT Project Managers,1
+Market Research Analysts and Marketing Specialist,1
+Regulatory Affair Specialist,1
+"Community and Social Servie Specialists, All Other",1
+Aviation Inspectors,1
+"Teaching Assistants, All Other",1
+Audio and Video Technicians,1
+Sotware Developers,1
+Childcare Workers,1
+Order Clerks,1
+"Shipping, Receiving, and Inventory Clerks",1
+"Art, Drama and Music Teachers, Postsecondary",1
+"Communication Teachers, Postsecondary",1
+CARDIOLOGISTS,1
+"Civil Engineers, Non-R&D",1
+"Surgeons, All Others",1
+Business intelligence analyst,1
+FINANCIAL MANAGERS,1
+MOLECULAR AND CELLULAR BIOLOGISTS,1
+Human Resources Specialist,1
+Staff Pharmacist FT,1
+"BUSINESS TEACHERS, POSTSECONDARY",1
+Software Quality Assurance Analysts and  Testers,1
+Models,1
+Hazardous Materials Removal Workers,1
+Speech-Language Pathologist,1
+Software Developers-1252.00,1
+Wind Energy Operations Managers,1
+Computer Network Administrators,1
+Industrial Production Manager,1
+Other Management Consulting Services,1
+Enviornmental Engineers,1
+"Computer Hardware Engineers, NonR&D",1
+Multimedia Artists and Animators,1
+"Heating, Air Conditioning, and Refrigeration Mechanics and Installers",1
+Licensed Practical and Licensed Vocational Nurses,1
+Automotive Engineer,1
+Dentists,1
+"Engineers, All Others",1
+Network and Computer Systems Administrator,1
+GRAPHIC DESIGNERS,1
+Software Developers (Non-R&D),1
+Construction managers,1
+ELECTRONICS ENGINEER,1
+Airfield Operations Specialists,1
+"Engineers, all Other",1
+"English Language and Literature Teahers, Postsecondary",1
+Biomedical Engineers,1
+Chief Sustainability Officers11-111111-111111-111111-1111,1
+Hospitalist,1
+MARKETING MANAGERS,1
+Social Science Research Assistant,1
+Computer Engineers,1
+Computer and Information Systems Manager,1
+"Purchasing Agents, Except Wholesale, Retail and Farm Products",1
+"Laborers and Freight, Stock, and Material Movers, Hand",1
+"Teaching Assistants, Preschool, Elementary, Middle, and Secondary School, Except Special Education",1
+"Earth Drillers, Except Oil and Gas",1
+Logisticians Analysts,1
+"Electonics Engineers, Except Computer",1
+Pharmacy Technicians,1
+Industrial Engineer,1
+"Electronics Engineers, Except Computer, Non-R&D",1
+Watch and Clock Repairers,1
+Data Engineer,1
+Human Factors Engineers & Ergonomists,1
+Robotics Engineer,1
+Computer Systems Engineers,1
+"MATHEMATICAL SCIENCE TEACHERS, POSTSECONDARY",1
+"ELECTRONICS ENGINEERS, EXCEPT COMPUTER",1
+Music Therapist,1
+Network & Computer Systems Administrators,1
+Retail Salespersons,1
+Brokerage Clerks,1
+Optometrist,1
+ART DIRECTORS,1
+Architects/Except Landscape and Naval,1
+"Poets, Lyricists and Creative Writers",1
+FILM AND VIDEO EDITORS,1
+Market Research Analyst,1
+"FINANCIAL SPECIALISTS, ALL OTHER",1
+Loan Interviewers and Clerks,1
+DIETITIANS AND NUTRITIONISTS,1
+"SURGEONS, ALL OTHER",1
+Computer Systems Engineer/Architect,1
+"Maintenance Workers, Machinery",1
+Surgical Assistants,1
+Network and Computers Systems Administrators,1
+Jewelers and Precious Stone and Metal Workers,1
+COMPUTER AND INFORMATION RESEARCH SCIENTISTS,1
+"Computer, Automated Teller, and Office Machine Repairers",1
+Information Technology Project Managers15-1299.09,1
+"Education and Childcare Administrators, Preschool",1
+Sports Medicine Physician,1
+19-2031.00,1
+Avionics Technicians,1
+Ophthalmic Medical Technicians,1
+Marketing Manager,1
+"Plating Machine Setters, Operators, and Tenders, Metal and Plastic",1
+"Cooks, All Other",1
+"Captains, Mates, and Pilots of Water Vessels",1
+MANAGEMENT ANALYSTS,1
+Web & Digital Interface Designers,1
+Solar Energy Installation Managers,1
+Software Developes,1
+Occupational Therapy Aides,1
+Market Research  Analysts and Marketing Specialists,1
+Nuclear Technicians,1
+Photonics Technicians,1
+"Building Cleaning Workers, All Other",1
+"Surgeons, All  Other",1
+Naturopathic Physicians,1
+Information Security Engineer,1
+Physicist,1
+"Low Vision Therapists, Orientation and Mobility Specialists, and Vision Rehabilitation Therapists",1
+Neurodiagnostic Technologists,1
+Government Property Inspectors and Investigators,1
+OPERATIONS RESEARCH ANALYSTS,1
