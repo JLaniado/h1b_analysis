@@ -13,6 +13,13 @@
 #
 # Goal here is just to understand shape, quality, and headline distributions (now with a
 # year-over-year lens) before we narrow in on MBA-relevant roles in notebook 02.
+#
+# **Note on a fixed data bug**: one source file (`LCA_Disclosure_Data_FY2025_Q2.xlsx`, ~13% of
+# LCA data) exported nearly every text cell wrapped as a literal Excel "keep as text" string
+# (`="541511"` instead of `541511`), which silently corrupted `SOC_CODE` for that whole quarter
+# and broke MBA-tier classification for those rows. `consolidate_raw.py` now strips this on
+# ingestion — if you're comparing against an earlier run of this notebook, the FY2025 numbers
+# (and anything YoY) will have shifted slightly as a result.
 
 # %%
 import sys
@@ -203,6 +210,30 @@ axes[1].set_title("PERM filings by quarter: FY2025 vs FY2026")
 axes[1].set_ylabel("Filings")
 plt.tight_layout()
 plt.savefig(FIG_DIR / "01_yoy_quarterly.png", dpi=150)
+plt.show()
+
+# %% [markdown]
+# ### Seasonality: does filing volume track the H-1B cap cycle?
+#
+# The H-1B annual lottery registration window falls in March, with selected registrants filing
+# petitions (and the LCA that must precede them) mostly April-June. If that cycle drives LCA
+# volume, we'd expect a visible spring bump. PERM has no lottery, so no reason to expect the same
+# pattern — a useful contrast.
+
+# %%
+lca_by_month = lca["RECEIVED_DATE"].dt.month.value_counts().sort_index()
+perm_by_month = perm["RECEIVED_DATE"].dt.month.value_counts().sort_index()
+month_labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+lca_by_month.reindex(range(1, 13), fill_value=0).plot.bar(ax=axes[0], color="#4C72B0")
+axes[0].set_xticklabels(month_labels, rotation=45)
+axes[0].set_title("LCA filings received by calendar month (all years combined)")
+perm_by_month.reindex(range(1, 13), fill_value=0).plot.bar(ax=axes[1], color="#DD8452")
+axes[1].set_xticklabels(month_labels, rotation=45)
+axes[1].set_title("PERM filings received by calendar month (all years combined)")
+plt.tight_layout()
+plt.savefig(FIG_DIR / "01_seasonality.png", dpi=150)
 plt.show()
 
 # %% [markdown]

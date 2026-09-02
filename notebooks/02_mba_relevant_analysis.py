@@ -129,6 +129,42 @@ plt.savefig(FIG_DIR / "02_cert_rate_by_tier.png", dpi=150)
 plt.show()
 
 # %% [markdown]
+# ## Real hiring signal: is a filing actually a new opportunity?
+#
+# A question worth answering directly: do employers file H-1Bs/PERMs just to "test" something,
+# and should we exclude withdrawn/denied cases to get a real read on hiring? Denials/withdrawals
+# are small and safe to exclude (already implicit in the certification-rate calc above), but
+# that's not actually the biggest gap between "a filing exists" and "there's a real open seat."
+#
+# For LCA: `NEW_EMPLOYMENT` counts new-position slots on a filing, separate from
+# `CONTINUED_EMPLOYMENT` (extension for someone already there) and `CHANGE_EMPLOYER` (an H-1B
+# transfer for someone already employed elsewhere on H-1B). Only `NEW_EMPLOYMENT > 0` filings
+# represent a position genuinely open to an outside candidate.
+
+# %%
+lca_mba["IS_NEW_POSITION"] = lca_mba["NEW_EMPLOYMENT"].fillna(0) > 0
+new_position_share = lca_mba["IS_NEW_POSITION"].mean()
+print(f"Share of MBA-relevant LCA filings that include a new position: {new_position_share:.1%}")
+print("(the rest are pure extensions/amendments/transfers of people already employed there)")
+
+# %% [markdown]
+# For PERM, the more important nuance is `OTHER_REQ_IS_FW_CURRENTLY_WRK`: whether the foreign
+# worker is already employed by that employer in that job at filing time. A PERM case with `Y`
+# here is a green-card *conversion* for an existing H-1B employee, not an offer to an outside
+# candidate — which reframes what PERM data can honestly promise a job-searching student.
+
+# %%
+perm_mba_working_flag = perm_mba["OTHER_REQ_IS_FW_CURRENTLY_WRK"].value_counts(normalize=True, dropna=False)
+print(perm_mba_working_flag)
+print(f"\nShare of MBA-relevant PERM filings for someone NOT already at that employer: "
+      f"{perm_mba_working_flag.get('N', 0):.1%}")
+
+# %% [markdown]
+# **Bottom line for the dashboard**: treat `NEW_EMPLOYMENT > 0` (LCA) and
+# `OTHER_REQ_IS_FW_CURRENTLY_WRK == 'N'` (PERM) as the "real new opportunity" filters, not
+# `CASE_STATUS`. Full employer-level breakdowns of both live in notebook 04.
+
+# %% [markdown]
 # ## Which functions within "core" and "adjacent" see the most volume?
 
 # %%
@@ -224,19 +260,20 @@ lca_mba["WORKSITE_STATE"].value_counts().rename("filings").to_csv(PROCESSED_DIR 
 print("Saved MBA-focused aggregates to", PROCESSED_DIR)
 
 # %% [markdown]
-# ## Notes for next session
+# ## Where the rest of the analysis lives
 #
-# - Need a better MBA-relevance signal than SOC/title regex — worth checking whether the DOL
-#   PERM *case-level* disclosure (not this summary extract) exposes minimum education fields we
-#   could join in, or whether O*NET's "typical education" lookup by SOC code is a cleaner proxy.
-# - Employer names are canonicalized for casing/punctuation/legal-suffix noise (see
-#   `src/employer_canonicalization.py`), but distinct legal subsidiaries of the same brand (e.g.
-#   Amazon Web Services, Inc. vs Amazon.com Services LLC) are intentionally left separate — that
-#   needs a manually-curated brand alias list, scoped to just the top employers on the dashboard
-#   leaderboard, rather than automated fuzzy matching (which produces false merges, e.g. "Apple
-#   American Group LLC" is an Applebee's franchisee, not Apple Inc.).
-# - Should link LCA employer names to PERM employer names (fuzzy match — names aren't identical
-#   across the two systems) to see which employers do *both* H-1B and green card sponsorship for
-#   business roles, since that end-to-end path is what students actually care about.
-# - Consider NAICS industry rollups on top of the occupation tiers (e.g. consulting/finance/tech
-#   sector cuts) for the dashboard's employer targeting view.
+# - **Notebook 03** — industry (NAICS sector) rollups and geography (state-level, with county
+#   granularity available for a future drill-down), plus wage-level (I-IV) mix as a proxy for the
+#   seniority a role expects, since we have no applicant-experience field.
+# - **Notebook 04** — the full employer leaderboard (volume, mix, certification rate, new-position
+#   share, size/risk flags) and the LCA↔PERM employer match, showing who actually carries people
+#   from H-1B through to green card sponsorship.
+# - **Notebook 05** — a flexible keyword-based occupation search (`src/occupation_search.py`) that
+#   isn't boxed into the core/adjacent/excluded tiers here, run end-to-end for the original
+#   finance/risk/fintech persona plus two other backgrounds, to confirm the tooling generalizes.
+#
+# Still open: a manually-curated brand alias list for the top employers (Amazon Web Services vs.
+# Amazon.com Services LLC are legitimately separate legal entities but the same brand — see
+# `src/employer_canonicalization.py`), and a better MBA-relevance signal than SOC/title regex if
+# a cleaner minimum-education proxy (e.g. O*NET's typical-education-by-SOC lookup) turns out to
+# be worth the integration effort.

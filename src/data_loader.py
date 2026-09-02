@@ -45,6 +45,7 @@ LCA_USECOLS = [
     "EMPLOYER_COUNTRY",
     "NAICS_CODE",
     "WORKSITE_CITY",
+    "WORKSITE_COUNTY",
     "WORKSITE_STATE",
     "WAGE_RATE_OF_PAY_FROM",
     "WAGE_RATE_OF_PAY_TO",
@@ -69,6 +70,8 @@ PERM_USECOLS = [
     "EMP_STATE",
     "EMP_COUNTRY",
     "EMP_NAICS",
+    "EMP_NUM_PAYROLL",
+    "EMP_YEAR_COMMENCED",
     "PWD_SOC_CODE",
     "PWD_SOC_TITLE",
     "JOB_TITLE",
@@ -76,7 +79,9 @@ PERM_USECOLS = [
     "JOB_OPP_WAGE_TO",
     "JOB_OPP_WAGE_PER",
     "PRIMARY_WORKSITE_CITY",
+    "PRIMARY_WORKSITE_COUNTY",
     "PRIMARY_WORKSITE_STATE",
+    "OTHER_REQ_IS_FW_CURRENTLY_WRK",
 ]
 
 
@@ -110,7 +115,7 @@ def load_perm(path: Path = PERM_PATH, usecols: list[str] | None = None) -> pd.Da
     """Load the consolidated PERM master file."""
     df = _read_master(path, usecols or PERM_USECOLS)
     df = _parse_dates(df, ["RECEIVED_DATE", "DECISION_DATE"])
-    for col in ["JOB_OPP_WAGE_FROM", "JOB_OPP_WAGE_TO"]:
+    for col in ["JOB_OPP_WAGE_FROM", "JOB_OPP_WAGE_TO", "EMP_NUM_PAYROLL", "EMP_YEAR_COMMENCED"]:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
     return df

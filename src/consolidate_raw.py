@@ -7,8 +7,12 @@ Why this exists: DOL publishes these files inconsistently across years —
 sometimes one cumulative year-to-date CSV (FY2026 Q3), sometimes four
 separate per-quarter XLSX exports (FY2025), each internally padded with
 blank template rows out to a fixed row count, with a stray column-naming
-difference between years (`H-1B_DEPENDENT` vs `H_1B_DEPENDENT`). None of
-that should leak into analysis code — this module absorbs it once, here.
+difference between years (`H-1B_DEPENDENT` vs `H_1B_DEPENDENT`). One
+quarter (FY2025 Q2) also exports nearly every text cell as a literal
+Excel "keep as text" wrapper (`="541511"` instead of `541511`), which
+silently breaks anything that parses those columns (e.g. SOC_CODE's
+major-group prefix) if left in place. None of that should leak into
+analysis code — this module absorbs it once, here.
 
 Output:
   data/interim/lca_master.csv   (all populated LCA/H-1B records, every source)
@@ -29,9 +33,18 @@ re-run this script against data/raw/ to reproduce them.
 
 import csv
 import datetime
+import re
 from pathlib import Path
 
 import openpyxl
+
+# One source file (LCA_Disclosure_Data_FY2025_Q2.xlsx) exports nearly every
+# text cell wrapped as an Excel "keep as text" formula literal, e.g.
+# `="541511"` instead of `541511`. Strip that wrapper wherever it shows up —
+# cheap to check, and protects any future source that carries the same
+# artifact. Only matches a *whole-cell* wrap, not a legitimate value that
+# happens to contain "=" internally.
+_EXCEL_TEXT_WRAP_RE = re.compile(r'^="(.*)"$')
 
 RAW_DIR = Path(__file__).resolve().parent.parent / "data" / "raw"
 INTERIM_DIR = Path(__file__).resolve().parent.parent / "data" / "interim"
@@ -87,13 +100,21 @@ def _iso(d):
     return d.isoformat() if d else ""
 
 
+def _unwrap_excel_text(value):
+    if isinstance(value, str):
+        m = _EXCEL_TEXT_WRAP_RE.match(value)
+        if m:
+            return m.group(1)
+    return value
+
+
 def _rows_from_xlsx(path: Path):
     wb = openpyxl.load_workbook(path, read_only=True)
     ws = wb[wb.sheetnames[0]]
     rows = ws.iter_rows(values_only=True)
     header = [COLUMN_RENAMES.get(h, h) for h in next(rows)]
     for row in rows:
-        yield dict(zip(header, row))
+        yield {k: _unwrap_excel_text(v) for k, v in zip(header, row)}
     wb.close()
 
 
@@ -102,7 +123,7 @@ def _rows_from_csv(path: Path):
         reader = csv.DictReader(f)
         reader.fieldnames = [COLUMN_RENAMES.get(h, h) for h in reader.fieldnames]
         for row in reader:
-            yield row
+            yield {k: _unwrap_excel_text(v) for k, v in row.items()}
 
 
 def _winning_source_by_case(sources: list[str], case_number_col: str) -> dict:

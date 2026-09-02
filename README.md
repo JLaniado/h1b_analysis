@@ -38,6 +38,10 @@ downstream has to:
    XLSX exports are cleanly disjoint by decision quarter, but the logic also de-dupes safely
    (latest source wins) in case a future release turns out to be cumulative/overlapping instead.
 6. Tagging every row with `SOURCE_FILE` for traceability.
+7. Stripping a literal `="value"` Excel "keep as text" wrapper that one entire source
+   (`LCA_Disclosure_Data_FY2025_Q2.xlsx`, ~13% of LCA data) exports on nearly every text cell —
+   this silently corrupted `SOC_CODE` for that whole quarter and broke MBA-tier classification
+   for those rows before the fix.
 
 Also gitignored (`data/interim/`, multiple hundred MB) — regenerate with the command above any
 time `data/raw/` changes. `src/data_loader.py` reads from these master files, not from `data/raw/`
@@ -64,13 +68,30 @@ python -m ipykernel install --user --name h1b_analysis --display-name "h1b_analy
 - `src/mba_occupations.py` — heuristic for classifying occupations as MBA "core" / "adjacent" /
   "excluded" (see caveats in that file — neither disclosure extract has a real minimum-degree
   field, so this is a SOC-code + title proxy, not ground truth)
+- `src/occupation_search.py` — flexible keyword search over SOC/job titles, for targeting by a
+  student's actual background rather than being boxed into the core/adjacent/excluded tiers
+- `src/naics_sectors.py` — 2-digit NAICS code -> sector name lookup (neither raw dataset ships
+  human-readable industry names)
+- `src/employer_matching.py` — matches employers across LCA and PERM (by the same cleaned/
+  suffix-stripped key as canonicalization) to see who sponsors *both* H-1B and green cards
 - `notebooks/01_data_loading_and_eda.py` — general EDA: data quality, case status/certification
-  rates, top occupations, filing trends over time and year-over-year, wages, geography, top
-  employers
+  rates, top occupations, filing trends over time and year-over-year, seasonality, wages,
+  geography, top employers
 - `notebooks/02_mba_relevant_analysis.py` — narrows to MBA-relevant roles: certification rates by
-  tier, year-over-year growth by tier, top employers ranked by MBA-relevant volume *and* mix,
-  wage premium, geography
-- `.ipynb` counterparts of both are generated with [jupytext](https://jupytext.readthedocs.io/)
+  tier, year-over-year growth by tier, the "real hiring signal" question (new positions vs.
+  renewals/transfers for LCA, existing-employee vs. external hire for PERM), top employers ranked
+  by MBA-relevant volume *and* mix, wage premium, geography
+- `notebooks/03_industry_and_geography.py` — NAICS sector rollups, occupation x industry
+  cross-tab, state-level geography with wage, and wage-level (I-IV) mix by occupation as a proxy
+  for the seniority a role expects (no applicant-experience field exists, so this is the closest
+  available signal)
+- `notebooks/04_employer_leaderboard_and_pipeline.py` — full employer scorecard (volume, mix,
+  certification rate, new-position share, DOL risk flags, company size where PERM has it) plus
+  the LCA↔PERM pipeline view
+- `notebooks/05_persona_search_and_walkthrough.py` — runs `occupation_search.py` end-to-end for
+  three different student backgrounds (finance/risk/fintech, marketing/brand, supply chain/ops)
+  to prove the tooling generalizes rather than being tuned to one persona
+- `.ipynb` counterparts of all five are generated with [jupytext](https://jupytext.readthedocs.io/)
   and executed — re-run with:
   ```bash
   jupytext --to notebook notebooks/*.py
@@ -83,9 +104,26 @@ python -m ipykernel install --user --name h1b_analysis --display-name "h1b_analy
 
 ## Status
 
-Exploration phase, now covering full FY2025 + FY2026 through Q3. Headline findings so far live in
-notebook 02 — notably, core MBA-relevant filings grew year-over-year (Q1-Q3 FY2025 vs FY2026: LCA
-core +34%, PERM core +24%) even as the broader (mostly engineering) filing pool shrank. Open
-questions for next steps are listed at the bottom of that notebook (better MBA-relevance signal,
-LCA↔PERM employer matching to find who does both H-1B *and* green card sponsorship for business
-roles, NAICS industry rollups, a curated brand-alias layer on top of employer canonicalization).
+Exploration phase, now covering full FY2025 + FY2026 through Q3, with an analysis layer answering
+the core recruiting-strategy questions (occupation fit, employer targeting, industry, geography,
+timing) generically rather than for one fixed persona — see notebooks 02-05.
+
+Headline findings:
+- **Real hiring signal matters more than excluding withdrawn/denied cases.** Only ~35-39% of
+  MBA-relevant LCA filings are genuinely new positions (`NEW_EMPLOYMENT > 0`) rather than
+  extensions/transfers of existing employees; only ~14% of MBA-relevant PERM filings are for a
+  worker not already employed there (`OTHER_REQ_IS_FW_CURRENTLY_WRK`) — most PERM sponsorship is
+  green-card conversion for existing H-1B staff, not an offer to an external candidate.
+- **Corrected year-over-year picture** (after fixing the FY2025-Q2 data bug — see Data sources):
+  MBA-core LCA filings are roughly flat YoY (Q1-Q3 FY2025 vs FY2026: -1.8%, previously
+  mis-reported as +34% before the bug fix), while PERM core filings are up +24%. Adjacent-tier
+  LCA filings are down -13.2%.
+- 8,885 employers show MBA-relevant activity in *both* LCA and PERM (a full visa-to-green-card
+  pathway), out of ~45K MBA-relevant LCA filers — most H-1B business-role sponsors show no
+  matched PERM presence, worth double-checking rather than treating as confirmed "no path."
+
+Open questions/next steps: a curated brand-alias layer on top of employer canonicalization (e.g.
+Amazon Web Services vs. Amazon.com Services LLC), a better MBA-relevance signal than SOC/title
+regex if a cleaner minimum-education proxy is worth integrating, and — deferred by design this
+round — choosing and building the actual interactive dashboard technology on top of this
+analysis layer.

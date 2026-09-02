@@ -1,0 +1,22 @@
+NAICS_SECTOR,filings,cert_rate,median_annual_wage
+"Professional, Scientific, and Technical Services",91394,0.992841931563514,120711.5
+Finance and Insurance,33459,0.993850348379279,143125.0
+Manufacturing,25584,0.9920266571462573,136136.0
+Information,19925,0.9936021123184726,164479.0
+Retail Trade,18090,0.9938140882746321,140281.5
+Wholesale Trade,6200,0.975304576885084,87575.98000000001
+Construction,4580,0.9657734744426931,96424.84
+Health Care and Social Assistance,4322,0.9748517200474496,88837.0
+Educational Services,3798,0.9889219129964875,79040.0
+Administrative and Support and Waste Management Services,3446,0.9754873006497342,100000.0
+Management of Companies and Enterprises,3354,0.9943164822016153,149955.5
+Transportation and Warehousing,3157,0.9802333117303953,87360.0
+Real Estate and Rental and Leasing,2433,0.9654591406908172,95935.5
+Accommodation and Food Services,1999,0.9537987679671458,80000.0
+Other Services (except Public Administration),1865,0.9704109589041096,84614.4
+Utilities,1312,0.9898278560250391,125700.0
+"Arts, Entertainment, and Recreation",1002,0.9688149688149689,91270.0
+"Mining, Quarrying, and Oil and Gas Extraction",548,0.9925512104283054,154125.0
+Public Administration,495,0.968944099378882,97013.525
+"Agriculture, Forestry, Fishing and Hunting",235,0.960352422907489,96262.0
+Unknown / Unclassified,61,0.9333333333333333,72800.0

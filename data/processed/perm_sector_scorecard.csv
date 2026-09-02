@@ -1,0 +1,22 @@
+NAICS_SECTOR,filings,cert_rate
+"Professional, Scientific, and Technical Services",13892,0.9772589448150394
+Finance and Insurance,6952,0.987136803874092
+Manufacturing,6531,0.9740722735375141
+Information,3575,0.9899726526891522
+Retail Trade,2326,0.9687641466727026
+Wholesale Trade,2029,0.9571502323180175
+Construction,1508,0.9553508150248051
+Accommodation and Food Services,1176,0.945193171608266
+Transportation and Warehousing,1011,0.9577167019027484
+Health Care and Social Assistance,932,0.9563719862227325
+Real Estate and Rental and Leasing,798,0.9575596816976127
+Administrative and Support and Waste Management Services,725,0.9437869822485208
+Management of Companies and Enterprises,563,0.9871086556169429
+Educational Services,548,0.9727626459143969
+Other Services (except Public Administration),482,0.9333333333333333
+"Arts, Entertainment, and Recreation",246,0.9656652360515021
+Utilities,208,0.9846153846153847
+"Agriculture, Forestry, Fishing and Hunting",201,0.9081081081081082
+"Mining, Quarrying, and Oil and Gas Extraction",123,0.9363636363636364
+Public Administration,56,0.8909090909090909
+Unknown / Unclassified,6,0.6666666666666666
