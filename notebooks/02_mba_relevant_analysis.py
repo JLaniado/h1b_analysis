@@ -22,6 +22,7 @@ import seaborn as sns
 sys.path.insert(0, str(Path.cwd().parent / "src"))
 from data_loader import load_lca, load_perm, annual_wage  # noqa: E402
 from mba_occupations import classify_mba_relevance  # noqa: E402
+from employer_canonicalization import add_canonical_employer  # noqa: E402
 
 sns.set_theme(style="whitegrid")
 plt.rcParams["figure.figsize"] = (10, 5)
@@ -35,6 +36,9 @@ perm = load_perm()
 
 lca["MBA_TIER"] = classify_mba_relevance(lca["SOC_CODE"], lca["SOC_TITLE"])
 perm["MBA_TIER"] = classify_mba_relevance(perm["PWD_SOC_CODE"], perm["PWD_SOC_TITLE"])
+
+lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL")
+perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL")
 
 # %% [markdown]
 # ## How much of the market is actually MBA-relevant?
@@ -114,11 +118,11 @@ plt.show()
 # management-track roles (as opposed to being a huge H-1B filer purely on the engineering side).
 
 # %%
-top_employers_lca_mba = lca_mba["EMPLOYER_NAME"].value_counts().head(30)
+top_employers_lca_mba = lca_mba["EMPLOYER_CANONICAL"].value_counts().head(30)
 top_employers_lca_mba
 
 # %%
-top_employers_perm_mba = perm_mba["EMP_BUSINESS_NAME"].value_counts().head(30)
+top_employers_perm_mba = perm_mba["EMPLOYER_CANONICAL"].value_counts().head(30)
 top_employers_perm_mba
 
 # %% [markdown]
@@ -137,11 +141,11 @@ def employer_mba_mix(df, employer_col, min_filings=10):
     return g[g["total"] >= min_filings].sort_values(["mba_share", "total"], ascending=False)
 
 
-lca_employer_mix = employer_mba_mix(lca, "EMPLOYER_NAME")
+lca_employer_mix = employer_mba_mix(lca, "EMPLOYER_CANONICAL")
 lca_employer_mix.head(25)
 
 # %%
-perm_employer_mix = employer_mba_mix(perm, "EMP_BUSINESS_NAME")
+perm_employer_mix = employer_mba_mix(perm, "EMPLOYER_CANONICAL")
 perm_employer_mix.head(25)
 
 # %% [markdown]
@@ -189,6 +193,12 @@ print("Saved MBA-focused aggregates to", PROCESSED_DIR)
 # - Need a better MBA-relevance signal than SOC/title regex — worth checking whether the DOL
 #   PERM *case-level* disclosure (not this summary extract) exposes minimum education fields we
 #   could join in, or whether O*NET's "typical education" lookup by SOC code is a cleaner proxy.
+# - Employer names are canonicalized for casing/punctuation/legal-suffix noise (see
+#   `src/employer_canonicalization.py`), but distinct legal subsidiaries of the same brand (e.g.
+#   Amazon Web Services, Inc. vs Amazon.com Services LLC) are intentionally left separate — that
+#   needs a manually-curated brand alias list, scoped to just the top employers on the dashboard
+#   leaderboard, rather than automated fuzzy matching (which produces false merges, e.g. "Apple
+#   American Group LLC" is an Applebee's franchisee, not Apple Inc.).
 # - Should link LCA employer names to PERM employer names (fuzzy match — names aren't identical
 #   across the two systems) to see which employers do *both* H-1B and green card sponsorship for
 #   business roles, since that end-to-end path is what students actually care about.

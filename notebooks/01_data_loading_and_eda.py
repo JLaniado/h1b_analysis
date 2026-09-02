@@ -18,6 +18,7 @@ import seaborn as sns
 
 sys.path.insert(0, str(Path.cwd().parent / "src"))
 from data_loader import load_lca, load_perm, annual_wage  # noqa: E402
+from employer_canonicalization import add_canonical_employer  # noqa: E402
 
 sns.set_theme(style="whitegrid")
 plt.rcParams["figure.figsize"] = (10, 5)
@@ -39,6 +40,27 @@ perm = load_perm()
 
 print(f"LCA (H-1B/E-3/H-1B1) records: {len(lca):,}")
 print(f"PERM records: {len(perm):,}")
+
+# %% [markdown]
+# ## Employer name canonicalization
+#
+# Raw employer names are fragmented by casing/punctuation/legal-suffix noise — e.g. "Hire IT
+# People, Inc" / "Hire IT People, Inc." / "HIRE IT PEOPLE INC" all show up as different strings
+# for the same employer, which understates their true filing volume in any employer-level
+# ranking. `add_canonical_employer` (see `src/employer_canonicalization.py`) collapses these
+# safely — it does *not* attempt to merge distinct legal subsidiaries under one brand (e.g.
+# "Amazon Web Services, Inc." vs "Amazon.com Services LLC" stay separate), since that's a
+# harder problem where naive matching produces false merges (a real risk here: "Apple American
+# Group LLC" is an Applebee's franchisee, not Apple Inc.).
+
+# %%
+lca_raw_employers = lca["EMPLOYER_NAME"].nunique()
+lca = add_canonical_employer(lca, "EMPLOYER_NAME", "EMPLOYER_CANONICAL")
+perm_raw_employers = perm["EMP_BUSINESS_NAME"].nunique()
+perm = add_canonical_employer(perm, "EMP_BUSINESS_NAME", "EMPLOYER_CANONICAL")
+
+print(f"LCA employers: {lca_raw_employers:,} raw names -> {lca['EMPLOYER_CANONICAL'].nunique():,} canonical")
+print(f"PERM employers: {perm_raw_employers:,} raw names -> {perm['EMPLOYER_CANONICAL'].nunique():,} canonical")
 
 # %%
 lca.info()
@@ -172,13 +194,13 @@ plt.savefig(FIG_DIR / "01_top_states.png", dpi=150)
 plt.show()
 
 # %% [markdown]
-# ## Top sponsoring employers
+# ## Top sponsoring employers (canonical names)
 
 # %%
-lca["EMPLOYER_NAME"].value_counts().head(20)
+lca["EMPLOYER_CANONICAL"].value_counts().head(20)
 
 # %%
-perm["EMP_BUSINESS_NAME"].value_counts().head(20)
+perm["EMPLOYER_CANONICAL"].value_counts().head(20)
 
 # %% [markdown]
 # ## Save lightweight summaries for reuse
@@ -189,8 +211,8 @@ perm["EMP_BUSINESS_NAME"].value_counts().head(20)
 # %%
 lca["SOC_TITLE"].value_counts().rename("filings").to_csv(PROCESSED_DIR / "lca_top_occupations.csv")
 perm["PWD_SOC_TITLE"].value_counts().rename("filings").to_csv(PROCESSED_DIR / "perm_top_occupations.csv")
-lca["EMPLOYER_NAME"].value_counts().rename("filings").head(200).to_csv(PROCESSED_DIR / "lca_top_employers.csv")
-perm["EMP_BUSINESS_NAME"].value_counts().rename("filings").head(200).to_csv(PROCESSED_DIR / "perm_top_employers.csv")
+lca["EMPLOYER_CANONICAL"].value_counts().rename("filings").head(200).to_csv(PROCESSED_DIR / "lca_top_employers.csv")
+perm["EMPLOYER_CANONICAL"].value_counts().rename("filings").head(200).to_csv(PROCESSED_DIR / "perm_top_employers.csv")
 
 print("Saved summary CSVs to", PROCESSED_DIR)
 
@@ -203,3 +225,7 @@ print("Saved summary CSVs to", PROCESSED_DIR)
 # 3. Do certification/denial rates differ meaningfully by occupation tier or employer?
 # 4. Where geographically do MBA-relevant sponsorships concentrate vs. the overall market?
 # 5. What's the wage premium (or discount) for MBA-relevant roles vs. the broader population?
+# 6. Employer names are now canonicalized for casing/punctuation/legal-suffix noise — but
+#    distinct legal subsidiaries of the same brand (Amazon Web Services vs Amazon.com Services
+#    LLC) still show up separately. Worth a manually-curated brand rollup for just the top ~50-100
+#    employers that matter most for the dashboard leaderboard.

@@ -1,630 +1,622 @@
-EMP_BUSINESS_NAME,total,mba_relevant,mba_share
-"MCKINSEY & COMPANY, INC. UNITED STATES",177,177,1.0
+EMPLOYER_CANONICAL,total,mba_relevant,mba_share
 EVERCORE PARTNERS SERVICES EAST LLC,21,21,1.0
-"BDO USA, P.C.",19,19,1.0
+"BDO USA, P.C.",20,20,1.0
 "Cubist Systematic Strategies, LLC",15,15,1.0
 UBS Securities LLC,15,15,1.0
+Squarepoint Services US LLC,13,13,1.0
 Bank of China,11,11,1.0
 "BAKER TILLY ADVISORY GROUP, LP",10,10,1.0
 "Mediterranean Shipping Company (USA), Inc.",10,10,1.0
 PwC US Tax LLP,29,28,0.9655172413793104
 "Cumming Management Group, Inc.",27,26,0.9629629629629629
+"BAIN & COMPANY, INC.",63,60,0.9523809523809523
 "Turner & Townsend, Inc.",21,20,0.9523809523809523
-"BAIN & COMPANY, INC.",62,59,0.9516129032258065
 "Boston Consulting Group, Inc.",19,18,0.9473684210526315
-Citigroup Global Markets Inc.,29,27,0.9310344827586207
+Citigroup Global Markets Inc.,30,28,0.9333333333333333
+"AlixPartners, LLP",15,14,0.9333333333333333
 "Deutsche Bank Securities, Inc.",14,13,0.9285714285714286
 TD Securities (USA) LLC,14,13,0.9285714285714286
-"AlixPartners, LLP",13,12,0.9230769230769231
 Deloitte Tax LLP,74,68,0.918918918918919
+Coforge Limited,12,11,0.9166666666666666
 "POSCO AAPC, LLC",12,11,0.9166666666666666
 "Point72 Asset Management, L.P.",12,11,0.9166666666666666
 FactSet Research Systems Inc.,22,20,0.9090909090909091
-Coforge Limited,11,10,0.9090909090909091
-"AMAZON DATA SERVICES, INC.",10,9,0.9
 CSL Behring L.L.C.,10,9,0.9
 "MANHATTAN ASSOCIATES, INC.",29,26,0.896551724137931
-PricewaterhouseCoopers LLP,42,37,0.8809523809523809
-"ZS Associates, Inc.",56,49,0.875
-"THE BOSTON CONSULTING GROUP, INC. ",164,142,0.8658536585365854
-Morgan Stanley & Co. LLC,29,25,0.8620689655172413
+"THE BOSTON CONSULTING GROUP, INC. ",173,149,0.861271676300578
+Morgan Stanley & Co. LLC,35,30,0.8571428571428571
+"ZS Associates, Inc.",61,52,0.8524590163934426
+PricewaterhouseCoopers LLP,54,46,0.8518518518518519
 "CTC Trading Group, LLC",12,10,0.8333333333333334
 THE BANK OF NOVA SCOTIA,12,10,0.8333333333333334
 Globant IT Services Corp.,11,9,0.8181818181818182
+"GroupM Worldwide, LLC",11,9,0.8181818181818182
 "SMBC Capital Markets, Inc.",11,9,0.8181818181818182
 Sumitomo Mitsui Banking Corporation,32,26,0.8125
 "DPR Construction, A General Partnership",16,13,0.8125
 "SG Americas Securities, LLC",16,13,0.8125
 "Balyasny Asset Management, L.P.",20,16,0.8
-"GroupM Worldwide, LLC",10,8,0.8
+Barclays Capital Inc. ,20,16,0.8
+Standard Chartered Bank,10,8,0.8
 "Svanaco, Inc",10,8,0.8
-Barclays Capital Inc. ,19,15,0.7894736842105263
 "E&O Solutions, Inc.",18,14,0.7777777777777778
-"Blackstone, Inc.",13,10,0.7692307692307693
-PRICEWATERHOUSECOOPERS LLP,12,9,0.75
+"MCKINSEY & COMPANY, INC. UNITED STATES",273,208,0.7619047619047619
+Virtu Financial Operating LLC,19,14,0.7368421052631579
 "BOFA SECURITIES, INC.",48,35,0.7291666666666666
 American Express Company,22,16,0.7272727272727273
 Inpatient Progressive Health of America PLLC,11,8,0.7272727272727273
-Virtu Financial Operating LLC,18,13,0.7222222222222222
-CITADEL AMERICAS SERVICES LLC,71,50,0.704225352112676
-Novartis Pharmaceuticals Corporation,10,7,0.7
+"JACOB EMRANI, A PROFESSIONAL CORPORATION",11,8,0.7272727272727273
+"Blackstone, Inc.",14,10,0.7142857142857143
+CITADEL AMERICAS SERVICES LLC,72,51,0.7083333333333334
 "Santander Holdings USA, Inc.",10,7,0.7
 "Solomon America, Inc.",10,7,0.7
-PRICEWATERHOUSECOOPERS ADVISORY SERVICES LLC,23,16,0.6956521739130435
 RSM US LLP,26,18,0.6923076923076923
   PwC US Consulting LLP,13,9,0.6923076923076923
 Adbakx LLC,13,9,0.6923076923076923
 Kerry Inc.,13,9,0.6923076923076923
-"Samsara, Inc.",13,9,0.6923076923076923
-"BlackRock Financial Management, Inc. ",42,29,0.6904761904761905
 PHILIPS NORTH AMERICA LLC,18,12,0.6666666666666666
 "Banco Santander, S.A.",12,8,0.6666666666666666
 Goldman Sachs & Co. LLC,262,174,0.6641221374045801
+"BlackRock Financial Management, Inc. ",74,48,0.6486486486486487
+Wayfair LLC,66,42,0.6363636363636364
 "Hyosung HICO, Ltd.",11,7,0.6363636363636364
 Pacific Investment Management Company LLC,48,30,0.625
-Wayfair LLC,62,38,0.6129032258064516
+" Flextronics International USA, Inc.",29,18,0.6206896551724138
 "Chime Financial, Inc.",36,22,0.6111111111111112
 "Jones Lang LaSalle Americas, Inc.",33,20,0.6060606060606061
 Ernst & Young U.S. LLP,565,342,0.6053097345132743
+"Credit One Bank, N.A. ",15,9,0.6
 "Kiss Nail Products, Inc.",10,6,0.6
-"BlackRock Financial Management, Inc.",32,19,0.59375
-" Flextronics International USA, Inc.",27,16,0.5925925925925926
 Tredence Inc. ,17,10,0.5882352941176471
 RBC Capital Markets LLC,21,12,0.5714285714285714
-"Okta, Inc. ",23,13,0.5652173913043478
 Accenture LLP,196,109,0.5561224489795918
 "Riot Games, Inc.",36,20,0.5555555555555556
-KPMG LLP,101,56,0.5544554455445545
-Siemens Energy Inc ,20,11,0.55
-"Semiconductor Components Industries, LLC",22,12,0.5454545454545454
-Discover Products Inc.,11,6,0.5454545454545454
-"PEPSICO, INC.",11,6,0.5454545454545454
+Novartis Pharmaceuticals Corporation,18,10,0.5555555555555556
+"Samsara, Inc.",20,11,0.55
+"Cargill, Incorporated",11,6,0.5454545454545454
 "Zendesk, Inc.",11,6,0.5454545454545454
+"Okta, Inc. ",24,13,0.5416666666666666
+Siemens Energy Inc ,24,13,0.5416666666666666
+KPMG LLP,109,59,0.5412844036697247
 "Fifth Third Bank, National Association ",13,7,0.5384615384615384
 "Nordstrom, Inc.",54,29,0.5370370370370371
 Goldman Sachs Bank USA,47,25,0.5319148936170213
+"AMAZON DATA SERVICES, INC.",17,9,0.5294117647058824
 "Addison Reserve Master Property Owners Association, Inc",17,9,0.5294117647058824
 Adyen N.V.,17,9,0.5294117647058824
-"Zifo Technologies, Inc.",19,10,0.5263157894736842
 BNP Paribas Securities Corp.,23,12,0.5217391304347826
+"Jump Operations, LLC",43,22,0.5116279069767442
 MPG Operations LLC,43,22,0.5116279069767442
 Jefferies LLC ,24,12,0.5
 "Niagara Bottling, LLC",22,11,0.5
 AM/NS Calvert LLC,14,7,0.5
 AllianceBernstein L.P.,14,7,0.5
 "Hyundai Transys Georgia Seating System, LLC",14,7,0.5
-"Two Sigma Investments, LP",14,7,0.5
+"PEPSICO, INC.",12,6,0.5
 "STMICROELECTRONICS,INC",12,6,0.5
-"TD Bank, National Association ",10,5,0.5
+"TD Bank, National Association ",12,6,0.5
+Daimler Truck North America LLC,10,5,0.5
 USAA Federal Savings Bank,10,5,0.5
-"Jump Operations, LLC",37,18,0.4864864864864865
+ValueLabs Inc.,10,5,0.5
 "Gilead Sciences, Inc.",70,34,0.4857142857142857
-"Remitly, Inc.",23,11,0.4782608695652174
-CITADEL SECURITIES AMERICAS SERVICES LLC,78,37,0.47435897435897434
-"DGN Technologies, Inc.",19,9,0.47368421052631576
-"Hanwha Q Cells USA, Inc.",19,9,0.47368421052631576
+CITADEL SECURITIES AMERICAS SERVICES LLC,79,38,0.4810126582278481
+"DGN Technologies, Inc.",23,11,0.4782608695652174
 HENRY FORD HEALTH SYSTEM,17,8,0.47058823529411764
 Seaboard Foods LLC,17,8,0.47058823529411764
+CITADEL ENTERPRISE AMERICAS SERVICES LLC,30,14,0.4666666666666667
+"Semiconductor Components Industries, LLC",30,14,0.4666666666666667
 Kite Pharma Inc.,15,7,0.4666666666666667
-LendingClub Bank National Association,15,7,0.4666666666666667
 "Moody's Investors Service, Inc.",28,13,0.4642857142857143
 "Carvana, LLC",13,6,0.46153846153846156
 HARDEV PETROLEUM INC,13,6,0.46153846153846156
 "Johnson & Johnson Services, Inc.",13,6,0.46153846153846156
 "Tyson Foods, Inc.",13,6,0.46153846153846156
+"Remitly, Inc.",37,17,0.4594594594594595
+"Two Sigma Investments, LP",24,11,0.4583333333333333
+Aptiv U.S. Services General Partnership,11,5,0.45454545454545453
 "Cox Automotive Corporate Services, LLC",11,5,0.45454545454545453
+"FMC Technologies, Inc. ",11,5,0.45454545454545453
+"Mattel HQ, Inc. ",11,5,0.45454545454545453
 KeyBank National Association,20,9,0.45
-CITADEL ENTERPRISE AMERICAS SERVICES LLC,29,13,0.4482758620689655
 "Denken Solutions, Inc.",47,21,0.44680851063829785
 BNP Paribas RCC Inc.,30,13,0.43333333333333335
-"Citibank, N.A.",308,132,0.42857142857142855
+"Zifo Technologies, Inc.",30,13,0.43333333333333335
+PricewaterhouseCoopers Advisory Services LLC,157,68,0.43312101910828027
+"Citibank, N.A.",310,134,0.432258064516129
 Boston Scientific Corporation,28,12,0.42857142857142855
+LendingClub Bank National Association,21,9,0.42857142857142855
 "MUFG Bank, Ltd.",21,9,0.42857142857142855
-"Remitly, Inc. ",14,6,0.42857142857142855
 "SG Americas Operational Services, LLC",14,6,0.42857142857142855
 Turner Construction Company,14,6,0.42857142857142855
-"Schneider Electric USA, Inc.",38,16,0.42105263157894735
+Western Alliance Bank ,14,6,0.42857142857142855
+"Schneider Electric USA, Inc.",40,17,0.425
 Jacobs Project Management Company,12,5,0.4166666666666667
+LG Electronics USA Inc. ,12,5,0.4166666666666667
 "Pearson Education, Inc.",12,5,0.4166666666666667
 "SL Alabama, LLC",12,5,0.4166666666666667
 Seohan Auto USA Corporation,12,5,0.4166666666666667
 SharkNinja Operating LLC,12,5,0.4166666666666667
 Intuit Inc.,82,34,0.4146341463414634
 "Thermo Fisher Scientific, Inc. ",41,17,0.4146341463414634
+"Point72, L.P.",17,7,0.4117647058823529
 Symbotic LLC,17,7,0.4117647058823529
 Whirlpool Corporation,17,7,0.4117647058823529
-"EMP SERV, LLC",27,11,0.4074074074074074
+"Hanwha Q Cells USA, Inc.",22,9,0.4090909090909091
 "Takeda Development Center Americas, Inc.",32,13,0.40625
 American General Life Insurance Company,15,6,0.4
+Morgan Stanley Smith Barney LLC,15,6,0.4
 Schlumberger Technology Corporation,15,6,0.4
 Alfa Laval Inc. ,10,4,0.4
-Aptiv U.S. Services General Partnership,10,4,0.4
 "Bio-Rad Laboratories, Inc.",10,4,0.4
 "Dropbox, Inc.",10,4,0.4
 Hikma Pharmaceuticals USA Inc.,10,4,0.4
-IQVIA Inc.,10,4,0.4
+"Home Depot USA, Inc.",10,4,0.4
 LACOF GROUP CORP,10,4,0.4
-"Mattel HQ, Inc. ",10,4,0.4
+"Murex North America, Inc.",10,4,0.4
 Nationwide Cleaning 1 LLC,10,4,0.4
 Nikola Corporation,10,4,0.4
-"TWO SIGMA INVESTMENTS, LP",10,4,0.4
 "ValueMomentum, Inc.",10,4,0.4
+"Honeywell International, Inc.",38,15,0.39473684210526316
 Deloitte Consulting LLP,783,308,0.3933588761174968
-PricewaterhouseCoopers Advisory Services LLC,134,52,0.3880597014925373
-"Becton, Dickinson and Company ",13,5,0.38461538461538464
-"CBS Interactive, Inc.",13,5,0.38461538461538464
+"EMP SERV, LLC",44,17,0.38636363636363635
 "DENSO International America, Inc.",13,5,0.38461538461538464
 "Oportun, Inc.",13,5,0.38461538461538464
-grmorales contractor,13,5,0.38461538461538464
 Maplebear Inc.,42,16,0.38095238095238093
 Nomura Holding America Inc.,21,8,0.38095238095238093
-"Honeywell International, Inc.",37,14,0.3783783783783784
 "Uber Technologies, Inc.",215,81,0.3767441860465116
 "Stripe, Inc.",64,24,0.375
 "Airbnb, Inc.",16,6,0.375
-Barclays Services LLC ,16,6,0.375
+"Flexon Technologies, Inc",16,6,0.375
+IQVIA Inc.,16,6,0.375
+"AMERICOLD LOGISTICS, LLC",11,4,0.36363636363636365
+"AVEVA Software, LLC",11,4,0.36363636363636365
+Camila's Restaurant Orlando LLC,11,4,0.36363636363636365
 Genpact LLC,11,4,0.36363636363636365
-"Joon, LLC",11,4,0.36363636363636365
 McDonald's Corporation,11,4,0.36363636363636365
-Morgan Stanley Smith Barney LLC,11,4,0.36363636363636365
+"Pluto, Inc.",11,4,0.36363636363636365
 "STUBHUB, INC.",11,4,0.36363636363636365
 "Saviynt, Inc.",11,4,0.36363636363636365
-Synchrony Bank,25,9,0.36
-Chewy Inc ,39,14,0.358974358974359
-"CBRE, Inc.",14,5,0.35714285714285715
 Cognex Corporation,14,5,0.35714285714285715
 "Gartner, Inc. ",14,5,0.35714285714285715
-"EMP SERV, LLC ",17,6,0.35294117647058826
 Vertex Pharmaceuticals Incorporated,17,6,0.35294117647058826
 Visa U.S.A. Inc.,17,6,0.35294117647058826
 "Airbus Americas, Inc.",20,7,0.35
 "Asana, Inc.",20,7,0.35
 "NTT DATA Services, LLC",23,8,0.34782608695652173
-Amazon.com Services LLC,75,26,0.3466666666666667
+The Bank of New York Mellon,23,8,0.34782608695652173
 "7-Eleven, Inc.",26,9,0.34615384615384615
 "SUSQUEHANNA INTERNATIONAL GROUP, LLP",26,9,0.34615384615384615
-First Citizens Bank and Trust Co.,35,12,0.34285714285714286
+Synchrony Bank,26,9,0.34615384615384615
+First Citizens Bank and Trust Co.,38,13,0.34210526315789475
 Federal Home Loan Mortgage Corporation,53,18,0.33962264150943394
 Black & Veatch Corporation,36,12,0.3333333333333333
+"CBRE, Inc.",30,10,0.3333333333333333
 "Zoetis, Inc.",24,8,0.3333333333333333
 TE Connectivity Corporation,21,7,0.3333333333333333
-The Bank of New York Mellon,21,7,0.3333333333333333
 "Siemens Mobility, Inc.",18,6,0.3333333333333333
-Atos Syntel Inc.,15,5,0.3333333333333333
 "Brose North America, Inc.",15,5,0.3333333333333333
+"EXLSERVICE.COM, LLC",15,5,0.3333333333333333
 PTC Inc.,15,5,0.3333333333333333
-"Point72, L.P.",15,5,0.3333333333333333
 Carnival Corporation,12,4,0.3333333333333333
 DXC Technology Services LLC ,12,4,0.3333333333333333
 DoubleVerify Inc.,12,4,0.3333333333333333
+"The PNC Financial Services Group, Inc. ",12,4,0.3333333333333333
 Veritas Technologies LLC,12,4,0.3333333333333333
-"McKinsey & Company, Inc. United States",94,31,0.32978723404255317
 UBS Business Solutions US LLC,73,24,0.3287671232876712
 "LYFT, INC.",34,11,0.3235294117647059
 "NTT DATA Americas, Inc.",28,9,0.32142857142857145
 Ally Bank,19,6,0.3157894736842105
-GlobalFoundries U.S. Inc.,19,6,0.3157894736842105
 "Move, Inc. ",19,6,0.3157894736842105
+"CBS Interactive, Inc.",16,5,0.3125
 SMARTSHEET INC.,16,5,0.3125
 Wellington Management Company LLP,16,5,0.3125
 "o9 Solutions, Inc. ",16,5,0.3125
 "Axtria, Inc.",39,12,0.3076923076923077
+Accelalpha Inc.   ,13,4,0.3076923076923077
 DB USA Core Corporation,13,4,0.3076923076923077
-"Flexon Technologies, Inc",13,4,0.3076923076923077
 "RingCentral, Inc.",13,4,0.3076923076923077
-"Viasat, Inc.",13,4,0.3076923076923077
+"Udemy, Inc.",13,4,0.3076923076923077
 "Expedia, Inc. ",92,28,0.30434782608695654
+Home Depot Management Company LLC,66,20,0.30303030303030304
 "Autodesk, Inc.",53,16,0.3018867924528302
-"DocuSign, Inc.",20,6,0.3
-"Samsung Electronics America, Inc",20,6,0.3
 Schaeffler Group USA Inc. ,20,6,0.3
 " Discovery Communications, LLC  ",10,3,0.3
-ACE American Insurance Company ,10,3,0.3
+"Arrow Electronics, Inc.",10,3,0.3
 Bloom Energy Corporation,10,3,0.3
 "ERP Integrated Solutions, LLC",10,3,0.3
 "Envestnet Financial Technologies, Inc.",10,3,0.3
 Gen Digital Inc.,10,3,0.3
 "Invesco Group Services, Inc.",10,3,0.3
 "Molex, LLC",10,3,0.3
-"Rockwell Automation, Inc.",10,3,0.3
+"National Oilwell Varco, L.P.",10,3,0.3
 "Schneider Electric Systems USA, Inc.",10,3,0.3
 "Softrams, LLC",10,3,0.3
-"TransUnion, LLC",10,3,0.3
 Chicago Mercantile Exchange Inc. ,34,10,0.29411764705882354
-"Social Finance, LLC",34,10,0.29411764705882354
-"T-Mobile USA, Inc.",92,27,0.29347826086956524
-Home Depot Management Company LLC,65,19,0.2923076923076923
+GlobalFoundries U.S. Inc.,34,10,0.29411764705882354
 "CrowdStrike, Inc.",24,7,0.2916666666666667
-Chewy Inc,21,6,0.2857142857142857
+Chewy Inc ,94,27,0.2872340425531915
 "Genentech, Inc.",21,6,0.2857142857142857
-Hewlett Packard Enterprise Company ,21,6,0.2857142857142857
 Tencent America LLC,21,6,0.2857142857142857
 Edwards Lifesciences LLC,14,4,0.2857142857142857
-"GlobalFoundries U.S., Inc.",14,4,0.2857142857142857
 "Navan, Inc.",14,4,0.2857142857142857
 ByteDance Inc.,392,111,0.28316326530612246
+TransUnion LLC,39,11,0.28205128205128205
+"Discover Products, Inc.",71,20,0.28169014084507044
 "Atlassian US, Inc.",32,9,0.28125
-"INTUITIVE SURGICAL OPERATIONS, INC",32,9,0.28125
 Zebra Technologies Corporation,32,9,0.28125
+Atos Syntel Inc.,18,5,0.2777777777777778
+Dematic Corp.,18,5,0.2777777777777778
 "HubSpot, Inc.",18,5,0.2777777777777778
-Morgan Stanley Services Group Inc.,77,21,0.2727272727272727
 "Varian Medical Systems, Inc.",22,6,0.2727272727272727
+"ZT Group Int'l, Inc.",22,6,0.2727272727272727
   PwC Product Sales LLC  ,11,3,0.2727272727272727
 "American Axle & Manufacturing, Inc. ",11,3,0.2727272727272727
 Cummins Filtration Inc.,11,3,0.2727272727272727
-"EARLY WARNING SERVICES, LLC",11,3,0.2727272727272727
 "Fluence Energy, LLC",11,3,0.2727272727272727
-GE Energy Management Services LLC,11,3,0.2727272727272727
 "GLOBEX IT SOLUTIONS, INC.",11,3,0.2727272727272727
 "Gestamp Chattanooga, LLC",11,3,0.2727272727272727
+JOHN WILEY & SONS INC.,11,3,0.2727272727272727
 Lennox International Inc. ,11,3,0.2727272727272727
 "McAfee, LLC",11,3,0.2727272727272727
+"Rockwell Automation, Inc.",11,3,0.2727272727272727
 The Hertz Corporation,11,3,0.2727272727272727
-"Wabtec US Rail, Inc.",11,3,0.2727272727272727
 "NIKE, Inc.",125,34,0.272
+Barclays Services Corp. ,70,19,0.2714285714285714
 BANK OF AMERICA N.A.,163,44,0.26993865030674846
-"ASML US, LLC",52,14,0.2692307692307692
 Zensar Technologies Inc.,26,7,0.2692307692307692
 State Street Bank and Trust Company,67,18,0.26865671641791045
+Amazon.com Services LLC,108,29,0.26851851851851855
 HP Inc.,41,11,0.2682926829268293
-Barclays Services Corp. ,45,12,0.26666666666666666
 "Axon Enterprise, Inc",15,4,0.26666666666666666
 "Compass Group USA, Inc.",15,4,0.26666666666666666
-Discover Products Inc,15,4,0.26666666666666666
 "Equinix, Inc.",15,4,0.26666666666666666
-"Medline Industries, LP ",15,4,0.26666666666666666
 NewRez LLC,15,4,0.26666666666666666
 Sanofi US Services Inc.,15,4,0.26666666666666666
 "Robinhood Markets, Inc.",53,14,0.2641509433962264
-"Medtronic, Inc.",72,19,0.2638888888888889
+"Social Finance, LLC",38,10,0.2631578947368421
 "Deloitte Touche Tohmatsu Services, LLC",19,5,0.2631578947368421
 "Slalom, Inc.",19,5,0.2631578947368421
-JPMORGAN CHASE & CO.,761,200,0.2628120893561104
+JPMORGAN CHASE & CO.,762,200,0.26246719160104987
 "DAS North America, Inc.",23,6,0.2608695652173913
+"Medtronic, Inc.",78,20,0.2564102564102564
+"Block, Inc.",47,12,0.2553191489361702
+Morgan Stanley Services Group Inc.,98,25,0.25510204081632654
 "ServiceNow, Inc.",229,58,0.25327510917030566
-"Applied Materials, Inc",83,21,0.25301204819277107
 "American Airlines, Inc.",127,32,0.25196850393700787
+"T-Mobile USA, Inc.",135,34,0.2518518518518518
 "Twilio, Inc.",36,9,0.25
 "Brillio, LLC",28,7,0.25
 "Indeed, Inc.",24,6,0.25
 "Christensen Farms & Feedlots, Inc.",20,5,0.25
-Hughes Network Systems LLC,20,5,0.25
-"NAGARRO, INC",20,5,0.25
-"ZT Group Int'l, Inc.",20,5,0.25
 "Marriott International, Inc.",16,4,0.25
 "TEKsystems Global Services, LLC",16,4,0.25
-TransUnion LLC,16,4,0.25
 "University of California, Los Angeles",16,4,0.25
 VAStek Inc.,16,4,0.25
-"Siemens Industry, Inc. ",12,3,0.25
-Amgen Inc.,97,24,0.24742268041237114
+ACE American Insurance Company ,12,3,0.25
+"Adventist Health System/Sunbelt, Inc. ",12,3,0.25
+GE Energy Management Services LLC,12,3,0.25
+"Uline, Inc.",12,3,0.25
+"Wabtec US Rail, Inc.",12,3,0.25
+Amgen Inc.,101,25,0.24752475247524752
 "Cadence Design Systems, Inc.",118,29,0.2457627118644068
 "Shipt, Inc.",33,8,0.24242424242424243
-AECOM Technical Services Inc,29,7,0.2413793103448276
+Persistent Systems Inc.,79,19,0.24050632911392406
 Ingram Micro Inc.,25,6,0.24
 "American Express Travel Related Services Company, Inc.",84,20,0.23809523809523808
-Docusign Inc.,21,5,0.23809523809523808
+Dassault Systemes Americas Corp.,21,5,0.23809523809523808
+"Joon, LLC",21,5,0.23809523809523808
 "ModernaTX, Inc.",21,5,0.23809523809523808
 PACCAR Inc,21,5,0.23809523809523808
 SK Hynix NAND Product Solutions Corp,21,5,0.23809523809523808
 "Arrowstreet Capital, Limited Partnership",17,4,0.23529411764705882
-Dassault Systemes Americas Corp.,17,4,0.23529411764705882
-Dematic Corp.,17,4,0.23529411764705882
-"Durr Systems, Inc.",13,3,0.23076923076923078
+"EPITEC, INC.",17,4,0.23529411764705882
+"Viasat, Inc.",17,4,0.23529411764705882
+"Confluent, Inc.",47,11,0.23404255319148937
+Docusign Inc.,60,14,0.23333333333333334
+"ASML US, LP",147,34,0.23129251700680273
+Becton Dickinson and Company,65,15,0.23076923076923078
 ELC Beauty LLC,13,3,0.23076923076923078
-"EPITEC, INC.",13,3,0.23076923076923078
 "Procore Technologies, Inc.",13,3,0.23076923076923078
-"QuinStreet, Inc.",13,3,0.23076923076923078
 SATHRAM CORPORATION,13,3,0.23076923076923078
 TECHWAVE CONSULTING INC,13,3,0.23076923076923078
 cyberThink Inc,13,3,0.23076923076923078
-Adobe Inc. ,152,35,0.23026315789473684
-Electronic Arts Inc.,35,8,0.22857142857142856
 "DoorDash, Inc.",129,29,0.2248062015503876
-"Discover Products, Inc.",45,10,0.2222222222222222
-"Farmers Group, Inc.",18,4,0.2222222222222222
+Electronic Arts Inc.,54,12,0.2222222222222222
+Homesite Group Incorporated,18,4,0.2222222222222222
 Stanford Health Care,18,4,0.2222222222222222
-Persistent Systems Inc.,41,9,0.21951219512195122
+"HCL America, Inc.",59,13,0.22033898305084745
+AECOM Technical Services Inc,41,9,0.21951219512195122
 Cummins Inc.,146,32,0.2191780821917808
+"Applied Materials, Inc",137,30,0.21897810218978103
+Adobe Inc. ,183,40,0.2185792349726776
+"NAGARRO, INC",23,5,0.21739130434782608
 SL TENNESSEE LLC,23,5,0.21739130434782608
+"Intuitive Surgical Operations, Inc.",74,16,0.21621621621621623
 Snowflake Inc.,84,18,0.21428571428571427
-AbbVie Inc. ,14,3,0.21428571428571427
+New York Life Insurance Company,28,6,0.21428571428571427
 "Above and Beyond Care Providers, Inc.",14,3,0.21428571428571427
 "BHE Renewables, LLC",14,3,0.21428571428571427
-DocuSign Inc. ,14,3,0.21428571428571427
-"Motorola Solutions, Inc. ",14,3,0.21428571428571427
-"Palo Alto Networks, Inc. ",14,3,0.21428571428571427
+"Durr Systems, Inc.",14,3,0.21428571428571427
+"Maxim Integrated Products, Inc.",14,3,0.21428571428571427
+"QuinStreet, Inc.",14,3,0.21428571428571427
 The Northern Trust Company,14,3,0.21428571428571427
 Tinder LLC (f/k/a Match Group LLC),14,3,0.21428571428571427
 "Analog Devices, Inc.",61,13,0.21311475409836064
+HUGHES NETWORK SYSTEMS LLC,47,10,0.2127659574468085
 "Salesforce, Inc.",476,101,0.21218487394957983
-"ASML US, LP",95,20,0.21052631578947367
-"Electronic Arts, Inc.",19,4,0.21052631578947367
-New York Life Insurance Company,19,4,0.21052631578947367
-OKBL USA Technology Inc.,19,4,0.21052631578947367
+"Staples, Inc.",33,7,0.21212121212121213
 "QUALYS, INC.",19,4,0.21052631578947367
 "Zscaler, Inc.",48,10,0.20833333333333334
 Genuine Parts Company,24,5,0.20833333333333334
-"SPOTIFY USA, INC.",24,5,0.20833333333333334
 "WAL-MART ASSOCIATES, INC.",627,130,0.20733652312599682
 "MONGODB, INC.",29,6,0.20689655172413793
-lululemon usa inc.,29,6,0.20689655172413793
+"Samsung Electronics America, Inc",29,6,0.20689655172413793
+"Siemens Industry, Inc.",29,6,0.20689655172413793
 KFORCE INC. ,121,25,0.2066115702479339
-"Chewy, Inc.",34,7,0.20588235294117646
 "F5, Inc.",34,7,0.20588235294117646
+"Medline Industries, LP",39,8,0.20512820512820512
 "RIVIAN AUTOMOTIVE, LLC",93,19,0.20430107526881722
-"HCL America, Inc.",54,11,0.2037037037037037
-"Confluent, Inc.",45,9,0.2
+"Palo Alto Networks, Inc.",143,29,0.20279720279720279
+lululemon usa inc.,30,6,0.2
 RELANTO INC.,25,5,0.2
 "Skyworks Solutions, Inc.",25,5,0.2
-"ACTIVISION PUBLISHING, INC.",20,4,0.2
 "AutoZone, Inc.",20,4,0.2
 "Medidata Solutions, Inc.",20,4,0.2
+"Zimmer, Inc.",20,4,0.2
 Bayer U.S. LLC,15,3,0.2
 "Coinbase, Inc.",15,3,0.2
+"Motorola Solutions, Inc. ",15,3,0.2
 "Ryder System, Inc.",15,3,0.2
-AECOM Technical Services Inc.,10,2,0.2
+Advantest America Inc.,10,2,0.2
 Bayer CropScience LP,10,2,0.2
-"Burns & McDonnell Engineering Company, Inc.",10,2,0.2
-"Consumerinfo.com, Inc. ",10,2,0.2
+"Biomet Manufacturing, LLC (formerly Corp.)",10,2,0.2
+"Etsy, Inc,",10,2,0.2
+Fox Cable Network Services LLC,10,2,0.2
+"James Hardie Building Products, Inc. ",10,2,0.2
 "Kyyba, Inc.",10,2,0.2
 Merck Sharp & Dohme LLC,10,2,0.2
 Panasonic Avionics Corporation,10,2,0.2
 Panasonic Corporation of North America (PNA),10,2,0.2
-"Paycom Payroll, LLC",10,2,0.2
-SYSTEM SOFT TECHNOLOGIES LLC,10,2,0.2
+Trimble Inc. ,10,2,0.2
 WeRide Corp.,10,2,0.2
 "WorkandCo International, Inc.",10,2,0.2
 Siemens Industry Software Inc.,81,16,0.19753086419753085
-"Palo Alto Networks, Inc.",124,24,0.1935483870967742
-EPAM Systems Inc.,31,6,0.1935483870967742
-"The Vanguard Group, Inc.",89,17,0.19101123595505617
+"ACTIVISION PUBLISHING, INC.",31,6,0.1935483870967742
 "Pure Storage, Inc.",63,12,0.19047619047619047
-"The MathWorks, Inc.",63,12,0.19047619047619047
 CNH Industrial America LLC,21,4,0.19047619047619047
 DEXPERTS INC.,21,4,0.19047619047619047
+OKBL USA Technology Inc.,21,4,0.19047619047619047
+"Siemens Medical Solutions USA, Inc.",21,4,0.19047619047619047
 "Databricks, Inc.",106,20,0.18867924528301888
 KLA Corporation,117,22,0.18803418803418803
+Cigna-Evernorth Services Inc.,96,18,0.1875
 "Fortinet, Inc.",96,18,0.1875
-"Staples, Inc.",32,6,0.1875
+"Sewon America, Inc.",32,6,0.1875
 "Ripple Labs, Inc.",16,3,0.1875
-"Siemens Industry, Inc.",16,3,0.1875
 Uber Freight US LLC,16,3,0.1875
 "Yash Technologies, Inc.",16,3,0.1875
-Cigna-Evernorth Services Inc.,91,17,0.18681318681318682
 Mastercard International Incorporated,102,19,0.18627450980392157
-Microsoft Corporation,1458,270,0.18518518518518517
-Adobe Inc.,27,5,0.18518518518518517
-HUGHES NETWORK SYSTEMS LLC,27,5,0.18518518518518517
+"Farmers Group, Inc.",27,5,0.18518518518518517
+"Tesla, Inc.",395,73,0.1848101265822785
 "Capgemini America, Inc.",98,18,0.1836734693877551
+Microsoft Corporation,1683,308,0.1830065359477124
 Zoox Inc.,77,14,0.18181818181818182
 Abbott Laboratories,33,6,0.18181818181818182
 "Align Technology, Inc.",33,6,0.18181818181818182
-"Bill Operations, LLC",22,4,0.18181818181818182
-Virtusa Corporation,22,4,0.18181818181818182
 "Zions Bancorporation, N.A.",22,4,0.18181818181818182
-Beacon Hill Staffing Group LLC,11,2,0.18181818181818182
 Buhler Inc.,11,2,0.18181818181818182
 "Circle Internet Financial, LLC",11,2,0.18181818181818182
 "DIRECTV, LLC",11,2,0.18181818181818182
-Emory University,11,2,0.18181818181818182
 "Guardant Health, Inc.",11,2,0.18181818181818182
-Homesite Group Incorporated,11,2,0.18181818181818182
+"ITAC Alabama, LLC",11,2,0.18181818181818182
 "JRI America, Inc.",11,2,0.18181818181818182
 "Janssen Research & Development, LLC",11,2,0.18181818181818182
-"Marqeta, Inc.",11,2,0.18181818181818182
+"Nan, Inc.",11,2,0.18181818181818182
 "Reddit, Inc. ",11,2,0.18181818181818182
-"ServiceTitan, Inc",11,2,0.18181818181818182
-Stanley Black & Decker Inc.,11,2,0.18181818181818182
 The New York Times Company,11,2,0.18181818181818182
 University of Southern California,11,2,0.18181818181818182
+"Viacom International Services, Inc.",11,2,0.18181818181818182
 "eviCore healthcare MSI, LLC",11,2,0.18181818181818182
 Lam Research Corporation ,61,11,0.18032786885245902
-"Tesla, Inc.",390,70,0.1794871794871795
 "PayPal, Inc.",145,26,0.1793103448275862
-LinkedIn Corporation,168,30,0.17857142857142858
-MICROSOFT CORPORATION,85,15,0.17647058823529413
+LinkedIn Corporation,169,30,0.17751479289940827
 Federal Express Corporation,68,12,0.17647058823529413
+"Spotify USA, Inc.",51,9,0.17647058823529413
+"EARLY WARNING SERVICES, LLC",17,3,0.17647058823529413
 Walker Manufacturing Group LLC,17,3,0.17647058823529413
 Safeway Inc. ,69,12,0.17391304347826086
+"Bill Operations, LLC",23,4,0.17391304347826086
 Capital Group Companies Global,23,4,0.17391304347826086
 "Cloudflare, Inc.",23,4,0.17391304347826086
 Eli Lilly and Company,23,4,0.17391304347826086
-"PERSISTENT SYSTEMS, INC",23,4,0.17391304347826086
 Zurich American Insurance Company,23,4,0.17391304347826086
 Renesas Electronics America Inc. ,29,5,0.1724137931034483
 The Prudential Insurance Company of America,29,5,0.1724137931034483
-"Block, Inc.",35,6,0.17142857142857143
+"The MathWorks, Inc.",70,12,0.17142857142857143
 "Samsung Semiconductor, Inc.",35,6,0.17142857142857143
 Truist Bank,76,13,0.17105263157894737
+"EPAM Systems, Inc.",129,22,0.17054263565891473
 "Verizon Communications, Inc. and all its subsidiaries and affiliates",101,17,0.16831683168316833
+"The Vanguard Group, Inc.",119,20,0.16806722689075632
 DFS Corporate Services LLC,167,28,0.16766467065868262
-"Applied Materials, Inc.",54,9,0.16666666666666666
-"Intuitive Surgical Operations, Inc.",42,7,0.16666666666666666
-"T-Mobile USA, Inc. ",36,6,0.16666666666666666
+Hewlett Packard Enterprise Company,167,28,0.16766467065868262
+"BURNS & MCDONNELL ENGINEERING COMPANY, INC.",30,5,0.16666666666666666
 Avanade Inc.,24,4,0.16666666666666666
 The Guardian Life Insurance Company of America,24,4,0.16666666666666666
 Experian Information Solutions Inc.,18,3,0.16666666666666666
-"Medline Industries, LP",18,3,0.16666666666666666
 "Michaels Stores, Inc.",18,3,0.16666666666666666
-"Verkada, Inc",18,3,0.16666666666666666
+"Consumerinfo.com, Inc. ",12,2,0.16666666666666666
 EMD MILLIPORE CORPORATION,12,2,0.16666666666666666
-"GUIDEWIRE SOFTWARE, INC.",12,2,0.16666666666666666
+Emory University,12,2,0.16666666666666666
+"FedEx Dataworks, Inc. ",12,2,0.16666666666666666
 Hudson River Trading LLC,12,2,0.16666666666666666
 JetBlue Airways,12,2,0.16666666666666666
 "Risk Management Solutions, Inc.",12,2,0.16666666666666666
+"ServiceTitan, Inc",12,2,0.16666666666666666
 University of Utah ,12,2,0.16666666666666666
-University of Virginia,12,2,0.16666666666666666
-Microsoft Corporation ,140,23,0.16428571428571428
 Credit Karma LLC,55,9,0.16363636363636364
-"EPAM Systems, Inc.",98,16,0.16326530612244897
+"TriNet USA, Inc.",37,6,0.16216216216216217
 "Pinterest, Inc.",68,11,0.16176470588235295
-"Sewon America, Inc.",31,5,0.16129032258064516
 "Intercontinental Exchange Holdings, Inc.",25,4,0.16
-APPLE INC.,44,7,0.1590909090909091
 Bristol-Myers Squibb Company,44,7,0.1590909090909091
-"Red Hat, Inc.",44,7,0.1590909090909091
+"Wells Fargo Bank, N.A. ",158,25,0.15822784810126583
+AbbVie Inc.,38,6,0.15789473684210525
+" Box, Inc.",19,3,0.15789473684210525
+"Terracon Consultants, Inc.",19,3,0.15789473684210525
+"Verkada, Inc",19,3,0.15789473684210525
 "WarnerMedia Services, LLC",19,3,0.15789473684210525
-"Zimmer, Inc.",19,3,0.15789473684210525
-Hewlett Packard Enterprise Company,140,22,0.15714285714285714
 "Citizens Financial Group, Inc.",51,8,0.1568627450980392
 Navy Federal Credit Union,51,8,0.1568627450980392
-McKesson Corporation,32,5,0.15625
 "Cloud Software Group, Inc.",45,7,0.15555555555555556
-Humana Inc.,65,10,0.15384615384615385
+"Red Hat, Inc.",45,7,0.15555555555555556
 "BEST BUY CO., INC.",26,4,0.15384615384615385
-Becton Dickinson and Company,26,4,0.15384615384615385
 "Continental Automotive Systems, Inc.",26,4,0.15384615384615385
 "Juniper Networks (US), Inc.",26,4,0.15384615384615385
 M&T Bank,26,4,0.15384615384615385
 "Western Union, LLC",26,4,0.15384615384615385
-"Cohesity, Inc",13,2,0.15384615384615385
 Eaton Corporation,13,2,0.15384615384615385
+INFOGAIN CORPORATION,13,2,0.15384615384615385
 "LG Energy Solution Michigan, Inc.",13,2,0.15384615384615385
-"Siemens Medical Solutions USA, Inc.",13,2,0.15384615384615385
 Unicon Pharma Inc.,13,2,0.15384615384615385
 "Upgrade, Inc.",13,2,0.15384615384615385
-"Volkswagen Group of America, Inc.",13,2,0.15384615384615385
-"Wells Fargo Bank, N.A. ",157,24,0.15286624203821655
+"ZF Transmissions Gray Court, LLC",13,2,0.15384615384615385
 IBM Corporation,177,27,0.15254237288135594
-"Micron Technology, Inc.",46,7,0.15217391304347827
-"Synopsys, Inc.",79,12,0.1518987341772152
+APPLE INC.,46,7,0.15217391304347827
 "Lucid USA, Inc.",99,15,0.15151515151515152
 eBay Inc.,146,22,0.1506849315068493
-"Charter Communications, Inc.",73,11,0.1506849315068493
 "AT&T SERVICES, INC.",200,30,0.15
 SNAP INC.,100,15,0.15
-U.S. BANK NATIONAL ASSOCIATION,40,6,0.15
 "ANSYS, Inc.",20,3,0.15
 Hartford Fire Insurance Company,20,3,0.15
-"Morgan Stanley Services Group, Inc.",20,3,0.15
+"Marqeta, Inc.",20,3,0.15
 The Options Clearing Corporation,20,3,0.15
-Unity Technologies SF,20,3,0.15
 "Netflix, Inc.",54,8,0.14814814814814814
-"Spotify USA, Inc.",27,4,0.14814814814814814
+McKesson Corporation,34,5,0.14705882352941177
+"Micron Technology, Inc. ",143,21,0.14685314685314685
 InterSystems Corporation,41,6,0.14634146341463414
-"Micron Technology, Inc. ",97,14,0.14432989690721648
-"Jacobs Engineering Group, Inc.",49,7,0.14285714285714285
+Humana Inc.,83,12,0.14457831325301204
+GRMORALES CONTRACTOR LLC,56,8,0.14285714285714285
 "Environmental Systems Research Institute, Inc. (ESRI)",42,6,0.14285714285714285
-AbbVie Inc.,21,3,0.14285714285714285
 DK Crown Holdings Inc.,21,3,0.14285714285714285
 The Huntington National Bank,21,3,0.14285714285714285
+Unity Technologies SF,21,3,0.14285714285714285
 "Xilinx, Inc. ",21,3,0.14285714285714285
-"Entegris, Inc. ",14,2,0.14285714285714285
-Guidehouse Digital LLC,14,2,0.14285714285714285
+"Cohesity, Inc",14,2,0.14285714285714285
 SEI Investments Company,14,2,0.14285714285714285
+Silicon Laboratories Inc.,14,2,0.14285714285714285
+Stanley Black & Decker Inc.,14,2,0.14285714285714285
 TECHNOSOFT CORPORATION,14,2,0.14285714285714285
-"Terracon Consultants, Inc.",14,2,0.14285714285714285
 Trustees of Boston University,14,2,0.14285714285714285
+"Volkswagen Group of America, Inc.",14,2,0.14285714285714285
 "Western Digital Technologies, Inc.",64,9,0.140625
 Roblox Corporation,57,8,0.14035087719298245
 "Comcast Cable Communications, LLC",216,30,0.1388888888888889
+DISH Wireless L.L.C.,36,5,0.1388888888888889
 Visa Technology & Operations LLC,36,5,0.1388888888888889
 "NetApp, Inc.",29,4,0.13793103448275862
-"ST. JUDE MEDICAL, CARDIOLOGY DIVISION, INC.",29,4,0.13793103448275862
-"American Family Mutual Insurance Company, S.I ",22,3,0.13636363636363635
+"Jacobs Engineering Group, Inc.",51,7,0.13725490196078433
 "LexisNexis Risk Solutions, Inc.",22,3,0.13636363636363635
 NIKE USA Inc.,22,3,0.13636363636363635
-SYNECHRON INC.,22,3,0.13636363636363635
-LTIMindtree Limited,155,21,0.13548387096774195
 Hitachi Digital Services LLC,37,5,0.13513513513513514
+LTIMindtree Limited,200,27,0.135
 "CVS Pharmacy, Inc. ",172,23,0.13372093023255813
-FMR LLC,434,58,0.1336405529953917
-LTIMINDTREE Limited,45,6,0.13333333333333333
+"American Family Mutual Insurance Company, S.I.",45,6,0.13333333333333333
+CCC Intelligent Solutions Inc.,30,4,0.13333333333333333
+"ST. JUDE MEDICAL, CARDIOLOGY DIVISION, INC.",30,4,0.13333333333333333
 "BJ's Wholesale Club, Inc.",15,2,0.13333333333333333
-"Mercedes-Benz Research & Development North America, Inc.",15,2,0.13333333333333333
+Cardlytics Inc.,15,2,0.13333333333333333
+Guidehouse Digital LLC,15,2,0.13333333333333333
+Old Dominion University,15,2,0.13333333333333333
 PEGASYSTEMS INC.,15,2,0.13333333333333333
-ILLUMINA,38,5,0.13157894736842105
+"Toshiba Global Commerce Solutions, Inc.",15,2,0.13333333333333333
+FMR LLC,438,58,0.1324200913242009
+"Charter Communications, Inc.",114,15,0.13157894736842105
 "Cisco Systems, Inc.",551,72,0.1306715063520871
-MediaTek USA Inc.,46,6,0.13043478260869565
-"American Family Mutual Insurance Company, S.I.",23,3,0.13043478260869565
-"Becton, Dickinson and Company",23,3,0.13043478260869565
 "LexisNexis Risk Solutions FL, Inc.",23,3,0.13043478260869565
-U.S. Bank National Association,168,21,0.125
+U.S. Bank National Association,208,27,0.12980769230769232
+ILLUMINA,40,5,0.125
 "KEYSIGHT TECHNOLOGIES, INC.",32,4,0.125
-Aptiv Corporation,16,2,0.125
-"Arcadis U.S., Inc.",16,2,0.125
 Bot Auto TX Inc.,16,2,0.125
-CCC Intelligent Solutions Inc.,16,2,0.125
-Presbyterian Healthcare Services ,16,2,0.125
+"Entegris, Inc. ",16,2,0.125
+Memorial Sloan Kettering Cancer Center ,16,2,0.125
+"Mercedes-Benz Research & Development North America, Inc.",16,2,0.125
+Sirius XM Radio LLC,16,2,0.125
 Texas A&M University,16,2,0.125
-University of Kentucky,16,2,0.125
-"Wolters Kluwer United States, Inc.",16,2,0.125
 "Fiserv Solutions, LLC",65,8,0.12307692307692308
 "Akamai Technologies, Inc.",57,7,0.12280701754385964
-"Insurance Services Office, Inc.",41,5,0.12195121951219512
-"Qualtrics, LLC",33,4,0.12121212121212122
+MediaTek USA Inc.,49,6,0.12244897959183673
 Equifax Inc.,58,7,0.1206896551724138
+"Insurance Services Office, Inc.",50,6,0.12
+"Guidewire Software, Inc.",25,3,0.12
 Ochsner Clinic Foundation,25,3,0.12
+"Synopsys, Inc.",127,15,0.11811023622047244
 Northwestern Mutual Life Insurance Company,51,6,0.11764705882352941
+"Arcadis U.S., Inc.",17,2,0.11764705882352941
 "Blue Yonder, Inc.",17,2,0.11764705882352941
 "People Center, Inc. d/b/a Rippling",17,2,0.11764705882352941
 Stryker Corporation,17,2,0.11764705882352941
-"Juniper Networks, Inc.",105,12,0.11428571428571428
+University of Kentucky,17,2,0.11764705882352941
+"Qualtrics, LLC",43,5,0.11627906976744186
+SYNECHRON INC.,43,5,0.11627906976744186
 CEPHEID,35,4,0.11428571428571428
+VIRTUSA CORPORATION,89,10,0.11235955056179775
+"Juniper Networks, Inc.",107,12,0.11214953271028037
 Caremark LLC,188,21,0.11170212765957446
 "Delta Air Lines, Inc.",63,7,0.1111111111111111
+"STF PRO, LLC",63,7,0.1111111111111111
 "Moody's Analytics, Inc.",54,6,0.1111111111111111
-Board of Regents of the University of Nebraska ,27,3,0.1111111111111111
 "AUDIBLE, INC.",18,2,0.1111111111111111
-"BURNS & MCDONNELL ENGINEERING COMPANY, INC.",18,2,0.1111111111111111
 Caresoft Global Technologies Inc,18,2,0.1111111111111111
 Coupang Global LLC,18,2,0.1111111111111111
-MICROCHIP TECHNOLOGY,18,2,0.1111111111111111
+Gap Inc.,18,2,0.1111111111111111
+University of Virginia,18,2,0.1111111111111111
 FORD MOTOR COMPANY,129,14,0.10852713178294573
+Aptiv,37,4,0.10810810810810811
 "Grid Dynamics Holdings, Inc.",28,3,0.10714285714285714
-"TriNet USA, Inc.",28,3,0.10714285714285714
 Waymo LLC,28,3,0.10714285714285714
 UST Global Inc,38,4,0.10526315789473684
 CDW Technologies LLC,19,2,0.10526315789473684
-"Lowe's Companies, Inc.",19,2,0.10526315789473684
 The Travelers Indemnity Company ,19,2,0.10526315789473684
 TSMC Arizona Corporation,67,7,0.1044776119402985
 "GoDaddy.com, LLC",39,4,0.10256410256410256
-COMPUNNEL SOFTWARE GROUP INC.,294,30,0.10204081632653061
 TikTok Inc.,236,24,0.1016949152542373
+COMPUNNEL SOFTWARE GROUP INC.,297,30,0.10101010101010101
 Costco Wholesale Corporation,50,5,0.1
-GRMORALES CONTRACTOR LLC,30,3,0.1
-The Vanguard Group,30,3,0.1
 Arizona State University,20,2,0.1
 Cruise LLC,20,2,0.1
 University of Notre Dame du Lac,20,2,0.1
+American Specialty Health Inc. ,10,1,0.1
 AmerisourceBergen Services Corporation,10,1,0.1
 "Arup US, Inc.",10,1,0.1
 "Blackline Systems, Inc.",10,1,0.1
 Blue Cross and Blue Shield of Alabama,10,1,0.1
 "Domino's Pizza, Inc.",10,1,0.1
-"FedEx Dataworks, Inc. ",10,1,0.1
 GATEWAY SCIENCE ACADEMY OF SAINT LOUIS,10,1,0.1
 "GEORGIA CENTRAL UNIVERSITY, INC",10,1,0.1
-Gap Inc.,10,1,0.1
+"Grammarly, Inc.",10,1,0.1
 HRT Research LLC,10,1,0.1
 KIEWIT ENGINEERING GROUP INC.,10,1,0.1
 "Karma Automotive, Inc.",10,1,0.1
 "MAST Technology Services, Inc.",10,1,0.1
 MAXIMUS Inc.,10,1,0.1
-Northwestern University,10,1,0.1
-Old Dominion University,10,1,0.1
-OneMain General Services Corporation,10,1,0.1
 Paylocity Corporation,10,1,0.1
-Qualtrics LLC,10,1,0.1
 "Shutterfly, LLC",10,1,0.1
-"Synechron , Inc.",10,1,0.1
+"Technology Services Group, Inc.",10,1,0.1
+"The Trade Desk, Inc.",10,1,0.1
 "University of California, Santa Cruz",10,1,0.1
+Board of Regents of the University of Nebraska ,31,3,0.0967741935483871
 "FIS Management Services, LLC",31,3,0.0967741935483871
 "Perficient, Inc.",31,3,0.0967741935483871
-Aptiv,21,2,0.09523809523809523
 HL Mando America Corporation,21,2,0.09523809523809523
+"SYSTEM SOFT TECHNOLOGIES, LLC",21,2,0.09523809523809523
+Sabre GLBL Inc.,21,2,0.09523809523809523
 Southwest Airlines Co.,21,2,0.09523809523809523
 The Depository Trust & Clearing Corporation,21,2,0.09523809523809523
-"HTC Global Services, Inc.",32,3,0.09375
 NVIDIA Corporation,843,79,0.0937129300118624
-AMAZON.COM SERVICES LLC,33,3,0.09090909090909091
-Cardinal Health ,33,3,0.09090909090909091
+"Beacon Hill Staffing Group, LLC",22,2,0.09090909090909091
 Milwaukee Electric Tool Corporation,22,2,0.09090909090909091
 Archer Aviation Operating Corp.,11,1,0.09090909090909091
-CLEMSON UNIVERSITY,11,1,0.09090909090909091
-"Charter Communications, Inc",11,1,0.09090909090909091
+Cimpress USA Incorporated ,11,1,0.09090909090909091
 ClinChoice Inc.,11,1,0.09090909090909091
 "Datadog, Inc.",11,1,0.09090909090909091
 "EMPOWER RETIREMENT, LLC",11,1,0.09090909090909091
@@ -632,77 +624,80 @@ EQUINOX IT SOLUTIONS LLC,11,1,0.09090909090909091
 "Figma, Inc.",11,1,0.09090909090909091
 Freeport Minerals Corporation,11,1,0.09090909090909091
 Garmin International Inc.,11,1,0.09090909090909091
-INFOGAIN CORPORATION,11,1,0.09090909090909091
 "Innovative Consulting Solutions, LLC",11,1,0.09090909090909091
 "Joby Aero, Inc.",11,1,0.09090909090909091
-"Johnson Controls, Inc.",11,1,0.09090909090909091
+Kyndryl Inc.,11,1,0.09090909090909091
 Loyola Marymount University,11,1,0.09090909090909091
-"Maxim Integrated Products, Inc.",11,1,0.09090909090909091
 "NC Health Affiliates, LLC",11,1,0.09090909090909091
+"NEMAK USA, INC.",11,1,0.09090909090909091
+Northwestern University,11,1,0.09090909090909091
+OCLC Inc.,11,1,0.09090909090909091
+OneMain General Services Corporation,11,1,0.09090909090909091
 RGA Enterprise Services Company ,11,1,0.09090909090909091
 "Savannah College of Art and Design, Inc.",11,1,0.09090909090909091
 Shopify (USA) Inc.,11,1,0.09090909090909091
-"Synechron, Inc.",11,1,0.09090909090909091
+The Heil Co. ,11,1,0.09090909090909091
 Tufts University,11,1,0.09090909090909091
 "Tyler Technologies, Inc.",11,1,0.09090909090909091
+"University of California, Berkeley",11,1,0.09090909090909091
+University of New Mexico,11,1,0.09090909090909091
 "XMOTORS.AI, INC.",11,1,0.09090909090909091
-VIRTUSA CORPORATION,67,6,0.08955223880597014
 "Marvell Semiconductor, Inc. ",56,5,0.08928571428571429
-Robert Bosch LLC,45,4,0.08888888888888889
 United Services Automobile Association,68,6,0.08823529411764706
+"HTC Global Services, Inc.",34,3,0.08823529411764706
 Informatica LLC,34,3,0.08823529411764706
+"Amazon Web Services, Inc.",23,2,0.08695652173913043
 "Peloton Interactive, Inc.",23,2,0.08695652173913043
 Goldman Sachs Services LLC,150,13,0.08666666666666667
+Health Care Service Corporation,58,5,0.08620689655172414
+Cardinal Health ,35,3,0.08571428571428572
 "Qualcomm Technologies, Inc.",71,6,0.08450704225352113
-"Charles Schwab & Company, Inc.",167,14,0.08383233532934131
 "Oracle America, Inc.",335,28,0.08358208955223881
+Robert Bosch LLC,48,4,0.08333333333333333
+Microchip Technology Inc.,36,3,0.08333333333333333
 "BROADRIDGE FINANCIAL SOLUTIONS, INC.",24,2,0.08333333333333333
 "Natera, Inc.",24,2,0.08333333333333333
+"Wolters Kluwer United States, Inc.",24,2,0.08333333333333333
 "American Financial Group, Great American Insurance Company",12,1,0.08333333333333333
 CALIFORNIA INDEPENDENT SYSTEM OPERATOR CORPORATION,12,1,0.08333333333333333
-Cardlytics Inc.,12,1,0.08333333333333333
+CLEMSON UNIVERSITY,12,1,0.08333333333333333
 City National Bank,12,1,0.08333333333333333
 "GoodRx, Inc.",12,1,0.08333333333333333
 "H-E-B, LP",12,1,0.08333333333333333
-"Humana, Inc.",12,1,0.08333333333333333
 Integrated Global Services Inc.,12,1,0.08333333333333333
+"Johnson Controls, Inc.",12,1,0.08333333333333333
 "Medpace, Inc.",12,1,0.08333333333333333
-Memorial Sloan Kettering Cancer Center ,12,1,0.08333333333333333
 Mott MacDonald Group Inc.,12,1,0.08333333333333333
 "Munich Re America Services, Inc.",12,1,0.08333333333333333
+"Novelis, Inc.",12,1,0.08333333333333333
 "Penumbra, Inc.",12,1,0.08333333333333333
 PetSmart LLC,12,1,0.08333333333333333
+"SINGULAR PEOPLE, LLC",12,1,0.08333333333333333
 "SS&C Technologies, Inc.",12,1,0.08333333333333333
+"Thumbtack, Inc.",12,1,0.08333333333333333
 UNIVERSITY OF FLORIDA,12,1,0.08333333333333333
 "Arista Networks, Inc.",37,3,0.08108108108108109
-"BLIZZARD ENTERTAINMENT, INC.",37,3,0.08108108108108109
 "Schweitzer Engineering Laboratories, Inc.",25,2,0.08
-"INTELLECTT, INC.",77,6,0.07792207792207792
-"ADP Technology Services, Inc. ",39,3,0.07692307692307693
+"LOWE'S COMPANIES, INC.",115,9,0.0782608695652174
 Archer Daniels Midland Company ,39,3,0.07692307692307693
-" Box, Inc.",13,1,0.07692307692307693
 "AMERIPRISE FINANCIAL, INC.",13,1,0.07692307692307693
 "Alcon Research, LLC",13,1,0.07692307692307693
 "Continental Tire The Americas, LLC",13,1,0.07692307692307693
-"Guidewire Software, Inc.",13,1,0.07692307692307693
 "HDR Engineering, Inc.",13,1,0.07692307692307693
-"Nuro, Inc",13,1,0.07692307692307693
 PwC US Group LLP,13,1,0.07692307692307693
 "SK Battery America, Inc.",13,1,0.07692307692307693
-eClinicalWorks LLC,13,1,0.07692307692307693
-CitiusTech Inc.,92,7,0.07608695652173914
-Yahoo Holdings Inc.,92,7,0.07608695652173914
 Bloomberg L.P.,358,27,0.07541899441340782
+CitiusTech Inc.,93,7,0.07526881720430108
+"ADP Technology Services, Inc. ",40,3,0.075
 "Optum Services, Inc. ",94,7,0.07446808510638298
-Mphasis Corporation ,81,6,0.07407407407407407
 "CA, Inc.",27,2,0.07407407407407407
+Presbyterian Healthcare Services ,27,2,0.07407407407407407
 "Randstad Digital, LLC",68,5,0.07352941176470588
-"NXP USA, INC.",41,3,0.07317073170731707
-"LOWE'S COMPANIES, INC.",96,7,0.07291666666666667
-Health Care Service Corporation,55,4,0.07272727272727272
+"Charles Schwab & Company, Inc.",218,16,0.07339449541284404
+"INTELLECTT, INC.",83,6,0.07228915662650602
+Mphasis Corporation ,83,6,0.07228915662650602
 Aetna Resources LLC,140,10,0.07142857142857142
 TikTok U.S. Data Security Inc.,84,6,0.07142857142857142
-ANTRA Inc.,14,1,0.07142857142857142
 "Agiletal Technologies, Inc.",14,1,0.07142857142857142
 "Akuna Capital, LLC",14,1,0.07142857142857142
 "Duolingo, Inc.",14,1,0.07142857142857142
@@ -711,58 +706,64 @@ Harvey Nash Inc.,14,1,0.07142857142857142
 "Insight Global, LLC",14,1,0.07142857142857142
 Mutual of Omaha Insurance Company,14,1,0.07142857142857142
 NORTHWELL HEALTH,14,1,0.07142857142857142
+"Nuro, Inc",14,1,0.07142857142857142
 "PHOTON INFOTECH, INC.",14,1,0.07142857142857142
 Polar Operations LLC,14,1,0.07142857142857142
-The University of Chicago,14,1,0.07142857142857142
-"Toshiba Global Commerce Solutions, Inc.",14,1,0.07142857142857142
 Truminds Technologies Inc,14,1,0.07142857142857142
+UNITED PHARMA TECHNOLOGIES INC,14,1,0.07142857142857142
 Union Pacific Railroad Company,14,1,0.07142857142857142
 Xoriant Corporation,14,1,0.07142857142857142
+eClinicalWorks LLC,14,1,0.07142857142857142
+"BLIZZARD ENTERTAINMENT, INC.",43,3,0.06976744186046512
+Yahoo Holdings Inc.,115,8,0.06956521739130435
 "Stantec Consulting Services, Inc.",29,2,0.06896551724137931
 CGI Technologies and Solutions Inc.,222,15,0.06756756756756757
+Artech LLC,15,1,0.06666666666666667
 "COPART, INC",15,1,0.06666666666666667
+Epsilon Data Management LLC,15,1,0.06666666666666667
+"HCA Management Services, LP ",15,1,0.06666666666666667
 North Carolina State University,15,1,0.06666666666666667
-Splunk Inc.,15,1,0.06666666666666667
 THE DOW CHEMICAL COMPANY,15,1,0.06666666666666667
-Visionet Systems Inc.,15,1,0.06666666666666667
 GlobalLogic Inc.,153,10,0.06535947712418301
 Caterpillar Inc.,92,6,0.06521739130434782
-"SYNOPSYS, INC.",48,3,0.0625
-"Cotiviti, Inc.",16,1,0.0625
-Insulet Corporation,16,1,0.0625
+"Digipulse Technologies, Inc. ",16,1,0.0625
+"Sidel, Inc.",16,1,0.0625
+The University of Chicago,16,1,0.0625
 University of Illinois Chicago,16,1,0.0625
+"Meta Platforms, Inc.",163,10,0.06134969325153374
 "athenahealth, Inc.",33,2,0.06060606060606061
+"NXP USA, INC.",50,3,0.06
 ASM AMERICA INC.,51,3,0.058823529411764705
 "MESSENGER SCHERTZ, INC",34,2,0.058823529411764705
-"Meta Platforms, Inc.",156,9,0.057692307692307696
+Insulet Corporation,17,1,0.058823529411764705
 "Mastercard Technologies, LLC",52,3,0.057692307692307696
+"Splunk, Inc.",52,3,0.057692307692307696
 Starbucks Coffee Company,35,2,0.05714285714285714
 University of Michigan,54,3,0.05555555555555555
 AdventHealth System/Sunbelt Inc.,18,1,0.05555555555555555
-"Conduent Business Services, LLC",18,1,0.05555555555555555
 Demida Corp.,18,1,0.05555555555555555
+"Magna Electronics, Inc.",18,1,0.05555555555555555
 "MetLife Group, Inc.",18,1,0.05555555555555555
-Microchip Technology Inc.,18,1,0.05555555555555555
-"Penske Truck Leasing Co., L.P.",18,1,0.05555555555555555
 San Diego State University,18,1,0.05555555555555555
 The Ohio University,18,1,0.05555555555555555
 WSP USA Inc.,55,3,0.05454545454545454
+"Workday, Inc.",92,5,0.05434782608695652
 "Hexaware Technologies, Inc.",74,4,0.05405405405405406
-"Splunk, Inc.",37,2,0.05405405405405406
 PALANTIR TECHNOLOGIES INC.,38,2,0.05263157894736842
 "Akkodis, Inc.",19,1,0.05263157894736842
 "IXL LEARNING, INC.",19,1,0.05263157894736842
 LexisNexis USA,19,1,0.05263157894736842
+"Penske Truck Leasing Co., L.P.",19,1,0.05263157894736842
 Pilot Technologies LLC,19,1,0.05263157894736842
 Trane Technologies Company LLC,19,1,0.05263157894736842
+Visionet Systems Inc.,19,1,0.05263157894736842
 Intel Corporation,333,17,0.05105105105105105
 "Inrika, Inc.",20,1,0.05
 Total System Services LLC,20,1,0.05
 "West Wind Express, Inc.",20,1,0.05
 NOKIA OF AMERICA CORPORATION,121,6,0.049586776859504134
-CIRRUS LOGIC INTERNATIONAL SEMICONDUCTOR LTD.,21,1,0.047619047619047616
+Paycom Payroll LLC,42,2,0.047619047619047616
 Egen Solutions LLC,21,1,0.047619047619047616
-"INFINITE COMPUTER SOLUTIONS, INC",21,1,0.047619047619047616
 "Klaviyo, Inc.",21,1,0.047619047619047616
 "OmniVision Technologies, Inc.",21,1,0.047619047619047616
 "Valeo North America, Inc.",21,1,0.047619047619047616
@@ -774,35 +775,41 @@ NOVITIUM PHARMA LLC.,44,2,0.045454545454545456
 Computer Sciences Corporation,22,1,0.045454545454545456
 "Experis US, LLC",23,1,0.043478260869565216
 "SRS Consulting, Inc.",23,1,0.043478260869565216
-Yahoo Holdings Inc. ,23,1,0.043478260869565216
+"Infinite Computer Solutions, Inc.",71,3,0.04225352112676056
 Educational Testing Service,24,1,0.041666666666666664
-"Infinite Computer Solutions, Inc.",50,2,0.04
+"Conduent Business Services, LLC",25,1,0.04
 "INTRAEDGE, INC.",25,1,0.04
 "Rubrik, Inc.",25,1,0.04
 West Virginia University,25,1,0.04
-"Charles Schwab & Company, Inc. ",51,2,0.0392156862745098
-"Charter Communications, Inc. ",26,1,0.038461538461538464
+STATE UNIVERSITY OF NEW YORK AT BINGHAMTON,26,1,0.038461538461538464
+"Bee Bong, LLC",27,1,0.037037037037037035
 "Luxoft USA, Inc. ",27,1,0.037037037037037035
 "C3.ai, Inc.",30,1,0.03333333333333333
+"Cotiviti, Inc.",30,1,0.03333333333333333
 Denver Public Schools District 1,30,1,0.03333333333333333
 Deere & Company,31,1,0.03225806451612903
-L&T Technology Services Limited,31,1,0.03225806451612903
+"Momentum Mechanical, Inc.",31,1,0.03225806451612903
 Rockwell Collins Inc.,31,1,0.03225806451612903
+L&T Technology Services Limited,33,1,0.030303030303030304
 Stadler US Inc.,33,1,0.030303030303030304
-"Workday, Inc.",75,2,0.02666666666666667
+ANTRA INC,38,1,0.02631578947368421
 "T. Rowe Price Associates, Inc.",38,1,0.02631578947368421
 "Jane Street Group, LLC",40,1,0.025
 "United Wholesale Mortgage, LLC",43,1,0.023255813953488372
 Nisum Technologies Inc.,46,1,0.021739130434782608
 "HCL Global Systems, Inc.",49,1,0.02040816326530612
+JCS Systems Inc.,52,1,0.019230769230769232
 Dallas Independent School District,53,1,0.018867924528301886
 Acumen LLC,55,1,0.01818181818181818
+Cirrus Logic International Semiconductor Ltd.,61,1,0.01639344262295082
+"Innova Solutions, Inc.",63,1,0.015873015873015872
 CORE TECH INTERNATIONAL CORPORATION,148,2,0.013513513513513514
 "Management Health Systems, LLC",1399,1,0.0007147962830593281
 "Labor Guys, LLC",1143,0,0.0
 "Stoughton Trailers, LLC",937,0,0.0
 "JCG Foods of Georgia, LLC",772,0,0.0
 " Koch Foods of Gadsden, LLC",563,0,0.0
+"NORMAN W. FRIES, INC.",435,0,0.0
 "Case Farms Processing, Inc",427,0,0.0
 "TW Services, Inc",340,0,0.0
 "Consolidated Catfish Producers, LLC",324,0,0.0
@@ -811,36 +818,36 @@ CORE TECH INTERNATIONAL CORPORATION,148,2,0.013513513513513514
 THE DEVEREUX FOUNDATION,294,0,0.0
 Napoli PSC Series LLC,267,0,0.0
 "Sapphire Software Solutions, Inc.",262,0,0.0
-"NORMAN W. FRIES, INC.",242,0,0.0
 "Crestline Hotels & Resort, LLC",224,0,0.0
 SDC Restaurants LLC,211,0,0.0
 United Methodist Homes & Services,198,0,0.0
-"NORMAN W. FRIES, INC",193,0,0.0
+Omega Compliance Solutions LLC,193,0,0.0
 MORGAN TRUCK BODY LLC,188,0,0.0
 Conexus MedStaff LLC,186,0,0.0
 Skilled In Management Co LLC,157,0,0.0
 Government Employees Insurance Company (GEICO),154,0,0.0
+GDI Services Inc.,149,0,0.0
 Phase Three Star LLC,148,0,0.0
 FH Miami Operations LLC,142,0,0.0
 "SPACE COAST SERVICES MANAGEMENT, INC.",140,0,0.0
 Omni Hotels Management Corp.,139,0,0.0
-Omega Compliance Solutions LLC,138,0,0.0
 STS Technical Services,130,0,0.0
 "Omnipotent Brands ESO, LLC",129,0,0.0
 "Abbyland Foods, Inc",127,0,0.0
-GDI Services Inc.,127,0,0.0
+"Sentech Services, Inc",125,0,0.0
 "ALLEN HARIM FOODS, LLC",122,0,0.0
 Dakota Provisions LLC,122,0,0.0
 "SEJ Services, LLC",120,0,0.0
 "Christian Foods II, LC",112,0,0.0
 "Karst Stage, Inc.",110,0,0.0
+"Runnells Operating, LLC.",109,0,0.0
+"World Subs, Inc.",107,0,0.0
+Chula Vista Inc,106,0,0.0
 "North Cape Post Acute Nursing and Rehabilitation, Inc.",106,0,0.0
-"Runnells Operating, LLC.",104,0,0.0
+"Polmax, LLC",103,0,0.0
 "Riverview, LLP",103,0,0.0
 "LLS, Inc",102,0,0.0
 "SWEET VIRGINIA CARE, LLC",102,0,0.0
-"Sentech Services, Inc",101,0,0.0
-"Polmax, LLC",100,0,0.0
 "Robison Venture Group, LLC",100,0,0.0
 "Louisiana Pride Catfish, Inc.",99,0,0.0
 "Saylor Management Group, Inc.",99,0,0.0
@@ -855,11 +862,11 @@ Merritt Hospitality LLC,95,0,0.0
 "Badger Bus Lines, Inc.",84,0,0.0
 "Carolina QSC Management, LLC",84,0,0.0
 "JKS&K, Inc.",81,0,0.0
-Chula Vista Inc,77,0,0.0
 "BAM Management, LLC",75,0,0.0
 "Gateway Care Center, LLC",75,0,0.0
 "SAMSUNG AUSTIN SEMICONDUCTOR, L.L.C.",75,0,0.0
 "Cosmic Healthcare, LLC",74,0,0.0
+Fogo de Chao Holdings Inc,73,0,0.0
 White Lodging Services Corporation,73,0,0.0
 AVALA EXPRESS LLC ,70,0,0.0
 CRESPAC INC.,70,0,0.0
@@ -870,20 +877,19 @@ NEW CANEY INC,66,0,0.0
 Rely Workforce Group LLC,63,0,0.0
 "FPL Food, LLC ",62,0,0.0
 "All Phase Landscape Construction, Inc.",61,0,0.0
-"Innova Solutions, Inc.",60,0,0.0
+"Rotolo Consultants, INC.",61,0,0.0
 ARUP Laboratories,59,0,0.0
-"World Subs, Inc.",59,0,0.0
 American Steel Carports INC,58,0,0.0
 "DODDCO, Inc.",58,0,0.0
+Foreside Management Company,57,0,0.0
 West Tennessee Healthcare,57,0,0.0
+"DEVOTED GUARDIANS, INC.",56,0,0.0
 DENCO ENTERPRISES INC,55,0,0.0
 "RP Restaurant, LLC",53,0,0.0
 Univ of WI System,53,0,0.0
 "Advanced Interior Solutions, Inc.",52,0,0.0
 "Blue Ventures, LLC",52,0,0.0
-OMEGA COMPLIANCE SOLUTIONS LLC,52,0,0.0
 "Restaurant Holdings, L.L.C.",52,0,0.0
-JCS Systems Inc.,51,0,0.0
 "O'Keefe Restaurant Systems, Inc.",51,0,0.0
 "Roebuck Wholesale Nursery & Landscaping, LLC",51,0,0.0
 National Healthcare Corporation,50,0,0.0
@@ -891,49 +897,47 @@ National Healthcare Corporation,50,0,0.0
 "Arch Enterprises, LLC",49,0,0.0
 Embry-Riddle Aeronautical University,49,0,0.0
 Eficens Systems Inc.,48,0,0.0
-World Subs LLC,48,0,0.0
 Hyder Investments Inc.,47,0,0.0
 Quest Diagnostics Incorporated,47,0,0.0
 "Valdes Enterprises, LLC",47,0,0.0
 "Hyannis Air Service, Inc",46,0,0.0
+Voyager Express Inc,46,0,0.0
 "BDQ, Inc.",45,0,0.0
 "J-Ray, Inc.",45,0,0.0
 PruittHealth,45,0,0.0
-Voyager Express Inc,45,0,0.0
 Clean Scapes - Austin LLC,44,0,0.0
-Fogo de Chao Holdings Inc,44,0,0.0
+"Jack's Maintenance Service, Inc.",43,0,0.0
 KMSB Enterprices LLC ,43,0,0.0
+Quadrant Technologies LLC,43,0,0.0
+"Amazon Dev Center U.S., Inc.",42,0,0.0
 Booth Restaurant Management LLC,42,0,0.0
 "First Care, Inc.",42,0,0.0
 "JS Restaurant Management, Inc.",42,0,0.0
-"Jack's Maintenance Service, Inc.",42,0,0.0
 "Big Splash Restaurant Group, LLC ",41,0,0.0
 Compassionate Care Services LLC,41,0,0.0
 "FRONTIER LOGISTICS, L.P",41,0,0.0
-"STF PRO, LLC",41,0,0.0
 Torgerson Properties Inc,41,0,0.0
-Cirrus Logic International Semiconductor Ltd.,40,0,0.0
 Indiana University,40,0,0.0
 POP STAR INC,40,0,0.0
 "Circle City Star, LLC",39,0,0.0
 "Goodwin Enterprise, LLC",39,0,0.0
 "Guardian Healthcare Providers, Inc.",39,0,0.0
-Quadrant Technologies LLC,39,0,0.0
 "V-Soft Consulting Group, Inc.",39,0,0.0
 "1st Senior Cares, LLC",38,0,0.0
 AA Transportation Co Inc,38,0,0.0
+CARE WITH LOVE LLC,38,0,0.0
 DIGITAL DATUM INC ,38,0,0.0
 Integrity Golf Inc.,38,0,0.0
 Maldonado Nursery & Landscaping Inc.,38,0,0.0
 "Pacific Landscape Management, LLC",38,0,0.0
 "USACS Medical Group, Ltd.",38,0,0.0
-"Amazon Dev Center U.S., Inc.",37,0,0.0
 "Electronic Systems, Inc.",37,0,0.0
 MML Home Care Inc.,37,0,0.0
 "Michael Ray Enterprises, Inc.",37,0,0.0
 Natsoft Corporation,37,0,0.0
 "New Generation Foods, LLC",37,0,0.0
 "Package Concepts & Materials, Inc.",37,0,0.0
+Clemens Food Group LLC,35,0,0.0
 "GRI Towers Texas, Inc.",35,0,0.0
 "RESER'S FINE FOODS, INC",35,0,0.0
 "Cumberland Care and Rehab, Inc.",34,0,0.0
@@ -942,112 +946,105 @@ HAMAN LEGACY LLC,33,0,0.0
 Midnight Sun Subway LLC,33,0,0.0
 Comfort Keepers,32,0,0.0
 "Comtrix Solutions, Inc.",32,0,0.0
-"DEVOTED GUARDIANS, INC.",32,0,0.0
-Paycom Payroll LLC,32,0,0.0
 "Rocket Mortgage, LLC",32,0,0.0
 Purdue University,31,0,0.0
-"Rotolo Consultants, INC.",31,0,0.0
 The Pennsylvania State University,31,0,0.0
 "APERION CARE ELGIN, LLC",30,0,0.0
 "Accupac, LLC",30,0,0.0
 "BEYER AND FUNDERBURGH, LTD",30,0,0.0
-CARE WITH LOVE LLC,30,0,0.0
 "Clayco, Inc.",30,0,0.0
 Courtland Health Care Services Inc,30,0,0.0
-Foreside Management Company,30,0,0.0
 "Madison Ventures Group, Inc.",30,0,0.0
-"Momentum Mechanical, Inc.",30,0,0.0
-"Rotolo Consultants, Inc.",30,0,0.0
 Verton Solutions Inc,30,0,0.0
-Chula Vista Inc.,29,0,0.0
-Fogo de Chao Holdings Inc.,29,0,0.0
+Michigan State University,29,0,0.0
 Oceanwide Services Corp,29,0,0.0
 "Vista Applied Solutions Group, Inc.",29,0,0.0
+"EVEREST CONSULTING GROUP, INC",28,0,0.0
 "Hamrick Mills, Inc.",28,0,0.0
 "Lawrence Foods, Inc.",28,0,0.0
 City Farmers Market 6 Inc,27,0,0.0
-Michigan State University,27,0,0.0
+INFYLOGY CORP,27,0,0.0
+"Northeast Medical Group, Inc.",27,0,0.0
 O'Grady Peyton International,27,0,0.0
 "SEL Engineering Services, Inc.",27,0,0.0
 "Sportime Clubs, LLC",27,0,0.0
 "Strategic Systems, Inc.",27,0,0.0
 University of Washington,27,0,0.0
-"Bee Bong, LLC",26,0,0.0
+"Veriha Trucking , Inc",27,0,0.0
 "Cornerstone Research, Inc.",26,0,0.0
+"Honda Development & Manufacturing of America, LLC ",26,0,0.0
 "Loyet Landscape Maintenance, Inc.",26,0,0.0
 "Mill Brothers Landscape & Nursery, Inc",26,0,0.0
 "Safari Hospitality, Inc.",26,0,0.0
 The Home for Little Wanderers,26,0,0.0
+"Zillow, Inc.",26,0,0.0
 "Auris Health, Inc.",25,0,0.0
 DC Organic Farm LLC,25,0,0.0
 G.T Services Inc,25,0,0.0
 J & K Restaurants Inc,25,0,0.0
 "Lone Jack Holdings, Inc.",25,0,0.0
+"Moloco, Inc.",25,0,0.0
 Pizzalley's LLC,25,0,0.0
 San Jose Unified School District,25,0,0.0
-"Zillow, Inc.",25,0,0.0
 APERION CARE PLUM GROVE,24,0,0.0
 Big Splash Fernandina Beach LLC,24,0,0.0
+CITADEL AFC LLC. ,24,0,0.0
 GRANTS/CIBOLA COUNTY SCHOOLS,24,0,0.0
+HARMONY PUBLIC SCHOOLS,24,0,0.0
 "Homeward Bound, Inc.",24,0,0.0
-"Honda Development & Manufacturing of America, LLC ",24,0,0.0
-INFYLOGY CORP,24,0,0.0
 "Leidos, Inc.",24,0,0.0
 "M. Arthur Gensler Jr. & Associates, Inc.",24,0,0.0
 Merrifield Garden Center,24,0,0.0
-"Moloco, Inc.",24,0,0.0
 "Pigeon River Restaurant Associates, LLC",24,0,0.0
-STATE UNIVERSITY OF NEW YORK AT BINGHAMTON,24,0,0.0
 "Schill Landscaping and Lawn Care Services, LLC",24,0,0.0
-"Sentech Services, Inc ",24,0,0.0
-"Veriha Trucking , Inc",24,0,0.0
 Wenzona Yuma Inc ,24,0,0.0
 ALBANY MEDICAL CENTER,23,0,0.0
 Altimetrik Corp.,23,0,0.0
 "Delight VA Beach Management, LLC",23,0,0.0
-Foreside Management Co.,23,0,0.0
-HARMONY PUBLIC SCHOOLS,23,0,0.0
 Lakeside TLF LLC,23,0,0.0
 Oak View Farms LLC,23,0,0.0
+Populus Group LLC,23,0,0.0
 Skyline Transport Group LLC,23,0,0.0
 The Kroger Company,23,0,0.0
 "Tiger Analytics, Inc. ",23,0,0.0
  BW MONUMENT HOTEL OWNER LLC,22,0,0.0
 Alpine School District,22,0,0.0
 "Avride, Inc.",22,0,0.0
+"COCAL LANDSCAPE SERVICES, INC.",22,0,0.0
 "DUE GATTI, LLC",22,0,0.0
 ERIVES ENTERPRISES INC.,22,0,0.0
 "Florida Plastering & Pool Remodeling, LLC",22,0,0.0
-GDI SERVICES INC.,22,0,0.0
 "Ganaderos Borges, Inc.",22,0,0.0
-"Northeast Medical Group, Inc.",22,0,0.0
+"QUEST IT SOLUTIONS, INC.",22,0,0.0
 Savage Services Corporation,22,0,0.0
 Underwood Bros. Inc,22,0,0.0
 AMERICAN RETAIL GROUP LLC,21,0,0.0
 B & R Food Service Inc.,21,0,0.0
-CITADEL AFC LLC. ,21,0,0.0
 Chicago Public Schools,21,0,0.0
 Choate's Prior Lake LLC,21,0,0.0
+"DB Global Technology, Inc.",21,0,0.0
 "ERP Analysts, Inc.",21,0,0.0
 FiniteTek Inc,21,0,0.0
 "Green Desert Oil Group, Inc",21,0,0.0
 "KEYPIXEL SOFTWARE SOLUTIONS, LLC.",21,0,0.0
+KPIT Technologies Inc.,21,0,0.0
 "Lawn Groomers, Inc.",21,0,0.0
 "MEEK MD2, LLC",21,0,0.0
 "NobleSoft Solutions, Inc.",21,0,0.0
-Populus Group LLC,21,0,0.0
 Precious Time LLC ,21,0,0.0
+SDVS Technologies LLC,21,0,0.0
 "SiteWorks Holding Co., Inc.",21,0,0.0
+"UofL Health - Louisville, Inc.  ",21,0,0.0
 AK STF Management Inc,20,0,0.0
-ANTRA INC,20,0,0.0
 Advantage Trucking LLC,20,0,0.0
 "Amicable Healthcare, Inc. ",20,0,0.0
 "B&G Seafood, Inc",20,0,0.0
 "Brodie Contractors, Inc.",20,0,0.0
-"DB Global Technology, Inc.",20,0,0.0
+DISH Network LLC,20,0,0.0
 Delight Raleigh Management LLC,20,0,0.0
 Divine Providence Homes LLC,20,0,0.0
 Four Hats Inc,20,0,0.0
+"Hartford HealthCare Medical Group, Inc.",20,0,0.0
 Keystone Technology Partners INC,20,0,0.0
 "LER TechForce, LLC",20,0,0.0
 "Landwest Design Group, LTD.",20,0,0.0
@@ -1060,12 +1057,11 @@ Minisoft Technologies LLC,20,0,0.0
 Tek Leaders Inc,20,0,0.0
 Weishaar Gardens Inc.,20,0,0.0
 Winnebago County,20,0,0.0
+gr morales contractor llc,20,0,0.0
 "AMERICAN JERKY COMPANY, LLC",19,0,0.0
 Broadcom Corporation,19,0,0.0
-"COCAL LANDSCAPE SERVICES, INC.",19,0,0.0
 "California Creative Solutions, Inc.",19,0,0.0
 "California State University, Fresno",19,0,0.0
-Clemens Food Group LLC,19,0,0.0
 "Dialysis Clinic, Inc",19,0,0.0
 "Focal Pointe of St. Louis, LLC",19,0,0.0
 "Fox Enterprises, Inc.",19,0,0.0
@@ -1074,34 +1070,39 @@ Clemens Food Group LLC,19,0,0.0
 "MJT Homecare, LLC",19,0,0.0
 "Mainscape, Inc.",19,0,0.0
 "Nursery Trail, LP",19,0,0.0
+Perez Gardini LLC,19,0,0.0
+"Pyramid Consulting, Inc.",19,0,0.0
 SAFE CODE SOFT TECHNOLOGIES INC,19,0,0.0
 "SUNSHINE CLEAN OF AUSTIN, INC.",19,0,0.0
+"Sage IT, Inc",19,0,0.0
 "South Sound Inpatient Physicians, PLLC",19,0,0.0
 THE STEPPING STONES GROUP LLC,19,0,0.0
 "Tabner, Inc.",19,0,0.0
 The Florida State University,19,0,0.0
 "The Greenwood Groups, LLC",19,0,0.0
+UP2DATE TECHNOLOGY SOLUTIONS LLC,19,0,0.0
 "University Medical Center, Inc.",19,0,0.0
+University of Pittsburgh Physicians,19,0,0.0
+Veridic Solutions LLC,19,0,0.0
 Versa Shore Inc.,19,0,0.0
 VistalTech Inc.,19,0,0.0
 W&J Home Care,19,0,0.0
-gr morales contractor llc,19,0,0.0
 iSolve Technology Inc,19,0,0.0
 "Alpenglow Holdings, LLC",18,0,0.0
 BOS Healthcare Services Inc.,18,0,0.0
-"DEVOTED GUARDIANS, INC",18,0,0.0
+Bitwise Inc.,18,0,0.0
+"CSAA INSURANCE SERVICES, INC.",18,0,0.0
 Eastern Pines Care and Rehabilitation Center LLC,18,0,0.0
 "Epic Landscape Productions, L.C.",18,0,0.0
-"Hartford HealthCare Medical Group, Inc.",18,0,0.0
 "Hospitalist Medicine Physicians of Texas, PLLC",18,0,0.0
-KPIT Technologies Inc.,18,0,0.0
 Marana Aerospace Solutions,18,0,0.0
 Methodist Le Bonheur Healthcare,18,0,0.0
+Optimus Services Corp,18,0,0.0
 Pentangle Tech Services LLC,18,0,0.0
-Perez Gardini LLC,18,0,0.0
 Quik Tek Machining LLC,18,0,0.0
 "RUSSELL LANDSCAPE, LLC",18,0,0.0
 Radix Trading LLC,18,0,0.0
+RiVos Inc.,18,0,0.0
 Rochester General Hospital,18,0,0.0
 SKILLTUNE TECHNOLOGIES INC,18,0,0.0
 "Sandhills Elite Genetics, LLC",18,0,0.0
@@ -1113,18 +1114,17 @@ Villalobos Concrete Inc.,18,0,0.0
 Wolters Kluwer DXG U.S. Inc.,18,0,0.0
 "ARIZONA RESTAURANT COMPANY, LLC",17,0,0.0
 "Airco Mechanical, LTD.",17,0,0.0
-Bitwise Inc.,17,0,0.0
 "CDI Services, Inc.",17,0,0.0
 Citadel Drilling (USA) Ltd.,17,0,0.0
 Collaborate Solutions Inc,17,0,0.0
 Danes Construction Corporation,17,0,0.0
 "FSCII, LLC d/b/a Fred Smith Company",17,0,0.0
+IN HOME PERSONAL SERVICES,17,0,0.0
 LatentView Analytics Corporation,17,0,0.0
 MERRY HEART PERSONNEL CORP.,17,0,0.0
 Nivid Infotech Inc,17,0,0.0
 OSF Healthcare System ,17,0,0.0
-Optimus Services Corp,17,0,0.0
-RiVos Inc.,17,0,0.0
+"Ruppert Landscape, LLC",17,0,0.0
 "SENIOR HEALTH SUPPORT SERVICES, LLC",17,0,0.0
 "SMLS Restaurants, Inc.",17,0,0.0
 "TECHPRO SOLUTIONS, INC.",17,0,0.0
@@ -1132,8 +1132,9 @@ UNIVERSITY OF CINCINNATI,17,0,0.0
 "UNIVERSITY VILLAGE RETIREMENT COMMUNITY, LLC.",17,0,0.0
 "Valley Queen Cheese Factory, Inc. ",17,0,0.0
 "WEN NEW MEXICO, LLC",17,0,0.0
+APTIVA CORP.,16,0,0.0
+"Alten Technology USA, Inc.",16,0,0.0
 BEAN INFOSYSTEMS LLC,16,0,0.0
-CLEMENS FOOD GROUP LLC,16,0,0.0
 Co-Alliance Cooperative Inc.,16,0,0.0
 "EDTHEORY, LLC",16,0,0.0
 Gainwell Technologies LLC,16,0,0.0
@@ -1141,7 +1142,6 @@ Gainwell Technologies LLC,16,0,0.0
 "JADA NAILS & BEAUTY TREATS DAY SPA, INC.",16,0,0.0
 Latham & Watkins LLP,16,0,0.0
 MASTER STAFFING INC,16,0,0.0
-"Magna Electronics, Inc.",16,0,0.0
 Meijer Great Lakes Limited Partnership,16,0,0.0
 Metromont LLC,16,0,0.0
 National Railroad Passenger Corporation,16,0,0.0
@@ -1153,7 +1153,8 @@ PPE Casino Resorts Maryland LLC,16,0,0.0
 Pahos Inc.,16,0,0.0
 "Pickering Valley Landscape, Inc.",16,0,0.0
 Richland County School District One,16,0,0.0
-"Ruppert Landscape, LLC",16,0,0.0
+S&P Global Market Intelligence Inc. ,16,0,0.0
+"THORNTON TOMASETTI, INC.",16,0,0.0
 "The Collins Group, Inc.",16,0,0.0
 Wenzona East Yuma ,16,0,0.0
 Yardley Operator LLC (Oxford Valley),16,0,0.0
@@ -1161,11 +1162,11 @@ AK ASSETS MGR LLC,15,0,0.0
 AKHAPPYTIME LLC,15,0,0.0
 "AYRES MANAGEMENT, L.P.",15,0,0.0
 Action Painting Restoration LLC,15,0,0.0
+Ampere Computing LLC ,15,0,0.0
 "CB Freight, Inc.",15,0,0.0
 "CarMax Enterprise Services, LLC",15,0,0.0
 "DC Group, Inc.",15,0,0.0
 "EMSI, Inc.",15,0,0.0
-"EVEREST CONSULTING GROUP, INC",15,0,0.0
 "FAST N FRIENDLY, LLC",15,0,0.0
 "Gandara Mental Health Center, Inc. ",15,0,0.0
 "Gaston Family Health Services, Inc",15,0,0.0
@@ -1173,53 +1174,54 @@ Geisinger Clinic,15,0,0.0
 Harvard University,15,0,0.0
 Integration Developer Network LLC,15,0,0.0
 Inteliroute Technologies LLC,15,0,0.0
+"InterFysio, LLC",15,0,0.0
 KALAMAZOO HOTEL GROUP,15,0,0.0
+KANAP SYSTEMS LLC,15,0,0.0
 KENNESAW STATE UNIVERSITY,15,0,0.0
 Kennesaw Marketplace LLC,15,0,0.0
+Lorshi Systems LLC,15,0,0.0
 "MS Restaurant Management, Inc.",15,0,0.0
 "Mitchell/Martin, Inc.",15,0,0.0
 "Nash Organization, Inc",15,0,0.0
 Oxford Operator LLC,15,0,0.0
 "Palma II, LLC",15,0,0.0
-"QUEST IT SOLUTIONS, INC.",15,0,0.0
+Progressive Casualty Insurance Company,15,0,0.0
 "RMD Management, Inc.",15,0,0.0
 "Rock & Stone Masonry, LLC",15,0,0.0
-S&P Global Market Intelligence Inc. ,15,0,0.0
 SINGLE CYLINDER REPAIR INC.,15,0,0.0
 Sanford,15,0,0.0
 Solwin Tech Inc,15,0,0.0
 "Speridian Technologies, LLC",15,0,0.0
 "Star Marianas Air, Inc.",15,0,0.0
+Sugarbush Mountain Resort,15,0,0.0
 "Sunrise of Nashville, Inc.",15,0,0.0
+The Curators of the University of Missouri,15,0,0.0
 UNICON SYSTEMS INC ,15,0,0.0
 University of Colorado,15,0,0.0
 University of Hawaii,15,0,0.0
 University of Minnesota,15,0,0.0
 University of Oklahoma,15,0,0.0
 University of Wisconsin-Whitewater,15,0,0.0
-"UofL Health - Louisville, Inc.  ",15,0,0.0
 Urban Bird Hot Chicken LLC,15,0,0.0
+VIDLEXINFO LLC,15,0,0.0
 Virginia Polytechnic Institute & State University,15,0,0.0
 WenJai Restaurant Group LLC,15,0,0.0
+"A MISHLE GROUP HEALTH CARE SERVICES, INC.",14,0,0.0
 ABN TECH CORPORATION,14,0,0.0
 ACCOLADE HEALTHCARE OF PAXTON SENIOR LIVING,14,0,0.0
 "ARS, a Tecta America Company, LLC",14,0,0.0
-Ampere Computing LLC ,14,0,0.0
 "Avani Technology Solutions, Inc.",14,0,0.0
 BOLINGBROOK HI OWNER LLC,14,0,0.0
 "BRILLFY TECHNOLOGY, INC.",14,0,0.0
 Bento Lake Nona,14,0,0.0
 "Blue House Restaurant Roseville, Inc.",14,0,0.0
 Brew Vino LLC,14,0,0.0
-"CSAA INSURANCE SERVICES, INC.",14,0,0.0
 "Colorado Designscapes, Inc.",14,0,0.0
-Cotiviti Inc.,14,0,0.0
 "Cynosure Technologies,  LLC",14,0,0.0
-Epsilon Data Management LLC,14,0,0.0
 G. LIEU INC,14,0,0.0
-IN HOME PERSONAL SERVICES,14,0,0.0
+"GSPANN TECHNOLOGIES, INC.",14,0,0.0
+"Hospitalist and Emergency Services of Texas, PA",14,0,0.0
 Infinera Corporation,14,0,0.0
-"InterFysio, LLC",14,0,0.0
 "JIA 3471, INC.",14,0,0.0
 Majesco,14,0,0.0
 Mercy Clinic Springfield Communities,14,0,0.0
@@ -1227,46 +1229,44 @@ Minnesota State Colleges and Universities,14,0,0.0
 "Morin's Landscaping, Inc.",14,0,0.0
 "National Hospitalist Services, PC",14,0,0.0
 New York City Department of Education,14,0,0.0
+"Open Arms Personal Care, Inc.",14,0,0.0
 PRECISION TECHNOLOGIES CORP.,14,0,0.0
-"Pyramid Consulting, Inc.",14,0,0.0
 QSRRP LLC,14,0,0.0
 Risamsoft Inc.,14,0,0.0
 Roth Landscape Services LLC,14,0,0.0
-STF PRO LLC,14,0,0.0
-Sabre GLBL Inc.,14,0,0.0
 "Scottsdale DS, Inc.",14,0,0.0
 UCSF Medical Center,14,0,0.0
 UMB Bank NA,14,0,0.0
 University of Georgia; OGE,14,0,0.0
 V3Tech Solutions Inc,14,0,0.0
-Veridic Solutions LLC,14,0,0.0
+VALUEPRO INC,14,0,0.0
 Wimberg Landscaping,14,0,0.0
 "Xforia, Inc.",14,0,0.0
 "A-JO-H, LTD",13,0,0.0
-APTIVA CORP.,13,0,0.0
 Abercrombie & Fitch Management Co.,13,0,0.0
 Ahad & Co. Inc.,13,0,0.0
-"Amazon Web Services, Inc.",13,0,0.0
+American Tech Vision Solutions LLC,13,0,0.0
 "BRIDGEWAY, INC.",13,0,0.0
 "Blue House Restaurant, Inc.",13,0,0.0
 Brentwood Operator LLC,13,0,0.0
 CSG Systems Inc. d/b/a CSG,13,0,0.0
+"Chad C. Brown, Inc.",13,0,0.0
 "Coastal Greenery, Inc.",13,0,0.0
 "DATANORMUS, LLC.",13,0,0.0
 "Deep Roots Landscape, LLC",13,0,0.0
 Diamond Nail LLC,13,0,0.0
+"Diaspark, Inc.",13,0,0.0
 Electrolux Home Products Inc.,13,0,0.0
 Elkhorn Lawn Care LLC,13,0,0.0
-"Everest Consulting Group, Inc.",13,0,0.0
 FUSION LIFE SCIENCES TECHNOLOGIES LLC,13,0,0.0
 Greenlake Senior Services LLC ,13,0,0.0
 HYR GLOBAL SOURCE INC.,13,0,0.0
-"Hospitalist and Emergency Services of Texas, PA",13,0,0.0
 "IDEXCEL, INC.",13,0,0.0
 Ibase Operations Corp (d/b/a Qualitest Group),13,0,0.0
 Irby Construction Company,13,0,0.0
 "KARWELL TECHNOLOGIIES, INC.",13,0,0.0
 KGATE Technologies Inc,13,0,0.0
+Kian Corp,13,0,0.0
 "Krones, Inc. ",13,0,0.0
 LifeCare Medical Center,13,0,0.0
 "Magic Leap, Inc.",13,0,0.0
@@ -1275,36 +1275,39 @@ McCaughey Brothers Landscaping Inc.,13,0,0.0
 "Megan Soft, Inc.",13,0,0.0
 Northern Arizona University,13,0,0.0
 "Omnicell, Inc.",13,0,0.0
-"Open Arms Personal Care, Inc.",13,0,0.0
 Orchard Hill Operator LLC,13,0,0.0
 PEAK Academy Charter School,13,0,0.0
 "Resource Integrators, LLC",13,0,0.0
 "SFP Landscaping, Inc.",13,0,0.0
 SHUJUAN HOLDINGS LLC,13,0,0.0
 Sandy Springs Cookies LLC,13,0,0.0
+"Softworld Technologies, LLC",13,0,0.0
 "TMD Management, LLC",13,0,0.0
+TechData Service Company LLC,13,0,0.0
 "Twin Pines Landscaping, LLC",13,0,0.0
 University of Arkansas,13,0,0.0
 University of Massachusetts Boston,13,0,0.0
 VINA HOLDINGS INC,13,0,0.0
+Visual Concepts Entertainment ,13,0,0.0
 "WENDY'S OF COLORADO SPRINGS, INC",13,0,0.0
 Wenzona Flagstaff Inc,13,0,0.0
 West Contra Costa Unified School District,13,0,0.0
-grmorales contractor LLC,13,0,0.0
 "AB Technologies, Inc.",12,0,0.0
 AMVC Employee Services LLC ,12,0,0.0
 "Adcock Concrete, Inc.",12,0,0.0
 Ambarella Corp.,12,0,0.0
 "Artur Express, Inc.",12,0,0.0
+Auburn University,12,0,0.0
 Baruch College,12,0,0.0
 "Baystate Medical Center, Inc.",12,0,0.0
 "Bestway Express, Inc",12,0,0.0
+Birlasoft Inc,12,0,0.0
 "California State University, Fullerton",12,0,0.0
 Chalet Landscape Company ,12,0,0.0
 "DATSON360, LLC",12,0,0.0
+DAVITA INC.,12,0,0.0
 Davis Polk & Wardwell LLP,12,0,0.0
 Denninger Enterprises Inc,12,0,0.0
-"Digipulse Technologies, Inc. ",12,0,0.0
 Dougherty County School System,12,0,0.0
 Douglas Unified School District #27,12,0,0.0
 Dynatrace LLC,12,0,0.0
@@ -1312,15 +1315,17 @@ Dynatrace LLC,12,0,0.0
 "FUGE TECHNOLOGIES, INC.",12,0,0.0
 "Fargo Pacific, Inc.",12,0,0.0
 "HRB Professional Resources, LLC",12,0,0.0
+Hillcrest Educational Centers Inc.,12,0,0.0
 "Hillside Orchard Farms, Inc.",12,0,0.0
 IMA America Corporation ,12,0,0.0
 Infomatics Technologies Inc,12,0,0.0
+"Intone Networks, Inc. ",12,0,0.0
 "JSA Bama, Inc.",12,0,0.0
-KANAP SYSTEMS LLC,12,0,0.0
-Kian Corp,12,0,0.0
 Louisiana State University and A&M College,12,0,0.0
 Massachusetts Institute of Technology,12,0,0.0
 OneCruit LLC,12,0,0.0
+"Orpine, Inc ",12,0,0.0
+Oscar Management Corporation,12,0,0.0
 "Perfect Food And Gas 1, Inc.",12,0,0.0
 Perigon Infotech Inc,12,0,0.0
 "Precision Landscaping, Inc.",12,0,0.0
@@ -1329,29 +1334,28 @@ Pristen IT Systems Inc. ,12,0,0.0
 RAVIN IT SOLUTIONS INC,12,0,0.0
 "Raymond James & Associates, Inc.",12,0,0.0
 Ryzlink Corp,12,0,0.0
+SWANKTEK INC,12,0,0.0
 Sain Technologies LLC,12,0,0.0
+Schmidt Transportation Inc,12,0,0.0
 "Scottie's Building Services, LLC",12,0,0.0
 Shrive Solutions LLC,12,0,0.0
 "Silva & Sons Landscaping, LLC",12,0,0.0
 Stier Solutions Inc,12,0,0.0
+Syracuse University,12,0,0.0
 TEXAS TECH UNIVERSITY HEALTH SCIENCES CENTER,12,0,0.0
-TechData Service Company LLC,12,0,0.0
 ThothIT LLC,12,0,0.0
 Towson University,12,0,0.0
 Tractor Supply Company,12,0,0.0
 UNIKON IT INC,12,0,0.0
 Unisoft Solutions LLC,12,0,0.0
 Wenzona East Flagstaff Inc ,12,0,0.0
-"A MISHLE GROUP HEALTH CARE SERVICES, INC.",11,0,0.0
 APPCO Pharma LLC,11,0,0.0
 "AXISCADES, Inc.",11,0,0.0
-American Tech Vision Solutions LLC,11,0,0.0
 "Aon Consulting, Inc.",11,0,0.0
 Appalachian State University,11,0,0.0
 "Asurion, LLC",11,0,0.0
 Avalanche Technologies LLC,11,0,0.0
 Ball State University,11,0,0.0
-"Beacon Hill Staffing Group, LLC",11,0,0.0
 Beulah Community Nursing Home,11,0,0.0
 Billings Clinic,11,0,0.0
 CALIFORNIA POLYTECHNIC STATE UNIVERSITY,11,0,0.0
@@ -1368,9 +1372,12 @@ Dartmouth-Hitchcock Clinic,11,0,0.0
 "DataEconomy, Inc.",11,0,0.0
 "Dataquad, Inc.",11,0,0.0
 "Dykhuis Farms, Inc.",11,0,0.0
+E-Giants Technologies LLC,11,0,0.0
 ECOM Consulting Inc,11,0,0.0
 El Porton Huerta Inc.,11,0,0.0
 "Elhannon Wholesale Nursery, Inc.",11,0,0.0
+"FMWB, Inc.",11,0,0.0
+Fortrea Inc. ,11,0,0.0
 "GUTIERREZ TRUCKING, LLC",11,0,0.0
 "GoJet Airlines, LLC",11,0,0.0
 H & H Construction Company LLC,11,0,0.0
@@ -1378,41 +1385,39 @@ Illinois State University,11,0,0.0
 "Info Services, LLC",11,0,0.0
 "InnoCore Solutions, Inc",11,0,0.0
 Iowa Physicians Clinic Medical Foundation,11,0,0.0
+JetSelect LLC,11,0,0.0
 KMSB Enterprises LLC,11,0,0.0
 "KNOWLEDGE RESOURCES GROUP, INC",11,0,0.0
 LGL Technologies LLC,11,0,0.0
+"Landesign, LLC",11,0,0.0
 "Landscape Renovations, Inc.",11,0,0.0
 Lexington County School District One,11,0,0.0
 "MI Softech, Inc",11,0,0.0
 NIC INFO TEK INC,11,0,0.0
 Nature's Way Landscaping Inc.,11,0,0.0
 Physicians Mutual Insurance Company,11,0,0.0
-Presbyterian Healthcare Services,11,0,0.0
 "Providence Outdoor, Inc.",11,0,0.0
+"Rutgers, The State University of New Jersey",11,0,0.0
 "SB Landscaping, Inc.",11,0,0.0
-SDVS Technologies LLC,11,0,0.0
-SWANKTEK INC,11,0,0.0
-"SYSTEM SOFT TECHNOLOGIES, LLC",11,0,0.0
-"Sage IT, Inc",11,0,0.0
 "Sephora USA, Inc.",11,0,0.0
 Solize USA Corporation,11,0,0.0
 South Dakota State University,11,0,0.0
 "Strategic Staffing Solutions, L.C.",11,0,0.0
 "Super Micro Computer, Inc.",11,0,0.0
-Syracuse University,11,0,0.0
 TAMPA HOSPITALITY MANAGEMENT INC,11,0,0.0
 "TRANSPORTATION SERVICES, INC.",11,0,0.0
 "TVA Logistics, Inc.",11,0,0.0
 Tran Holdings LLC,11,0,0.0
 UNIVERSITY OF MISSISSIPPI MEDICAL CENTER,11,0,0.0
-UP2DATE TECHNOLOGY SOLUTIONS LLC,11,0,0.0
 "USD 501, Topeka Public Schools",11,0,0.0
 Upshift Work LLC,11,0,0.0
 "VMC Soft Technologies, Inc",11,0,0.0
 WRA Architects Inc.,11,0,0.0
 WSP USA BUILDINGS INC.,11,0,0.0
 Washington County School District,11,0,0.0
+Williams International Co LLC,11,0,0.0
 "ZipRecruiter, Inc.",11,0,0.0
+Zynga Inc.,11,0,0.0
 1st Ranking Technologies,10,0,0.0
 "AVL Test Systems, Inc.",10,0,0.0
 Academie Lafayette,10,0,0.0
@@ -1439,7 +1444,6 @@ CIS TECHNOLOGIES INC,10,0,0.0
 CONSULT AMERICA INC,10,0,0.0
 CR Technologies Inc,10,0,0.0
 "CRC Transport, LLC",10,0,0.0
-"Chad C. Brown, Inc.",10,0,0.0
 CloudNineTek LLC,10,0,0.0
 "Collabrium Systems, LLC",10,0,0.0
 Compassionate Health Services LLC,10,0,0.0
@@ -1455,9 +1459,9 @@ EMAESTRO TECHNOLOGIES INC,10,0,0.0
 Eastern Maine Medical Center,10,0,0.0
 "Edifecs, Inc.",10,0,0.0
 Egg Harbor Care and Rehabilitation,10,0,0.0
+"Elavon, Inc.",10,0,0.0
 "Embassy Lawn and Landscaping, Inc.",10,0,0.0
 "Everest Technologies, Inc.",10,0,0.0
-"FMWB, Inc.",10,0,0.0
 "Fayette Physician Network, Inc.",10,0,0.0
 "Finns, Inc",10,0,0.0
 Fitch Ranch Artisan Meat Company LLC,10,0,0.0
@@ -1475,7 +1479,6 @@ Highway 19 Construction LLC,10,0,0.0
 IMR SOFT LLC,10,0,0.0
 INTELLATIV INC,10,0,0.0
 "IT Premia Group, Inc.",10,0,0.0
-"Intone Networks, Inc. ",10,0,0.0
 JACOB FRIESSEN,10,0,0.0
 "JDK Associates, Inc.",10,0,0.0
 Lawns Unlimited LTD,10,0,0.0
@@ -1490,26 +1493,27 @@ Mercy Clinic East Communities,10,0,0.0
 "Miracle Software Systems, Inc. ",10,0,0.0
 "Moore Property Services, Inc.",10,0,0.0
 Mythri Consulting LLC,10,0,0.0
+NOBL Q LLC,10,0,0.0
+Nexpro Technologies Inc,10,0,0.0
 "One Vision, LLC",10,0,0.0
 Onstak Inc.,10,0,0.0
 "PAMTEN, INC.",10,0,0.0
 "Prevea Clinic, Inc.",10,0,0.0
-Progressive Casualty Insurance Company,10,0,0.0
+ProCare Pharmacy LLC,10,0,0.0
 "Quantum Integrators Group, LLC",10,0,0.0
+Ramsai Software Solutions Inc,10,0,0.0
 Re-Create Companies LLC,10,0,0.0
 "Rocky Mountain Hardscapes, LLC",10,0,0.0
-"Rutgers, The State University of New Jersey",10,0,0.0
 SDH Systems LLC ,10,0,0.0
-SDVS Technologies LLC ,10,0,0.0
 SRI SOFTWARE SOLUTIONS LLC,10,0,0.0
 SS Concrete Construction,10,0,0.0
-Schmidt Transportation Inc,10,0,0.0
 "Schwartz Brothers Landscape Solutions, Inc.",10,0,0.0
 Scotland County Schools,10,0,0.0
-"Softworld Technologies, LLC",10,0,0.0
 "Southpoint Subway, LLC",10,0,0.0
 State Farm Mutual Automobile Insurance Company ,10,0,0.0
 State of Delaware,10,0,0.0
+"Statsig, Inc.",10,0,0.0
+"TEK NINJAS SOLUTIONS, LLC ",10,0,0.0
 TekHops LLC,10,0,0.0
 Teksoft Systems Inc,10,0,0.0
 Tekvana Inc,10,0,0.0
@@ -1523,8 +1527,8 @@ UCare Minnesota,10,0,0.0
 United States Services Installations LLC,10,0,0.0
 University of Illinois,10,0,0.0
 "VIDANT MEDICAL GROUP, LLC",10,0,0.0
-VIDLEXINFO LLC,10,0,0.0
 WELLQUEST LIVING LLC,10,0,0.0
+WONDERFUL BEAUTY GROUP LLC,10,0,0.0
 "Wade Cary Enterprises, Inc.",10,0,0.0
 "Walter P. Moore & Associates, Inc.",10,0,0.0
 Wenzona Kingman LLC ,10,0,0.0
@@ -1533,3 +1537,4 @@ Xylo Consulting LLC,10,0,0.0
 "Young's Plant Farm, Inc.",10,0,0.0
 Z&B Inc. ,10,0,0.0
 Zeus Solutions Inc,10,0,0.0
+"Zion Compassion Care, LLC",10,0,0.0
