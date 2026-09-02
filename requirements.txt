@@ -7,3 +7,6 @@ jupyter
 ipykernel
 nbformat
 pyarrow
+openpyxl
+pdfplumber
+jupytext

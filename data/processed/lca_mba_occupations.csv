@@ -1,128 +1,174 @@
 SOC_TITLE,filings
-Information Technology Project Managers,14387
-Computer and Information Systems Managers,9014
-Business Intelligence Analysts,8640
-Financial and Investment Analysts,7953
-Accountants and Auditors,6712
-Management Analysts,5722
-Operations Research Analysts,5703
-Market Research Analysts and Marketing Specialists,5223
-Project Management Specialists,4037
-Financial Quantitative Analysts,3225
-Sales Engineers,2137
-Architectural and Engineering Managers,2043
-Marketing Managers,1872
-General and Operations Managers,1685
-Financial Risk Specialists,1309
-Construction Managers,1274
-Logisticians,1261
-Financial Managers,1255
-Logistics Analysts,1001
-Supply Chain Managers,917
-Cost Estimators,878
-Regulatory Affairs Specialists,748
-Industrial Production Managers,707
-Human Resources Specialists,699
-Sales Managers,596
-"Business Operations Specialists, All Other",551
-Public Relations Specialists,497
-Chief Executives,488
-"Transportation, Storage, and Distribution Managers",451
-Compliance Officers,412
-"Purchasing Agents, Except Wholesale, Retail, and Farm Products",408
-Natural Sciences Managers,402
-Training and Development Specialists,401
-Logistics Engineers,401
-Medical and Health Services Managers,399
-Credit Analysts,341
-Budget Analysts,290
-Search Marketing Strategists,262
-Purchasing Managers,248
-Quality Control Systems Managers,237
-"Financial Specialists, All Other",236
-Sustainability Specialists,208
-Human Resources Managers,202
-"Education Administrators, Postsecondary",193
-Clinical Research Coordinators,185
-Social and Community Service Managers,184
-Technical Writers,177
-"Compensation, Benefits, and Job Analysis Specialists",154
-Regulatory Affairs Managers,150
-Compliance Managers,143
-Investment Fund Managers,109
-"Meeting, Convention, and Event Planners",104
-Advertising and Promotions Managers,102
-Financial Examiners,100
-Public Relations Managers,99
-Personal Financial Advisors,95
-Treasurers and Controllers,92
-"Education Administrators, Kindergarten through Secondary",62
-Training and Development Managers,59
-Insurance Underwriters,57
-"Managers, All Other",56
-Fundraisers,50
-"Education and Childcare Administrators, Preschool and Daycare",48
-"Fraud Examiners, Investigators and Analysts",47
-Lodging Managers,43
-"Farmers, Ranchers, and Other Agricultural Managers",40
-"Wholesale and Retail Buyers, Except Farm Products",33
-"Property, Real Estate, and Community Association Managers",30
-Loan Officers,29
-Business Continuity Planners,28
-Administrative Services Managers,25
-Security Management Specialists,25
-"Education Administrators, All Other",24
-Fundraising Managers,24
-"Agents and Business Managers of Artists, Performers, and Athletes",23
-Compensation and Benefits Managers,23
-Tax Preparers,23
-Food Service Managers,22
-"Entertainment and Recreation Managers, Except Gambling",20
-Operations Research Analyst,18
-Online Merchants,17
-Fitness and Wellness Coordinators,13
-Credit Counselors,13
-Facilities Managers,12
-Water Resource Specialists,8
-Chief Sustainability Officers,8
-"Claims Adjusters, Examiners, and Investigators",8
-"Buyers and Purchasing Agents, Farm Products",7
-Business Intelligence Analyst,7
-Financial Quantitative Analyst,7
-Security Managers,7
-Labor Relations Specialists,6
-Environmental Compliance Inspectors,5
-Wind Energy Development Managers,5
-Project Management Specialist,5
+Information Technology Project Managers,34753
+Business Intelligence Analysts,21914
+Computer and Information Systems Managers,19142
+Financial and Investment Analysts,14662
+Accountants and Auditors,13988
+Operations Research Analysts,13766
+Management Analysts,11425
+Market Research Analysts and Marketing Specialists,10975
+Project Management Specialists,7278
+Financial Quantitative Analysts,6074
+Sales Engineers,4775
+Architectural and Engineering Managers,3989
+Marketing Managers,3921
+General and Operations Managers,3633
+Financial Managers,2691
+Construction Managers,2446
+Logisticians,2420
+Financial Risk Specialists,2346
+Logistics Analysts,1866
+Supply Chain Managers,1792
+Cost Estimators,1552
+Regulatory Affairs Specialists,1478
+Human Resources Specialists,1472
+Industrial Production Managers,1377
+Sales Managers,1310
+Chief Executives,1183
+Public Relations Specialists,1168
+"Business Operations Specialists, All Other",1094
+Medical and Health Services Managers,1030
+Natural Sciences Managers,832
+Logistics Engineers,823
+Training and Development Specialists,794
+"Transportation, Storage, and Distribution Managers",727
+Compliance Officers,683
+Credit Analysts,635
+"Purchasing Agents, Except Wholesale, Retail, and Farm Products",626
+Budget Analysts,560
+Quality Control Systems Managers,546
+Search Marketing Strategists,528
+Purchasing Managers,498
+Human Resources Managers,466
+"Financial Specialists, All Other",440
+Sustainability Specialists,439
+Technical Writers,427
+Clinical Research Coordinators,423
+Social and Community Service Managers,398
+"Education Administrators, Postsecondary",391
+Regulatory Affairs Managers,344
+Compliance Managers,342
+"Compensation, Benefits, and Job Analysis Specialists",260
+Advertising and Promotions Managers,236
+"Meeting, Convention, and Event Planners",218
+Treasurers and Controllers,214
+Investment Fund Managers,210
+Public Relations Managers,203
+Financial Examiners,201
+Personal Financial Advisors,174
+Training and Development Managers,134
+"Education Administrators, Kindergarten through Secondary",128
+Fundraisers,116
+"Education and Childcare Administrators, Preschool and Daycare",113
+"Managers, All Other",113
+Insurance Underwriters,100
+Lodging Managers,96
+"Farmers, Ranchers, and Other Agricultural Managers",94
+"Fraud Examiners, Investigators and Analysts",92
+Administrative Services Managers,88
+Financial Analysts,77
+"Property, Real Estate, and Community Association Managers",72
+"Wholesale and Retail Buyers, Except Farm Products",69
+Loan Officers,61
+"Education Administrators, All Other",56
+"Agents and Business Managers of Artists, Performers, and Athletes",56
+Food Service Managers,55
+Business Continuity Planners,54
+Fundraising Managers,53
+Security Management Specialists,45
+"Entertainment and Recreation Managers, Except Gambling",41
+Tax Preparers,39
+Compensation and Benefits Managers,37
+Online Merchants,36
+Fitness and Wellness Coordinators,34
+Operations Research Analyst,34
+Facilities Managers,28
+Credit Counselors,28
+"Buyers and Purchasing Agents, Farm Products",20
+Chief Sustainability Officers,18
+Appraisers and Assessors of Real Estate,16
+Business Intelligence Analyst,16
+Environmental Compliance Inspectors,14
+"Claims Adjusters, Examiners, and Investigators",13
+Security Managers,13
+Financial Quantitative Analyst,13
+BUSINESS INTELLIGENCE ANALYSTS,12
+Water Resource Specialists,11
+Information Technology Project Manager,10
+"Purchasing Agents, Except Wholesale, Retail, and F",10
+COMPUTER AND INFORMATION SYSTEMS MANAGERS,10
+Biofuels Production Managers,9
+Labor Relations Specialists,9
+Wind Energy Development Managers,8
+"Personal Service Managers, All Other",8
+Accountants,7
+Financial and Investment Analyst,7
+Project Management Specialist,6
+Appraisers of Personal and Business Property,6
+Sales Engineer,5
+Market Research Analysts,5
+CONSTRUCTION MANAGERS,5
+Emergency Management Directors,5
+Computer and Information Systems Manager,4
+Risk Management Specialists,4
+"Tax Examiners and Collectors, and Revenue Agents",4
+MARKETING MANAGERS,4
+Equal Opportunity Representatives and Officers,4
 Regulatory Affairs Specialist,4
 Financial & Investment Analysts,4
-CONSTRUCTION MANAGERS,4
-Appraisers and Assessors of Real Estate,4
-"Personal Service Managers, All Other",4
-"Purchasing Agents, Except Wholesale, Retail, and F",3
-Financial and Investment Analyst,3
-BUSINESS INTELLIGENCE ANALYSTS,3
-Emergency Management Directors,3
-Appraisers of Personal and Business Property,3
+Computer and Information System Managers,3
+"Compensation, Benefits, and Job Analysis Specialis",3
+Management Analyst,3
+MANAGEMENT ANALYSTS,3
+Marketing Research Analysts and Marketing Specialists,3
 "Managers, All others",3
 Sales Manager,3
-Financial Analysts,2
+Market Research Analysts & Marketing Specialists,2
+ACCOUNTANTS AND AUDITORS,2
+FINANCIAL MANAGERS,2
+CHIEF EXECUTIVES,2
+Business intelligence Analyst,2
+Biomass Power Plant Managers,2
+Marketing Manager,2
 Information technology Project Managers,2
-Information Technology Project Manager,2
-Computer and Information System Managers,2
-Marketing Research Analysts and Marketing Specialists,2
-Biofuels Production Managers,2
 Computer & Information Systems Managers,2
-Sales Engineer,2
-Equal Opportunity Representatives and Officers,2
-COMPUTER AND INFORMATION SYSTEMS MANAGERS,2
 General and Operation Managers,2
 Legislators,2
-Market Research Analysts,2
 Financial and Investment Anlaysts,2
 "Financial Specialist, All other",2
-Management Analyst,2
 Consultant,2
+Auditors,1
+Project Manager Specialists,1
+Accountants & Auditors,1
+Top Executives,1
+General and Operations Management,1
+Supply Chain Manger,1
+ADVERTISING AND PROMOTIONS MANAGERS,1
+Human Resources Manager,1
+Public Relations Specialist,1
+PUBLIC RELATIONS SPECIALISTS,1
+INDUSTRIAL PRODUCTION MANAGERS,1
+Financial Risk Specialist,1
+INFORMATION TECHNOLOGY PROJECT MANAGERS,1
+Natural Science Managers,1
+Accounts and Auditors,1
+Cost Estimator,1
+"Property, Real Estate, & Community Assn Mgrs",1
+HUMAN RESOURCE MANAGERS,1
+PUBLIC RELATIONS MANAGERS,1
+Financial  and Investment Analysts,1
+Market Research Analysts and Marketing Managers,1
+SOCIAL AND COMMUNITY SERVICE MANAGERS,1
+Maket Research Analysts and Marketing Specialists,1
+Financial Mangers,1
+Biofuels/Biodiesel Technology and Product Development Managers,1
+Market Managers,1
+Quality Control Systems Manager,1
+Supply Chain Manager,1
+QUALITY CONTROL SYSTEMS MANAGERS,1
+Information Technology Project managers,1
+Information Systems Managers,1
+Logistics Engineer,1
 Purchasing Manager,1
 Construction Manager,1
 Medical and Health Services Manages,1
@@ -132,22 +178,17 @@ Computer Information Systems Managers,1
 Market Research Analysts and Marketing Specialist,1
 Regulatory Affair Specialist,1
 Business intelligence analyst,1
-FINANCIAL MANAGERS,1
 Human Resources Specialist,1
 Wind Energy Operations Managers,1
 Industrial Production Manager,1
 Construction managers,1
 Chief Sustainability Officers11-111111-111111-111111-1111,1
-MARKETING MANAGERS,1
-Computer and Information Systems Manager,1
 "Purchasing Agents, Except Wholesale, Retail and Farm Products",1
 Logisticians Analysts,1
 Market Research Analyst,1
 "FINANCIAL SPECIALISTS, ALL OTHER",1
 Information Technology Project Managers15-1299.09,1
 "Education and Childcare Administrators, Preschool",1
-Marketing Manager,1
-MANAGEMENT ANALYSTS,1
 Market Research  Analysts and Marketing Specialists,1
 Government Property Inspectors and Investigators,1
 OPERATIONS RESEARCH ANALYSTS,1

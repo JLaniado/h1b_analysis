@@ -1,25 +1,24 @@
 """
-Loaders for the DOL OFLC disclosure data (LCA/H-1B and PERM).
+Loaders for the consolidated DOL OFLC disclosure data (LCA/H-1B and PERM).
 
-Both source files are large (400MB+ / 230MB+) DOL quarterly disclosure
-extracts. Two quirks to know about before touching them:
+Reads from data/interim/lca_master.csv and data/interim/perm_master.csv,
+which are built by `src/consolidate_raw.py` from the mixed raw sources in
+data/raw/ (some fiscal years arrive as one cumulative CSV, others as four
+separate quarterly XLSX exports — see that module's docstring). Run
+`python src/consolidate_raw.py` after adding new raw exports to regenerate
+the master files before using these loaders.
 
-1. Some cell values contain embedded newlines (e.g. multi-line address or
-   comment fields), so pandas' C engine must be read with low_memory=False
-   or it can silently get out of sync on chunk boundaries. (The pyarrow
-   engine flat out refuses these files with an ArrowInvalid error.)
-2. Each quarterly file is pre-allocated for the full fiscal year: only the
-   first N rows have data, the rest are fully blank rows. We drop any row
-   with a blank CASE_NUMBER to get the "real" record count.
+The master files already have blank template rows dropped and dates
+normalized to ISO (YYYY-MM-DD), so loading here is a plain, fast read.
 """
 
 from pathlib import Path
 
 import pandas as pd
 
-RAW_DIR = Path(__file__).resolve().parent.parent / "data" / "raw"
-LCA_PATH = RAW_DIR / "LCA_Disclosure_Data_FY2026_Q3.csv"
-PERM_PATH = RAW_DIR / "PERM_Disclosure_Data_FY2026_Q3.csv"
+INTERIM_DIR = Path(__file__).resolve().parent.parent / "data" / "interim"
+LCA_PATH = INTERIM_DIR / "lca_master.csv"
+PERM_PATH = INTERIM_DIR / "perm_master.csv"
 
 # Columns we actually need for MBA-focused sponsorship analysis. The full
 # files have ~98 (LCA) / ~137 (PERM) columns, most of it recruiting-process
@@ -29,6 +28,8 @@ LCA_USECOLS = [
     "CASE_STATUS",
     "RECEIVED_DATE",
     "DECISION_DATE",
+    "FISCAL_YEAR",
+    "FISCAL_QUARTER",
     "VISA_CLASS",
     "JOB_TITLE",
     "SOC_CODE",
@@ -60,6 +61,8 @@ PERM_USECOLS = [
     "CASE_STATUS",
     "RECEIVED_DATE",
     "DECISION_DATE",
+    "FISCAL_YEAR",
+    "FISCAL_QUARTER",
     "OCCUPATION_TYPE",
     "EMP_BUSINESS_NAME",
     "EMP_CITY",
@@ -76,29 +79,25 @@ PERM_USECOLS = [
     "PRIMARY_WORKSITE_STATE",
 ]
 
-DATE_FORMAT = "%m/%d/%y"
 
-
-def _read_raw(path: Path, usecols: list[str]) -> pd.DataFrame:
+def _read_master(path: Path, usecols: list[str]) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(
-            f"{path} not found. Place the raw DOL CSV export in data/raw/."
+            f"{path} not found. Run `python src/consolidate_raw.py` to build it from data/raw/."
         )
-    df = pd.read_csv(path, usecols=usecols, low_memory=False)
-    df = df.dropna(subset=["CASE_NUMBER"]).reset_index(drop=True)
-    return df
+    return pd.read_csv(path, usecols=usecols, low_memory=False)
 
 
 def _parse_dates(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
     for col in cols:
         if col in df.columns:
-            df[col] = pd.to_datetime(df[col], format=DATE_FORMAT, errors="coerce")
+            df[col] = pd.to_datetime(df[col], format="%Y-%m-%d", errors="coerce")
     return df
 
 
 def load_lca(path: Path = LCA_PATH, usecols: list[str] | None = None) -> pd.DataFrame:
-    """Load the H-1B/LCA disclosure file, dropping unpopulated template rows."""
-    df = _read_raw(path, usecols or LCA_USECOLS)
+    """Load the consolidated H-1B/LCA master file."""
+    df = _read_master(path, usecols or LCA_USECOLS)
     df = _parse_dates(df, ["RECEIVED_DATE", "DECISION_DATE"])
     for col in ["WAGE_RATE_OF_PAY_FROM", "WAGE_RATE_OF_PAY_TO", "PREVAILING_WAGE",
                 "TOTAL_WORKER_POSITIONS"]:
@@ -108,8 +107,8 @@ def load_lca(path: Path = LCA_PATH, usecols: list[str] | None = None) -> pd.Data
 
 
 def load_perm(path: Path = PERM_PATH, usecols: list[str] | None = None) -> pd.DataFrame:
-    """Load the PERM disclosure file, dropping unpopulated template rows."""
-    df = _read_raw(path, usecols or PERM_USECOLS)
+    """Load the consolidated PERM master file."""
+    df = _read_master(path, usecols or PERM_USECOLS)
     df = _parse_dates(df, ["RECEIVED_DATE", "DECISION_DATE"])
     for col in ["JOB_OPP_WAGE_FROM", "JOB_OPP_WAGE_TO"]:
         if col in df.columns:

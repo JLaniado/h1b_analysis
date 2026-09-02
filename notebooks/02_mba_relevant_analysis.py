@@ -10,6 +10,10 @@
 # Teacher — it drops the more detailed education fields DOL collects internally). So "MBA-relevant"
 # here is a SOC-code + title heuristic (see `src/mba_occupations.py`), not a hard filter on actual
 # degree requirements. Treat tier splits as directional, not exact.
+#
+# Data now spans full FY2025 plus FY2026 through Q3, so we can start asking not just "who
+# sponsors MBA-relevant roles" but "is that pool growing or shrinking" — relevant given how fast
+# the sponsorship landscape has been moving.
 
 # %%
 import sys
@@ -64,6 +68,38 @@ lca_mba = lca[lca["MBA_TIER"] != "excluded"].copy()
 perm_mba = perm[perm["MBA_TIER"] != "excluded"].copy()
 print(f"MBA-relevant LCA filings: {len(lca_mba):,} ({len(lca_mba) / len(lca):.1%} of all)")
 print(f"MBA-relevant PERM filings: {len(perm_mba):,} ({len(perm_mba) / len(perm):.1%} of all)")
+
+# %% [markdown]
+# ## Is the MBA-relevant pool growing or shrinking? FY2025 vs FY2026 (Q1-Q3 only, for a fair
+# comparison against FY2026's partial year)
+
+# %%
+def mba_yoy_by_quarter(df, label):
+    q13 = df[df["FISCAL_QUARTER"] <= 3]
+    g = q13.groupby(["FISCAL_YEAR", "MBA_TIER"]).size().unstack(fill_value=0)
+    g = g.reindex(columns=["core", "adjacent", "excluded"], fill_value=0)
+    print(f"\n{label} — MBA-tier filings, FY2025 vs FY2026 (Q1-Q3):")
+    print(g)
+    for tier in ["core", "adjacent"]:
+        if 2025 in g.index and 2026 in g.index and g.loc[2025, tier] > 0:
+            pct = (g.loc[2026, tier] / g.loc[2025, tier] - 1) * 100
+            print(f"  {tier}: {pct:+.1f}% YoY")
+    return g
+
+
+lca_mba_yoy = mba_yoy_by_quarter(lca, "LCA (H-1B)")
+perm_mba_yoy = mba_yoy_by_quarter(perm, "PERM")
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+lca_mba_yoy[["core", "adjacent"]].T.plot.bar(ax=axes[0])
+axes[0].set_title("LCA MBA-relevant filings: FY2025 vs FY2026 (Q1-Q3)")
+axes[0].set_ylabel("Filings")
+perm_mba_yoy[["core", "adjacent"]].T.plot.bar(ax=axes[1])
+axes[1].set_title("PERM MBA-relevant filings: FY2025 vs FY2026 (Q1-Q3)")
+axes[1].set_ylabel("Filings")
+plt.tight_layout()
+plt.savefig(FIG_DIR / "02_mba_yoy.png", dpi=150)
+plt.show()
 
 # %% [markdown]
 # ## Certification rate: does it differ by tier?

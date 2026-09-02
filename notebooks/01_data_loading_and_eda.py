@@ -1,12 +1,18 @@
 # %% [markdown]
 # # 01 — Data Loading & Exploratory Analysis
 #
-# First pass over the DOL disclosure data for FY2026 Q3:
-# - `data/raw/LCA_Disclosure_Data_FY2026_Q3.csv` — H-1B (and E-3/H-1B1) Labor Condition Applications
-# - `data/raw/PERM_Disclosure_Data_FY2026_Q3.csv` — PERM labor certifications (green card sponsorship)
+# First pass over the DOL disclosure data, now spanning full FY2025 plus FY2026 through Q3:
+# - LCA (H-1B/E-3/H-1B1) Labor Condition Applications
+# - PERM labor certifications (green card sponsorship)
 #
-# Goal here is just to understand shape, quality, and headline distributions before we narrow in
-# on MBA-relevant roles in notebook 02.
+# Raw sources arrive inconsistently (one cumulative CSV for FY2026, four separate quarterly
+# XLSX exports for FY2025) — `src/consolidate_raw.py` normalizes all of that into
+# `data/interim/{lca,perm}_master.csv` once, tagged with a derived `FISCAL_YEAR`/`FISCAL_QUARTER`.
+# Run `python src/consolidate_raw.py` after dropping new raw exports into `data/raw/` to rebuild
+# those before running this notebook.
+#
+# Goal here is just to understand shape, quality, and headline distributions (now with a
+# year-over-year lens) before we narrow in on MBA-relevant roles in notebook 02.
 
 # %%
 import sys
@@ -29,10 +35,7 @@ PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # %% [markdown]
-# ## Load both files
-#
-# Both CSVs are pre-allocated to the full fiscal year, so most rows are blank placeholders —
-# `load_lca`/`load_perm` (see `src/data_loader.py`) drop those and parse dates for us.
+# ## Load both consolidated master files
 
 # %%
 lca = load_lca()
@@ -40,6 +43,19 @@ perm = load_perm()
 
 print(f"LCA (H-1B/E-3/H-1B1) records: {len(lca):,}")
 print(f"PERM records: {len(perm):,}")
+
+# %% [markdown]
+# ### Coverage by fiscal year/quarter
+#
+# Fiscal year and quarter are derived from `DECISION_DATE` (falling back to `RECEIVED_DATE` for
+# undecided cases) using the federal fiscal calendar, not trusted from source filenames — DOL's
+# own file naming isn't a reliable signal (a "FY2026 Q3" file can be a Q1-Q3 cumulative export).
+
+# %%
+lca.groupby(["FISCAL_YEAR", "FISCAL_QUARTER"]).size().unstack(fill_value=0)
+
+# %%
+perm.groupby(["FISCAL_YEAR", "FISCAL_QUARTER"]).size().unstack(fill_value=0)
 
 # %% [markdown]
 # ## Employer name canonicalization
@@ -156,6 +172,37 @@ ax.set_ylabel("Filings")
 ax.legend()
 plt.tight_layout()
 plt.savefig(FIG_DIR / "01_monthly_filings.png", dpi=150)
+plt.show()
+
+# %% [markdown]
+# ### Year-over-year: is sponsorship growing or shrinking?
+#
+# FY2026 is partial (through Q3) — compare it to the *same* Q1-Q3 window in FY2025, not full-year
+# FY2025, or a shrinking year will look like growth just from missing Q4.
+
+# %%
+def yoy_by_quarter(df, label):
+    g = df[df["FISCAL_QUARTER"] <= 3].groupby(["FISCAL_YEAR", "FISCAL_QUARTER"]).size().unstack(0, fill_value=0)
+    print(f"\n{label} — filings by quarter, FY2025 vs FY2026 (Q1-Q3 only):")
+    print(g)
+    if 2025 in g.columns and 2026 in g.columns:
+        pct_change = (g[2026].sum() / g[2025].sum() - 1) * 100
+        print(f"FY2026 Q1-Q3 vs FY2025 Q1-Q3: {pct_change:+.1f}%")
+    return g
+
+
+lca_yoy = yoy_by_quarter(lca, "LCA (H-1B)")
+perm_yoy = yoy_by_quarter(perm, "PERM")
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+lca_yoy.plot.bar(ax=axes[0])
+axes[0].set_title("LCA filings by quarter: FY2025 vs FY2026")
+axes[0].set_ylabel("Filings")
+perm_yoy.plot.bar(ax=axes[1])
+axes[1].set_title("PERM filings by quarter: FY2025 vs FY2026")
+axes[1].set_ylabel("Filings")
+plt.tight_layout()
+plt.savefig(FIG_DIR / "01_yoy_quarterly.png", dpi=150)
 plt.show()
 
 # %% [markdown]
