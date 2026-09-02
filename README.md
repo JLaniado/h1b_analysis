@@ -4,10 +4,10 @@ Analysis of DOL OFLC disclosure data (H-1B/LCA and PERM) to help Tepper School o
 international MBA students target employers and role functions with realistic odds of visa
 sponsorship, plus an interactive explorer built on top of it.
 
-**[Open the Sponsorship Explorer dashboard →](https://claude.ai/code/artifact/3e07185f-f13a-4454-bfe6-5bb776429ef6)**
+**[Open the Sponsorship Explorer dashboard →](https://jlaniado.github.io/h1b_analysis/)**
 Filter H-1B and PERM filings by occupation keyword, industry, state, and wage level; see a
 ranked employer leaderboard with certification rate, real-new-position share, and H-1B→green-card
-pipeline status.
+pipeline status. (Also available as a [Claude Artifact](https://claude.ai/code/artifact/3e07185f-f13a-4454-bfe6-5bb776429ef6) — same page, private link.)
 
 ## Data sources
 
@@ -118,9 +118,21 @@ it's just a link to share. It's built in three steps, each re-runnable independe
    (covers 81% of MBA-relevant LCA filings, 57% of PERM — the long tail is dropped to keep the
    page small enough to embed client-side). Writes `outputs/dashboard_data.json`.
 2. `python src/build_dashboard_html.py` — injects that JSON into `outputs/dashboard_template.html`
-   (the actual page source — edit this file for any markup/style/logic change, not the generated
-   output) to produce `outputs/dashboard.html`.
-3. Publish `outputs/dashboard.html` as a Claude Artifact.
+   (the actual page source — edit this file for any markup/style/logic change, not either
+   generated output) to produce two files: `outputs/dashboard.html` (a fragment, for Claude
+   Artifact publishing, which wraps the page itself) and `docs/index.html` (a complete standalone
+   document with its own `<!DOCTYPE>`/`<head>`/charset, since GitHub Pages does no such wrapping —
+   opening a fragment directly in a browser mis-guesses the encoding and mangles non-ASCII
+   characters).
+3. Publish `outputs/dashboard.html` as a Claude Artifact, and push `docs/index.html` to have
+   GitHub Pages pick it up automatically (Pages is configured to serve from `main` / `/docs`).
+
+External assets (Google Fonts, [Chart.js](https://www.chartjs.org/) from cdnjs) are loaded from a
+CDN — if you change the pinned Chart.js version in the template, verify the exact
+`https://cdnjs.cloudflare.com/ajax/libs/Chart.js/<version>/chart.umd.min.js` URL actually resolves
+(`curl -I` it) before publishing. An earlier version of this dashboard pinned a version that
+didn't exist on cdnjs, which 404'd silently in most consoles and looked like a network/ad-blocker
+issue rather than a typo'd version number.
 
 The page is deliberately scoped to occupations in the core/adjacent MBA tiers — a search for a
 more technical title like "Data Scientists" or "Software Developers" won't return results, since
