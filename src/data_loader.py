@@ -1,12 +1,17 @@
 """
 Loaders for the consolidated DOL OFLC disclosure data (LCA/H-1B and PERM).
 
-Reads from data/interim/lca_master.csv and data/interim/perm_master.csv,
-which are built by `src/consolidate_raw.py` from the mixed raw sources in
-data/raw/ (some fiscal years arrive as one cumulative CSV, others as four
-separate quarterly XLSX exports — see that module's docstring). Run
+Reads from data/interim/lca_master.csv.gz and data/interim/perm_master.csv.gz
+(gzip-compressed — pandas reads these natively, no decompression step
+needed), which are built by `src/consolidate_raw.py` from the mixed raw
+sources in data/raw/ (some fiscal years arrive as one cumulative CSV, others
+as four separate quarterly XLSX exports — see that module's docstring). Run
 `python src/consolidate_raw.py` after adding new raw exports to regenerate
 the master files before using these loaders.
+
+If the master files aren't present locally (a fresh clone, a cloud deploy),
+they're fetched automatically from this repo's GitHub Release — see
+`src/fetch_master_data.py`.
 
 The master files already have blank template rows dropped and dates
 normalized to ISO (YYYY-MM-DD), so loading here is a plain, fast read.
@@ -16,9 +21,11 @@ from pathlib import Path
 
 import pandas as pd
 
+from fetch_master_data import ensure_master_data
+
 INTERIM_DIR = Path(__file__).resolve().parent.parent / "data" / "interim"
-LCA_PATH = INTERIM_DIR / "lca_master.csv"
-PERM_PATH = INTERIM_DIR / "perm_master.csv"
+LCA_PATH = INTERIM_DIR / "lca_master.csv.gz"
+PERM_PATH = INTERIM_DIR / "perm_master.csv.gz"
 
 # Columns we actually need for MBA-focused sponsorship analysis. The full
 # files have ~98 (LCA) / ~137 (PERM) columns, most of it recruiting-process
@@ -88,10 +95,13 @@ PERM_USECOLS = [
 
 def _read_master(path: Path, usecols: list[str]) -> pd.DataFrame:
     if not path.exists():
+        ensure_master_data()
+    if not path.exists():
         raise FileNotFoundError(
-            f"{path} not found. Run `python src/consolidate_raw.py` to build it from data/raw/."
+            f"{path} not found and couldn't be auto-downloaded. "
+            f"Run `python src/consolidate_raw.py` to build it from data/raw/."
         )
-    return pd.read_csv(path, usecols=usecols, low_memory=False)
+    return pd.read_csv(path, usecols=usecols, low_memory=False, compression="gzip")
 
 
 def _parse_dates(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:

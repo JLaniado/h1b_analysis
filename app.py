@@ -24,16 +24,35 @@ import plotly.express as px
 import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
-from data_loader import load_lca, load_perm, annual_wage  # noqa: E402
+from data_loader import load_lca, load_perm, annual_wage, LCA_PATH, PERM_PATH  # noqa: E402
 from mba_occupations import classify_mba_relevance  # noqa: E402
 from employer_canonicalization import add_canonical_employer, build_canonical_map  # noqa: E402
 from employer_brand_rollup import apply_brand_rollup  # noqa: E402
 from naics_sectors import naics_sector  # noqa: E402
+from fetch_master_data import ensure_master_data  # noqa: E402
 
 st.set_page_config(page_title="Sponsorship Explorer (local, full data)", layout="wide")
 
 DECIDED_LCA = {"Certified", "Certified - Withdrawn", "Denied"}
 DECIDED_PERM = {"Certified", "Certified - Expired", "Denied"}
+
+
+def _download_master_data_with_progress():
+    """One-time ~270MB download of the master data on a fresh clone/deploy,
+    with a real progress bar rather than a silent multi-minute hang."""
+    if LCA_PATH.exists() and PERM_PATH.exists():
+        return
+    bar = st.progress(0.0, text="Downloading master data (first run only)...")
+
+    def _update(filename, downloaded, total):
+        pct = downloaded / total if total else 0
+        bar.progress(pct, text=f"Downloading {filename}: {downloaded / 1e6:.0f} / {total / 1e6:.0f} MB")
+
+    ensure_master_data(progress_callback=_update)
+    bar.empty()
+
+
+_download_master_data_with_progress()
 
 
 @st.cache_data(show_spinner="Loading and preparing full LCA + PERM data (first run only)...")

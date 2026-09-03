@@ -14,9 +14,11 @@ silently breaks anything that parses those columns (e.g. SOC_CODE's
 major-group prefix) if left in place. None of that should leak into
 analysis code — this module absorbs it once, here.
 
-Output:
-  data/interim/lca_master.csv   (all populated LCA/H-1B records, every source)
-  data/interim/perm_master.csv  (all populated PERM records, every source)
+Output (gzip-compressed — pandas reads .csv.gz natively, no decompression
+step needed, and it's ~4x smaller, which matters for distributing this data
+as a GitHub Release asset; see src/fetch_master_data.py):
+  data/interim/lca_master.csv.gz   (all populated LCA/H-1B records, every source)
+  data/interim/perm_master.csv.gz  (all populated PERM records, every source)
 
 Both gain three columns not present in any raw source:
   FISCAL_YEAR, FISCAL_QUARTER — derived from DECISION_DATE (falls back to
@@ -33,6 +35,7 @@ re-run this script against data/raw/ to reproduce them.
 
 import csv
 import datetime
+import gzip
 import re
 from pathlib import Path
 
@@ -165,7 +168,7 @@ def _consolidate(sources: list[str], out_path: Path, case_number_col: str = "CAS
     total_skipped_stale_duplicate = 0
     total_blank = 0
 
-    with open(out_path, "w", newline="", encoding="utf-8") as out_f:
+    with gzip.open(out_path, "wt", newline="", encoding="utf-8") as out_f:
         writer = csv.DictWriter(out_f, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
 
@@ -208,12 +211,12 @@ def _consolidate(sources: list[str], out_path: Path, case_number_col: str = "CAS
 
 def build_lca_master():
     print("Building LCA master...")
-    _consolidate(LCA_SOURCES, INTERIM_DIR / "lca_master.csv")
+    _consolidate(LCA_SOURCES, INTERIM_DIR / "lca_master.csv.gz")
 
 
 def build_perm_master():
     print("Building PERM master...")
-    _consolidate(PERM_SOURCES, INTERIM_DIR / "perm_master.csv")
+    _consolidate(PERM_SOURCES, INTERIM_DIR / "perm_master.csv.gz")
 
 
 if __name__ == "__main__":

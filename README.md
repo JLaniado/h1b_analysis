@@ -28,9 +28,12 @@ None of this is committed to git — files run 80MB-450MB each — see `.gitigno
 exports into `data/raw/` (add new filenames to `LCA_SOURCES`/`PERM_SOURCES` in
 `src/consolidate_raw.py`) to extend.
 
-**`python src/consolidate_raw.py` turns all of that into two clean, structured files:**
-`data/interim/lca_master.csv` and `data/interim/perm_master.csv`. It handles, once, so nothing
-downstream has to:
+**`python src/consolidate_raw.py` turns all of that into two clean, structured, gzip-compressed
+files:** `data/interim/lca_master.csv.gz` and `data/interim/perm_master.csv.gz` (pandas reads
+`.gz` natively, no decompression step needed — compressing cuts the combined size from ~1.1GB to
+~270MB, which is what makes distributing them as a
+[GitHub Release](https://github.com/JLaniado/h1b_analysis/releases/tag/data-v1) practical — see
+"Local dashboard" below). It handles, once, so nothing downstream has to:
 
 1. Reading both CSV and XLSX sources uniformly.
 2. Dropping blank template rows — every source file, CSV or XLSX, is pre-allocated to a fixed row
@@ -47,10 +50,12 @@ downstream has to:
    this silently corrupted `SOC_CODE` for that whole quarter and broke MBA-tier classification
    for those rows before the fix.
 
-Also gitignored (`data/interim/`, multiple hundred MB) — regenerate with the command above any
-time `data/raw/` changes. `src/data_loader.py` reads from these master files, not from `data/raw/`
-directly, and pandas' C engine still needs `low_memory=False` on read since some cell values
-contain embedded newlines (pyarrow's engine outright rejects these files on that).
+Also gitignored (`data/interim/`, multiple hundred MB even compressed) — regenerate with the
+command above any time `data/raw/` changes. `src/data_loader.py` reads from these master files,
+not from `data/raw/` directly, and pandas' C engine still needs `low_memory=False` on read since
+some cell values contain embedded newlines (pyarrow's engine outright rejects these files on
+that). If the files aren't present locally, `src/fetch_master_data.py` downloads them
+automatically from the GitHub Release — see "Local dashboard" below.
 
 ## Setup
 
@@ -63,8 +68,10 @@ python -m ipykernel install --user --name h1b_analysis --display-name "h1b_analy
 
 ## Structure
 
-- `src/consolidate_raw.py` — builds `data/interim/{lca,perm}_master.csv` from the mixed raw
+- `src/consolidate_raw.py` — builds `data/interim/{lca,perm}_master.csv.gz` from the mixed raw
   sources (see Data sources above)
+- `src/fetch_master_data.py` — downloads those files from this repo's GitHub Release when they're
+  not present locally (a fresh clone, a cloud deploy)
 - `src/data_loader.py` — loaders for the consolidated master CSVs
 - `src/employer_canonicalization.py` — collapses casing/punctuation/legal-suffix duplicate
   employer name strings into one canonical name per employer. Build the mapping across *all*
@@ -165,18 +172,55 @@ embed-size constraint to work around. Compared to the static page, it covers:
 - **Free-text job-title search**, not just standardized SOC/occupation titles — "credit risk" and
   "data scientist" work here even though they don't match any SOC title string directly.
 
-Run it with:
+The ~1.1GB of master data this needs is `.gitignore`d (too big for a normal git push) and isn't
+required to run this — `src/fetch_master_data.py` downloads it automatically (gzip-compressed,
+~270MB) from this repo's [GitHub Release](https://github.com/JLaniado/h1b_analysis/releases/tag/data-v1)
+the first time anything tries to load it and it's not already present. That's what makes both
+"give this to a classmate" and "host it for free" below actually easy — nobody has to run the raw
+DOL data pipeline themselves first.
+
+### Run it yourself (no `git` needed)
+
+1. Click **Code → Download ZIP** on the [GitHub repo](https://github.com/JLaniado/h1b_analysis) and unzip it.
+2. Make sure you have Python 3.10+ ([python.org/downloads](https://www.python.org/downloads/)).
+3. Double-click **`run_mac.command`** (Mac) or **`run_windows.bat`** (Windows) in the unzipped folder.
+   First run installs dependencies and downloads the data (~270MB) — a few minutes. After that,
+   open `http://localhost:8501` in your browser (it won't open automatically — see the macOS
+   crash note below for why).
+
+Or from a terminal, if you're comfortable with one:
 
 ```bash
-source .venv/bin/activate
-pip install -r requirements.txt  # first time only
+git clone https://github.com/JLaniado/h1b_analysis.git
+cd h1b_analysis
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Open `http://localhost:8501` once the server starts (`.streamlit/config.toml` runs it headless —
-see below for why). First load takes a few seconds while it reads and prepares the full master
-CSVs (cached after that — subsequent filter changes are instant). This isn't deployed anywhere;
-it's meant to run on your own machine.
+### Free hosting, so you don't have to send anyone a file at all
+
+**[Streamlit Community Cloud](https://share.streamlit.io/)** is free and deploys straight from
+this GitHub repo:
+
+1. Sign in at share.streamlit.io with your GitHub account.
+2. Click **New app**, pick this repo, branch `main`, main file `app.py`.
+3. Deploy. It clones the repo and installs `requirements.txt` automatically; the data
+   auto-downloads on the app's first request via the same mechanism as above.
+
+Caveat: Community Cloud's free tier gives each app about 1GB of RAM, and this app's two
+dataframes alone use ~550MB before Streamlit/pandas/plotly overhead and the columns the UI adds
+(canonicalized employer names, wage flags, etc.) — real risk of hitting the memory ceiling. If it
+crashes or gets OOM-killed there, **[Hugging Face Spaces](https://huggingface.co/spaces)** is a
+free alternative built for exactly this (create a Space, SDK: Streamlit, connect this GitHub
+repo) with a noticeably more generous free-tier memory allowance — same `app.py`, no code changes
+needed.
+
+If you regenerate the master data (new raw exports, `python src/consolidate_raw.py` re-run),
+re-publish it so everyone's next auto-download picks up the update:
+```bash
+gh release upload data-v1 data/interim/lca_master.csv.gz data/interim/perm_master.csv.gz --clobber
+```
 
 **Known macOS crash and why it's disabled by default**: `streamlit run` normally auto-opens your
 browser, which forks a subprocess to run `/usr/bin/open`. On some macOS versions this crashes —
