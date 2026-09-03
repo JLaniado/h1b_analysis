@@ -169,8 +169,13 @@ embed-size constraint to work around. Compared to the static page, it covers:
 - **Every record** in both datasets, not a ~150-occupation/3+-filing sample.
 - **Every MBA tier, including "excluded"** — technical titles like Data Scientists or Software
   Developers are searchable (toggle the tier filter), which the static page can't offer at all.
-- **Free-text job-title search**, not just standardized SOC/occupation titles — "credit risk" and
-  "data scientist" work here even though they don't match any SOC title string directly.
+- **Multi-role search**: type a term (e.g. "consulting") and check as many of the matching
+  standardized occupations as you want, then search again (e.g. "finance") and add more — your
+  selections accumulate across searches instead of being replaced, so a student weighing both
+  consulting and finance roles can build one combined target list. Search matches both
+  standardized occupation titles and free-text job titles — "credit risk" and "data scientist"
+  surface real matches here even though they aren't SOC title strings themselves — but the actual
+  filter applied is the set of standardized titles you've checked, not a raw text match.
 
 The ~1.1GB of master data this needs is `.gitignore`d (too big for a normal git push) and isn't
 required to run this — `src/fetch_master_data.py` downloads it automatically (gzip-compressed,
@@ -200,21 +205,32 @@ streamlit run app.py
 
 ### Free hosting, so you don't have to send anyone a file at all
 
-**[Streamlit Community Cloud](https://share.streamlit.io/)** is free and deploys straight from
-this GitHub repo:
+**`app.py` is sized for this now.** It originally loaded every column from both master files
+(~550MB in memory) — too close to Community Cloud's ~1GB free-tier RAM limit for comfort. It now
+loads only the columns the UI actually reads and converts every text column to pandas' `category`
+dtype once loaded (each distinct string stored once instead of per row) — combined, that cuts the
+two dataframes to **~165MB**, comfortably inside the free tier alongside Streamlit/pandas/plotly's
+own overhead.
 
-1. Sign in at share.streamlit.io with your GitHub account.
+**[Streamlit Community Cloud](https://share.streamlit.io/)** deploys straight from this GitHub
+repo, free. I can't complete this step myself — it needs your own GitHub-linked account to
+authorize the deploy — but everything in the repo is ready for it:
+
+1. Sign in at [share.streamlit.io](https://share.streamlit.io/) with your GitHub account.
 2. Click **New app**, pick this repo, branch `main`, main file `app.py`.
-3. Deploy. It clones the repo and installs `requirements.txt` automatically; the data
-   auto-downloads on the app's first request via the same mechanism as above.
+3. Under **Advanced settings**, set the Python version to **3.12** (also pinned via
+   `runtime.txt`) and, optionally, point the requirements file at
+   **`requirements-streamlit.txt`** instead of the default `requirements.txt` — a slimmer
+   dependency list (just `streamlit`, `pandas`, `plotly`, `numpy`) that skips packages only the
+   notebooks/data pipeline need (`matplotlib`, `jupyter`, `pyarrow`, `openpyxl`, `pdfplumber`,
+   `jupytext`), for a smaller/faster build.
+4. Click **Deploy**. It clones the repo and installs the requirements automatically; the master
+   data auto-downloads on the app's first request via the same mechanism as local/zip use.
 
-Caveat: Community Cloud's free tier gives each app about 1GB of RAM, and this app's two
-dataframes alone use ~550MB before Streamlit/pandas/plotly overhead and the columns the UI adds
-(canonicalized employer names, wage flags, etc.) — real risk of hitting the memory ceiling. If it
-crashes or gets OOM-killed there, **[Hugging Face Spaces](https://huggingface.co/spaces)** is a
-free alternative built for exactly this (create a Space, SDK: Streamlit, connect this GitHub
-repo) with a noticeably more generous free-tier memory allowance — same `app.py`, no code changes
-needed.
+If it still runs tight on memory for any reason, **[Hugging Face Spaces](https://huggingface.co/spaces)**
+is a free alternative built for the same purpose (create a Space, SDK: Streamlit, connect this
+GitHub repo) with a noticeably more generous free-tier memory allowance — same `app.py`, no code
+changes needed.
 
 If you regenerate the master data (new raw exports, `python src/consolidate_raw.py` re-run),
 re-publish it so everyone's next auto-download picks up the update:

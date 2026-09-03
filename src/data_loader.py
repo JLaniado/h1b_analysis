@@ -17,6 +17,8 @@ The master files already have blank template rows dropped and dates
 normalized to ISO (YYYY-MM-DD), so loading here is a plain, fast read.
 """
 
+from __future__ import annotations
+
 from pathlib import Path
 
 import pandas as pd

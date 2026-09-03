@@ -1,0 +1,9 @@
+# Slim dependency set for app.py specifically -- the root requirements.txt
+# also covers the notebooks/data pipeline (matplotlib, jupyter, pyarrow,
+# openpyxl, pdfplumber, jupytext), none of which app.py or its src/ imports
+# need. Point Streamlit Community Cloud's "requirements file" advanced
+# deploy setting at this file instead for a smaller, faster build.
+streamlit
+pandas>=3.0
+numpy
+plotly

@@ -26,6 +26,8 @@ so FEIN-based grouping over-merges exactly the kind of entities students need
 to tell apart.
 """
 
+from __future__ import annotations
+
 import re
 
 import pandas as pd

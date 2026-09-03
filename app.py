@@ -11,7 +11,15 @@ This app has no such constraint: it loads the full consolidated master data
 directly and filters/aggregates live with pandas, so it covers every
 record, every employer, every tier (including "excluded" — e.g. Data
 Scientists, Software Developers), and searches actual free-text job titles
-in addition to standardized SOC/occupation titles.
+in addition to standardized SOC/occupation titles. The sidebar search lets
+a student check multiple matching occupations across multiple searches
+(e.g. both consulting- and finance-related roles) rather than being limited
+to one keyword at a time.
+
+Sized to run on a free hosting tier: only the columns this UI actually
+reads are loaded, and every text column is stored as pandas' `category`
+dtype once loaded — combined, the two dataframes run ~165MB instead of
+~550MB. See README.md's "Free hosting" section for deployment instructions.
 
 Run: streamlit run app.py
 """
@@ -36,6 +44,28 @@ st.set_page_config(page_title="Sponsorship Explorer (local, full data)", layout=
 DECIDED_LCA = {"Certified", "Certified - Withdrawn", "Denied"}
 DECIDED_PERM = {"Certified", "Certified - Expired", "Denied"}
 
+# Trimmed to just what this app's UI actually reads (dropped: raw dates -- we
+# use the precomputed FISCAL_YEAR/QUARTER instead; city/county-level
+# geography -- only state is shown; a few numeric/flag columns nothing here
+# displays). Combined with the category-dtype pass at the end of load_data(),
+# this cuts the two dataframes' combined memory from ~550MB to ~140MB, which
+# matters for fitting in a free hosting tier's RAM limit.
+LCA_APP_USECOLS = [
+    "CASE_NUMBER", "CASE_STATUS", "FISCAL_YEAR", "FISCAL_QUARTER",
+    "JOB_TITLE", "SOC_CODE", "SOC_TITLE",
+    "NEW_EMPLOYMENT", "CHANGE_EMPLOYER", "NEW_CONCURRENT_EMPLOYMENT",
+    "EMPLOYER_NAME", "NAICS_CODE", "WORKSITE_STATE",
+    "WAGE_RATE_OF_PAY_FROM", "WAGE_UNIT_OF_PAY", "PW_WAGE_LEVEL",
+    "H_1B_DEPENDENT", "WILLFUL_VIOLATOR",
+]
+PERM_APP_USECOLS = [
+    "CASE_NUMBER", "CASE_STATUS", "FISCAL_YEAR", "FISCAL_QUARTER",
+    "EMP_BUSINESS_NAME", "EMP_NAICS",
+    "PWD_SOC_CODE", "PWD_SOC_TITLE", "JOB_TITLE",
+    "JOB_OPP_WAGE_FROM", "JOB_OPP_WAGE_PER",
+    "PRIMARY_WORKSITE_STATE", "OTHER_REQ_IS_FW_CURRENTLY_WRK",
+]
+
 
 def _download_master_data_with_progress():
     """One-time ~270MB download of the master data on a fresh clone/deploy,
@@ -57,8 +87,8 @@ _download_master_data_with_progress()
 
 @st.cache_data(show_spinner="Loading and preparing full LCA + PERM data (first run only)...")
 def load_data():
-    lca = load_lca()
-    perm = load_perm()
+    lca = load_lca(usecols=LCA_APP_USECOLS)
+    perm = load_perm(usecols=PERM_APP_USECOLS)
 
     # Build ONE shared canonical mapping across both datasets so the same
     # employer settles on one display spelling in both (canonicalizing each
@@ -104,6 +134,17 @@ def load_data():
     perm["DECIDED"] = perm["CASE_STATUS"].isin(DECIDED_PERM)
     perm["CERTIFIED"] = perm["DECIDED"] & (perm["CASE_STATUS"] != "Denied")
 
+    # Shrink memory footprint now that every derived column is computed:
+    # category dtype stores each distinct string once instead of per row,
+    # which cuts these two dataframes' combined memory by roughly 75% even
+    # for high-cardinality columns like JOB_TITLE (still ~5x repetition).
+    # CASE_NUMBER is skipped -- it's 100% unique, so category dtype adds
+    # overhead with no compression benefit there.
+    for frame in (lca, perm):
+        for col in frame.columns:
+            if col != "CASE_NUMBER" and pd.api.types.is_string_dtype(frame[col]):
+                frame[col] = frame[col].astype("category")
+
     return lca, perm
 
 
@@ -132,14 +173,54 @@ with st.sidebar:
     st.header("Filters")
     dataset = st.radio("Dataset", ["H-1B (LCA)", "Green card (PERM)"], horizontal=True)
     df = lca if dataset == "H-1B (LCA)" else perm
-    title_cols = ["SOC_TITLE", "JOB_TITLE"] if dataset == "H-1B (LCA)" else ["PWD_SOC_TITLE", "JOB_TITLE"]
+    occ_col = "SOC_TITLE" if dataset == "H-1B (LCA)" else "PWD_SOC_TITLE"
 
-    keyword = st.text_input(
-        "Keyword (matches standardized occupation title AND free-text job title)",
-        placeholder="e.g. credit risk, data scientist, product manager…",
+    # Multi-role search: search finds matching standardized occupation titles
+    # (checking both the title itself and any associated free-text job
+    # title), and you check as many as you want to build a combined target
+    # list -- e.g. search "consulting", check a couple, then search
+    # "finance" and check a couple more, without losing the first set.
+    if "selected_titles" not in st.session_state:
+        st.session_state.selected_titles = {"H-1B (LCA)": set(), "Green card (PERM)": set()}
+    selected = st.session_state.selected_titles[dataset]
+
+    search_query = st.text_input(
+        "Search occupation titles to add",
+        placeholder="e.g. consulting, credit risk, marketing…",
+        help="Searches both standardized occupation titles and free-text job titles — so "
+             "\"credit risk\" and \"data scientist\" surface matches even though they aren't "
+             "SOC title strings themselves. Matches appear below as checkboxes.",
     )
-    st.caption("Unlike the static dashboard, this searches actual job titles too — "
-               "so \"credit risk\" and \"data scientist\" work here.")
+    if search_query:
+        match_mask = (
+            df[occ_col].str.contains(search_query, case=False, regex=False, na=False)
+            | df["JOB_TITLE"].str.contains(search_query, case=False, regex=False, na=False)
+        )
+        matches = df.loc[match_mask, occ_col].value_counts().head(25)
+        if len(matches):
+            st.caption(f"{len(matches)} matching occupations (top by volume) — check to add:")
+            for title, count in matches.items():
+                key = f"chk_{dataset}_{title}"
+                checked = st.checkbox(f"{title} ({count:,})", value=(title in selected), key=key)
+                if checked:
+                    selected.add(title)
+                else:
+                    selected.discard(title)
+        else:
+            st.caption("No matching occupations — try a different term.")
+
+    if selected:
+        # `default=` only applies the first time a widget with this key is
+        # created -- on later reruns Streamlit uses whatever's already in
+        # session_state for that key, which would silently discard titles
+        # the checkboxes above just added. Explicitly re-seed session_state
+        # before instantiating the widget each run so it always reflects
+        # the current `selected` set instead of a stale prior value.
+        ms_key = f"selected_ms_{dataset}"
+        st.session_state[ms_key] = sorted(selected)
+        chosen = st.multiselect("Selected roles (remove with the ×)", options=sorted(selected), key=ms_key)
+        selected.clear()
+        selected.update(chosen)
 
     tiers = st.multiselect(
         "MBA-relevance tier", ["core", "adjacent", "excluded"],
@@ -183,11 +264,8 @@ mask = df["MBA_TIER"].isin(tiers)
 if first_time_only:
     hire_col = "IS_NEW_POSITION" if dataset == "H-1B (LCA)" else "IS_EXTERNAL_HIRE"
     mask &= df[hire_col]
-if keyword:
-    kw_mask = pd.Series(False, index=df.index)
-    for col in title_cols:
-        kw_mask = kw_mask | df[col].fillna("").str.contains(keyword, case=False, regex=False)
-    mask &= kw_mask
+if selected:
+    mask &= df[occ_col].isin(selected)
 state_col = "WORKSITE_STATE" if dataset == "H-1B (LCA)" else "PRIMARY_WORKSITE_STATE"
 if states_sel:
     mask &= df[state_col].isin(states_sel)
@@ -231,7 +309,6 @@ yc2.dataframe(yoy_table(perm), hide_index=True, use_container_width=True)
 st.divider()
 
 # ---- Charts ----
-occ_col = "SOC_TITLE" if dataset == "H-1B (LCA)" else "PWD_SOC_TITLE"
 col_a, col_b = st.columns(2)
 with col_a:
     st.subheader("Top occupations")
