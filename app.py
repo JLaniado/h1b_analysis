@@ -39,7 +39,7 @@ from employer_brand_rollup import apply_brand_rollup  # noqa: E402
 from naics_sectors import naics_sector  # noqa: E402
 from fetch_master_data import ensure_master_data  # noqa: E402
 
-st.set_page_config(page_title="Sponsorship Explorer (local, full data)", layout="wide")
+st.set_page_config(page_title="Sponsorship Explorer", layout="wide")
 
 DECIDED_LCA = {"Certified", "Certified - Withdrawn", "Denied"}
 DECIDED_PERM = {"Certified", "Certified - Expired", "Denied"}
@@ -162,11 +162,16 @@ def yoy_table(df, tier_col="MBA_TIER"):
 
 lca, perm = load_data()
 
-st.title("Sponsorship Explorer — local, full data")
+st.title("H-1B & Green Card Sponsorship Explorer")
+st.markdown(
+    "Search U.S. Department of Labor visa sponsorship filings to find which **roles**, "
+    "**employers**, and **locations** actually sponsor international hires. "
+    "**How to use this:** search for a role on the left and check the ones that fit you, "
+    "then scroll down — the employer table at the bottom is the actionable part."
+)
 st.caption(
-    "Every record, every tier, every employer — no sampling. "
-    f"LCA: {len(lca):,} total records. PERM: {len(perm):,} total records. "
-    "Compare to the published static dashboard, which covers 18.0% of LCA and 9.7% of PERM."
+    f"Covers every H-1B (LCA) filing ({len(lca):,} records) and green-card (PERM) filing "
+    f"({len(perm):,} records) from full FY2025 plus FY2026 through Q3 — not a sample."
 )
 
 with st.sidebar:
@@ -225,9 +230,17 @@ with st.sidebar:
     tiers = st.multiselect(
         "MBA-relevance tier", ["core", "adjacent", "excluded"],
         default=["core", "adjacent"],
-        help="'excluded' covers technical/other titles outside the MBA heuristic (e.g. Data "
-             "Scientists, Software Developers) — include it to search your own background "
-             "regardless of the taxonomy.",
+        help="**core** = management & business roles an MBA is the standard path into (e.g. "
+             "Financial Analyst, Marketing Manager). **adjacent** = business-facing roles in "
+             "tech/analytics that also hire non-MBA backgrounds (e.g. Business Intelligence "
+             "Analyst, Product Manager). **excluded** = everything else, including technical "
+             "roles like Data Scientist or Software Developer — this is a keyword/SOC-code "
+             "heuristic, not a real degree requirement, so include \"excluded\" too if your own "
+             "background doesn't fit neatly into the other two.",
+    )
+    st.caption(
+        "core = standard MBA roles · adjacent = business-facing tech/analytics roles · "
+        "excluded = everything else (hover the ⓘ above for details)"
     )
 
     states_available = sorted(df["WORKSITE_STATE" if dataset == "H-1B (LCA)" else "PRIMARY_WORKSITE_STATE"].dropna().unique())
@@ -278,7 +291,11 @@ filtered = df[mask]
 
 # ---- KPIs ----
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("Matched filings", f"{len(filtered):,}")
+c1.metric("Matched filings", f"{len(filtered):,}",
+          help="A \"filing\" is one employer's sponsorship request for one role — not a job "
+               "opening. The same role can be filed more than once (e.g. a renewal), and most "
+               "filings below aren't for a brand-new hire — see \"First-time hires\" / "
+               "\"External-hire share\" for that.")
 decided = filtered["DECIDED"].sum()
 cert_rate = filtered["CERTIFIED"].sum() / decided if decided else None
 c2.metric("Certification rate", f"{cert_rate:.1%}" if cert_rate is not None else "—",
@@ -290,20 +307,33 @@ if dataset == "H-1B (LCA)":
     extra_share = filtered["IS_NEW_POSITION"].mean() if len(filtered) else None
     c4.metric("First-time hires", f"{extra_share:.1%}" if extra_share is not None else "—",
               help="New positions + H-1B transfers in, vs. extensions/amendments for someone already there")
+    st.caption(
+        "Only the **First-time hires** share represents someone actually joining this employer — "
+        "the rest are extensions or paperwork amendments for people already working there."
+    )
 else:
     extra_share = filtered["IS_EXTERNAL_HIRE"].mean() if len(filtered) else None
     c4.metric("External-hire share", f"{extra_share:.1%}" if extra_share is not None else "—",
               help="not already employed there")
+    st.caption(
+        "Most PERM filings are green-card **conversions for an employee already working "
+        "there**, not offers to outside candidates — \"External-hire share\" is the minority "
+        "that are. Check \"Show only external hires\" in the sidebar to see just those."
+    )
 
 st.divider()
 
 # ---- YoY (fixed, not filtered) ----
 st.subheader("Is sponsorship growing or shrinking?")
-st.caption("Q1–Q3 of each fiscal year, all tiers — not affected by the filters above.")
+st.caption(
+    "Q1–Q3 of each fiscal year, all tiers — not affected by the filters above. "
+    "*Tier: core = standard MBA roles, adjacent = business-facing tech/analytics roles, "
+    "excluded = everything else — see the sidebar tier filter for full definitions.*"
+)
 yc1, yc2 = st.columns(2)
-yc1.write("**LCA (H-1B)**")
+yc1.write("**H-1B (LCA)**")
 yc1.dataframe(yoy_table(lca), hide_index=True, use_container_width=True)
-yc2.write("**PERM**")
+yc2.write("**Green card (PERM)**")
 yc2.dataframe(yoy_table(perm), hide_index=True, use_container_width=True)
 
 st.divider()
@@ -312,7 +342,7 @@ st.divider()
 col_a, col_b = st.columns(2)
 with col_a:
     st.subheader("Top occupations")
-    top_occ = filtered[occ_col].value_counts().head(15).sort_values()
+    top_occ = filtered[occ_col].value_counts().head(15).sort_values().rename_axis(None)
     if len(top_occ):
         fig = px.bar(top_occ, orientation="h", labels={"value": "Filings", "index": ""})
         fig.update_layout(showlegend=False, height=420)
@@ -322,7 +352,7 @@ with col_a:
 
 with col_b:
     st.subheader("Top industries")
-    top_sector = filtered["NAICS_SECTOR"].value_counts().head(12).sort_values()
+    top_sector = filtered["NAICS_SECTOR"].value_counts().head(12).sort_values().rename_axis(None)
     if len(top_sector):
         fig = px.bar(top_sector, orientation="h", labels={"value": "Filings", "index": ""})
         fig.update_layout(showlegend=False, height=420)
@@ -331,7 +361,7 @@ with col_b:
 col_c, col_d = st.columns(2)
 with col_c:
     st.subheader("Top states")
-    top_state = filtered[state_col].value_counts().head(12).sort_values()
+    top_state = filtered[state_col].value_counts().head(12).sort_values().rename_axis(None)
     if len(top_state):
         fig = px.bar(top_state, orientation="h", labels={"value": "Filings", "index": ""})
         fig.update_layout(showlegend=False, height=380)
@@ -340,8 +370,13 @@ with col_c:
 with col_d:
     if dataset == "H-1B (LCA)":
         st.subheader("Wage-level mix")
-        wl = filtered["WAGE_LEVEL"].value_counts().reindex(["I", "II", "III", "IV", "Unspecified"], fill_value=0)
-        fig = px.bar(wl, labels={"value": "Filings", "index": ""})
+        st.caption("DOL's I (entry) through IV (expert) classification — the closest available "
+                   "proxy for the seniority a role expects, since no applicant-experience field "
+                   "exists in this data.")
+        wl = filtered["WAGE_LEVEL"].value_counts().reindex(
+            ["I", "II", "III", "IV", "Unspecified"], fill_value=0
+        ).rename_axis(None)
+        fig = px.bar(wl, labels={"value": "Filings", "index": "Wage level"})
         fig.update_layout(showlegend=False, height=380)
         st.plotly_chart(fig, use_container_width=True)
     else:
@@ -355,8 +390,8 @@ st.divider()
 
 # ---- Employer leaderboard ----
 st.subheader("Employer leaderboard")
-st.caption("Ranked by matched filings. Mix = that employer's overall share of filings (any tier) "
-           "that are MBA-relevant. Click a column header to sort.")
+st.caption("Every employer matching your filters, ranked by filing volume. Click any column "
+           "header to re-sort — hover a column's ⓘ for what it measures.")
 
 if dataset == "H-1B (LCA)":
     emp_all_totals = df.groupby("EMPLOYER_CANONICAL").size()
@@ -386,40 +421,77 @@ g["Cert rate"] = g["Certified"] / g["Decided"].replace(0, pd.NA)
 g["MBA mix"] = (emp_mba_totals / emp_all_totals).reindex(g.index)
 g = g.sort_values("Filings", ascending=False).drop(columns=["Certified", "Decided"])
 
-display_cols = ["Filings", "MBA mix", "Cert rate"]
-display_cols += ["First-time hire share"] if "First-time hire share" in g.columns else ["External hire share"]
-display_cols += ["Avg wage"]
+share_cols = ["MBA mix", "Cert rate"]
+share_cols += ["First-time hire share"] if "First-time hire share" in g.columns else ["External hire share"]
+
+# ProgressColumn's `format` applies to the raw value, not a percent-scaled
+# one -- "%.0f%%" against a 0-1 fraction rounds to the nearest *whole
+# fraction* first (0.99 -> "1", then "%" appended -> "1%"), so every share
+# column showed only "0%" or "1%" regardless of the real rate. Scale to a
+# 0-100 range before display so the printed number and the bar length agree.
+for col in share_cols:
+    g[col] = g[col] * 100
+
+for col in ["Willful violator", "H-1B dependent"]:
+    if col in g.columns:
+        g[col] = g[col].map({True: "Yes", False: ""})
+
+display_cols = ["Filings", *share_cols, "Avg wage"]
 if "Willful violator" in g.columns:
     display_cols += ["Willful violator", "H-1B dependent"]
 
+st.caption(
+    "A strong target employer combines a **high MBA mix** (business roles are a real part of "
+    "their hiring, not a rounding error), a **high cert rate** (few denials once they decide to "
+    "sponsor), and a **meaningful first-time-hire/external-hire share** (they're bringing in new "
+    "people, not just renewing staff already there)."
+)
 st.dataframe(
     g[display_cols].head(300),
     use_container_width=True,
     height=500,
     column_config={
-        "MBA mix": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
-        "Cert rate": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
-        "First-time hire share": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
-        "External hire share": st.column_config.ProgressColumn(min_value=0, max_value=1, format="%.0f%%"),
+        "MBA mix": st.column_config.ProgressColumn(
+            min_value=0, max_value=100, format="%.0f%%",
+            help="Share of this employer's filings (any tier) that are MBA-relevant",
+        ),
+        "Cert rate": st.column_config.ProgressColumn(
+            min_value=0, max_value=100, format="%.0f%%",
+            help="Share of decided cases that were certified, not denied",
+        ),
+        "First-time hire share": st.column_config.ProgressColumn(
+            min_value=0, max_value=100, format="%.0f%%",
+            help="Share of filings that are a new position or an H-1B transfer in, not a renewal",
+        ),
+        "External hire share": st.column_config.ProgressColumn(
+            min_value=0, max_value=100, format="%.0f%%",
+            help="Share of filings for a worker NOT already employed there (most PERM filings are "
+                 "for existing staff)",
+        ),
         "Avg wage": st.column_config.NumberColumn(format="$%d"),
+        "Willful violator": st.column_config.TextColumn(
+            help="DOL has flagged this employer as a willful violator of labor condition rules at "
+                 "some point — a factual public record, not necessarily their current status."
+        ),
+        "H-1B dependent": st.column_config.TextColumn(
+            help="This employer relies heavily enough on H-1B workers that extra attestation "
+                 "requirements apply — not inherently bad, just a DOL classification."
+        ),
     },
 )
 
 st.divider()
-with st.expander("Reading this responsibly"):
+with st.expander("About this data — a few more details"):
     st.markdown("""
-- **PERM ≠ "will sponsor an outside hire."** ~86% of PERM filings are green-card conversions for
-  someone *already* employed there, not offers to outside candidates. Check "Show only external
-  hires" in the sidebar to see just that ~14%.
-- **"First-time hire" (H-1B) = NEW_EMPLOYMENT + CHANGE_EMPLOYER (an H-1B transfer in from another
-  employer) + NEW_CONCURRENT_EMPLOYMENT** — all three mean the worker is joining this employer for
-  the first time. It excludes CONTINUED_EMPLOYMENT (an extension for someone already there) and
-  petition amendments. Check "Show only first-time hires" in the sidebar to filter to just those.
-- **Wage level is a role proxy, not an employer's actual bar.**
-- **MBA-relevance tiers are a heuristic** (SOC code + title matching) — include "excluded" above
-  and search your own keywords if your background is non-obvious (e.g. data science, engineering).
+The most important caveats (what "first-time hire" means, why most PERM filings are for existing
+employees, what the MBA-relevance tiers mean) are called out next to the metric or chart they
+apply to, above. A few more that don't have a natural home:
+
 - **Employer names are canonicalized and known multi-subsidiary brands are rolled up** (e.g.
-  Amazon's subsidiaries, Goldman Sachs's legal entities) — see `src/employer_brand_rollup.py` for
-  the specific groups and the look-alike names deliberately kept separate.
-- Wage figures are means (not medians) of annualized pay.
+  Amazon's subsidiaries, Goldman Sachs's legal entities all combine into one row) — but a company
+  can still appear more than once if one of its subsidiaries wasn't in that manual review. See
+  `src/employer_brand_rollup.py` for the specific groups covered.
+- **Wage figures are means, not medians**, of annualized pay — a few very high or very low
+  offers can pull the average away from the "typical" number.
+- Data covers full FY2025 plus FY2026 through Q3 (not the current fiscal year in full).
 """)
