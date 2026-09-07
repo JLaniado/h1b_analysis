@@ -15,6 +15,7 @@ everyone else's next auto-download picks up the update:
   gh release upload data-v1 data/interim/lca_master.csv.gz data/interim/perm_master.csv.gz --clobber
 """
 
+import os
 import urllib.request
 from pathlib import Path
 
@@ -30,6 +31,13 @@ def ensure_master_data(progress_callback=None) -> None:
     progress_callback(filename, downloaded_bytes, total_bytes), if given, is
     called periodically during each download — e.g. to drive a Streamlit
     progress bar. Does nothing for files that already exist locally.
+
+    Streamlit Cloud can run this from more than one session/thread at once
+    on a cold start, so each caller downloads to its own PID-suffixed temp
+    file (two callers writing the *same* temp path would corrupt each
+    other's bytes, and whichever renamed second would find nothing left to
+    rename) and simply discards its download if another caller already
+    finished first.
     """
     INTERIM_DIR.mkdir(parents=True, exist_ok=True)
     for filename in FILES:
@@ -37,16 +45,20 @@ def ensure_master_data(progress_callback=None) -> None:
         if dest.exists():
             continue
         url = f"{RELEASE_BASE_URL}/{filename}"
-        tmp_dest = dest.with_suffix(dest.suffix + ".part")
-        with urllib.request.urlopen(url) as response, open(tmp_dest, "wb") as out_f:
-            total = int(response.headers.get("Content-Length", 0))
-            downloaded = 0
-            while chunk := response.read(1024 * 1024):
-                out_f.write(chunk)
-                downloaded += len(chunk)
-                if progress_callback:
-                    progress_callback(filename, downloaded, total)
-        tmp_dest.rename(dest)
+        tmp_dest = dest.with_suffix(dest.suffix + f".{os.getpid()}.part")
+        try:
+            with urllib.request.urlopen(url) as response, open(tmp_dest, "wb") as out_f:
+                total = int(response.headers.get("Content-Length", 0))
+                downloaded = 0
+                while chunk := response.read(1024 * 1024):
+                    out_f.write(chunk)
+                    downloaded += len(chunk)
+                    if progress_callback:
+                        progress_callback(filename, downloaded, total)
+            if not dest.exists():
+                os.replace(tmp_dest, dest)
+        finally:
+            tmp_dest.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":
