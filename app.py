@@ -26,6 +26,7 @@ Run: streamlit run app.py
 
 import sys
 from pathlib import Path
+from urllib.parse import quote_plus
 
 import pandas as pd
 import plotly.express as px
@@ -51,9 +52,9 @@ DECIDED_PERM = {"Certified", "Certified - Expired", "Denied"}
 # this cuts the two dataframes' combined memory from ~550MB to ~140MB, which
 # matters for fitting in a free hosting tier's RAM limit.
 LCA_APP_USECOLS = [
-    "CASE_NUMBER", "CASE_STATUS", "FISCAL_YEAR", "FISCAL_QUARTER",
+    "CASE_NUMBER", "CASE_STATUS", "VISA_CLASS", "FISCAL_YEAR", "FISCAL_QUARTER",
     "JOB_TITLE", "SOC_CODE", "SOC_TITLE",
-    "NEW_EMPLOYMENT", "CHANGE_EMPLOYER", "NEW_CONCURRENT_EMPLOYMENT",
+    "TOTAL_WORKER_POSITIONS", "NEW_EMPLOYMENT", "CHANGE_EMPLOYER", "NEW_CONCURRENT_EMPLOYMENT",
     "EMPLOYER_NAME", "NAICS_CODE", "WORKSITE_STATE",
     "WAGE_RATE_OF_PAY_FROM", "WAGE_UNIT_OF_PAY", "PW_WAGE_LEVEL",
     "H_1B_DEPENDENT", "WILLFUL_VIOLATOR",
@@ -90,6 +91,11 @@ def load_data():
     lca = load_lca(usecols=LCA_APP_USECOLS)
     perm = load_perm(usecols=PERM_APP_USECOLS)
 
+    # The OFLC LCA disclosure extract also includes E-3 and H-1B1 cases.
+    # They are different visa categories with different candidate pools, so
+    # exclude them before presenting this as an H-1B explorer.
+    lca = lca.loc[lca["VISA_CLASS"].eq("H-1B")].copy()
+
     # Build ONE shared canonical mapping across both datasets so the same
     # employer settles on one display spelling in both (canonicalizing each
     # dataset independently can pick a different most-common raw variant in
@@ -105,18 +111,17 @@ def load_data():
     lca["ANNUAL_WAGE"] = lca["ANNUAL_WAGE"].where(
         (lca["ANNUAL_WAGE"] > 20_000) & (lca["ANNUAL_WAGE"] < 500_000)
     )
-    # "New hire at this employer" = a genuinely new position (NEW_EMPLOYMENT) OR an H-1B
-    # transfer in from another employer (CHANGE_EMPLOYER) OR a new concurrent position
-    # (NEW_CONCURRENT_EMPLOYMENT) -- all three mean the worker is joining THIS employer for the
-    # first time. CONTINUED_EMPLOYMENT (extension) and amendments are excluded since those are
-    # for someone already there. Excluding CHANGE_EMPLOYER alone would undercount real hiring by
-    # nearly a third of filings -- it's a genuine new hire for the receiving employer, DOL's form
-    # just buckets it separately since the worker already held H-1B status somewhere else.
-    lca["IS_NEW_POSITION"] = (
+    # An LCA is not a job posting. This flag is a *recruiting signal*: the
+    # case includes at least one new-employment or employer-transfer position.
+    # Do not include NEW_CONCURRENT_EMPLOYMENT: it can be an additional job
+    # for a worker who is already employed elsewhere, rather than a new hire.
+    lca["HAS_NEW_OR_TRANSFER_POSITION"] = (
         lca["NEW_EMPLOYMENT"].fillna(0)
         + lca["CHANGE_EMPLOYER"].fillna(0)
-        + lca["NEW_CONCURRENT_EMPLOYMENT"].fillna(0)
     ) > 0
+    lca["NEW_OR_TRANSFER_POSITIONS"] = (
+        lca["NEW_EMPLOYMENT"].fillna(0) + lca["CHANGE_EMPLOYER"].fillna(0)
+    )
     lca["WAGE_LEVEL"] = lca["PW_WAGE_LEVEL"].fillna("Unspecified")
     lca["DECIDED"] = lca["CASE_STATUS"].isin(DECIDED_LCA)
     lca["CERTIFIED"] = lca["DECIDED"] & (lca["CASE_STATUS"] != "Denied")
@@ -161,21 +166,28 @@ def yoy_table(df, tier_col="MBA_TIER"):
 
 
 lca, perm = load_data()
+LCA_EMPLOYERS = set(lca["EMPLOYER_CANONICAL"].dropna())
+PERM_EMPLOYERS = set(perm["EMPLOYER_CANONICAL"].dropna())
 
-st.title("H-1B & Green Card Sponsorship Explorer")
+st.title("MBA Visa Sponsorship Explorer")
 st.markdown(
-    "Search U.S. Department of Labor visa sponsorship filings to find which **roles**, "
-    "**employers**, and **locations** actually sponsor international hires. "
-    "**How to use this:** search for a role on the left and check the ones that fit you, "
-    "then scroll down — the employer table at the bottom is the actionable part."
+    "Use U.S. Department of Labor filings to prioritize **employers, roles, and locations** "
+    "for your recruiting research. This is evidence of past sponsorship activity — **not a "
+    "list of open roles, an offer guarantee, or legal advice.**"
 )
 st.caption(
-    f"Covers every H-1B (LCA) filing ({len(lca):,} records) and green-card (PERM) filing "
+    f"Covers every H-1B LCA filing ({len(lca):,} records) and green-card (PERM) filing "
     f"({len(perm):,} records) from full FY2025 plus FY2026 through Q3 — not a sample."
 )
 
 with st.sidebar:
     st.header("Filters")
+    with st.expander("Start here: turn filings into a target list", expanded=True):
+        st.markdown(
+            "1. Search and select the roles you would actually pursue.  \n"
+            "2. Prefer employers with repeated filings and a meaningful new/transfer-case signal.  \n"
+            "3. Use **Search current openings** in the leaderboard, then confirm sponsorship with the recruiter."
+        )
     dataset = st.radio("Dataset", ["H-1B (LCA)", "Green card (PERM)"], horizontal=True)
     df = lca if dataset == "H-1B (LCA)" else perm
     occ_col = "SOC_TITLE" if dataset == "H-1B (LCA)" else "PWD_SOC_TITLE"
@@ -258,11 +270,11 @@ with st.sidebar:
 
     if dataset == "H-1B (LCA)":
         first_time_only = st.checkbox(
-            "Show only first-time hires",
-            help="Keeps NEW_EMPLOYMENT (genuinely new position) and CHANGE_EMPLOYER (an H-1B "
-                 "transfer in from another employer) filings — both mean the worker is joining "
-                 "this employer for the first time. Excludes CONTINUED_EMPLOYMENT (an extension "
-                 "for someone already there) and petition amendments.",
+            "Only cases with new/transfer positions",
+            help="Keeps cases with NEW_EMPLOYMENT or CHANGE_EMPLOYER positions. This is a useful "
+                 "signal that an employer has added or transferred workers, but it is not proof "
+                 "of a live opening or of a first-time hire. Extensions and concurrent-employment "
+                 "positions are not counted in this signal.",
         )
     else:
         first_time_only = st.checkbox(
@@ -275,7 +287,7 @@ with st.sidebar:
 
 mask = df["MBA_TIER"].isin(tiers)
 if first_time_only:
-    hire_col = "IS_NEW_POSITION" if dataset == "H-1B (LCA)" else "IS_EXTERNAL_HIRE"
+    hire_col = "HAS_NEW_OR_TRANSFER_POSITION" if dataset == "H-1B (LCA)" else "IS_EXTERNAL_HIRE"
     mask &= df[hire_col]
 if selected:
     mask &= df[occ_col].isin(selected)
@@ -291,25 +303,25 @@ filtered = df[mask]
 
 # ---- KPIs ----
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("Matched filings", f"{len(filtered):,}",
-          help="A \"filing\" is one employer's sponsorship request for one role — not a job "
-               "opening. The same role can be filed more than once (e.g. a renewal), and most "
-               "filings below aren't for a brand-new hire — see \"First-time hires\" / "
-               "\"External-hire share\" for that.")
+c1.metric("Matched sponsorship cases", f"{len(filtered):,}",
+          help="A case is a labor-certification filing, not a job opening or a count of unique "
+               "people. The same worker or role can appear in extensions, amendments, or multiple cases.")
 decided = filtered["DECIDED"].sum()
 cert_rate = filtered["CERTIFIED"].sum() / decided if decided else None
-c2.metric("Certification rate", f"{cert_rate:.1%}" if cert_rate is not None else "—",
-          help=f"of {decided:,} decided cases")
+c2.metric("Labor-certification rate", f"{cert_rate:.1%}" if cert_rate is not None else "—",
+          help=f"of {decided:,} decided cases. For an LCA, certification is DOL's labor-condition "
+               "step — it is not USCIS H-1B petition approval, lottery selection, or a job offer.")
 wage_valid = filtered["ANNUAL_WAGE"].dropna()
-c3.metric("Avg. annual wage", f"${wage_valid.mean():,.0f}" if len(wage_valid) else "—",
-          help=f"from {len(wage_valid):,} filings with wage data")
+c3.metric("Median offered wage", f"${wage_valid.median():,.0f}" if len(wage_valid) else "—",
+          help=f"Annualized from the disclosed lower wage in {len(wage_valid):,} filings; median is "
+               "shown because it is less distorted by very high salaries. It is not cost-of-living adjusted.")
 if dataset == "H-1B (LCA)":
-    extra_share = filtered["IS_NEW_POSITION"].mean() if len(filtered) else None
-    c4.metric("First-time hires", f"{extra_share:.1%}" if extra_share is not None else "—",
-              help="New positions + H-1B transfers in, vs. extensions/amendments for someone already there")
+    extra_share = filtered["HAS_NEW_OR_TRANSFER_POSITION"].mean() if len(filtered) else None
+    c4.metric("New/transfer-case signal", f"{extra_share:.1%}" if extra_share is not None else "—",
+              help="Share of cases containing a NEW_EMPLOYMENT or CHANGE_EMPLOYER position. It is not a first-time-hire rate.")
     st.caption(
-        "Only the **First-time hires** share represents someone actually joining this employer — "
-        "the rest are extensions or paperwork amendments for people already working there."
+        "A stronger new/transfer-case signal suggests more past worker movement than a portfolio "
+        "dominated by extensions. It still does **not** tell you whether a role is open today."
     )
 else:
     extra_share = filtered["IS_EXTERNAL_HIRE"].mean() if len(filtered) else None
@@ -400,8 +412,8 @@ if dataset == "H-1B (LCA)":
         Filings=("CASE_NUMBER", "count"),
         Certified=("CERTIFIED", "sum"),
         Decided=("DECIDED", "sum"),
-        **{"First-time hire share": ("IS_NEW_POSITION", "mean")},
-        **{"Avg wage": ("ANNUAL_WAGE", "mean")},
+        **{"New/transfer case signal": ("HAS_NEW_OR_TRANSFER_POSITION", "mean")},
+        **{"Median wage": ("ANNUAL_WAGE", "median")},
         **{"Willful violator": ("WILLFUL_VIOLATOR", lambda s: (s == "Y").any())},
         **{"H-1B dependent": ("H_1B_DEPENDENT", lambda s: (s == "Y").any())},
     )
@@ -413,16 +425,20 @@ else:
         Certified=("CERTIFIED", "sum"),
         Decided=("DECIDED", "sum"),
         **{"External hire share": ("IS_EXTERNAL_HIRE", "mean")},
-        **{"Avg wage": ("ANNUAL_WAGE", "mean")},
+        **{"Median wage": ("ANNUAL_WAGE", "median")},
     )
 
 g = g[g["Filings"] >= min_employer_filings]
 g["Cert rate"] = g["Certified"] / g["Decided"].replace(0, pd.NA)
 g["MBA mix"] = (emp_mba_totals / emp_all_totals).reindex(g.index)
+if dataset == "H-1B (LCA)":
+    g["PERM case history"] = g.index.isin(PERM_EMPLOYERS)
+else:
+    g["H-1B LCA history"] = g.index.isin(LCA_EMPLOYERS)
 g = g.sort_values("Filings", ascending=False).drop(columns=["Certified", "Decided"])
 
 share_cols = ["MBA mix", "Cert rate"]
-share_cols += ["First-time hire share"] if "First-time hire share" in g.columns else ["External hire share"]
+share_cols += ["New/transfer case signal"] if "New/transfer case signal" in g.columns else ["External hire share"]
 
 # ProgressColumn's `format` applies to the raw value, not a percent-scaled
 # one -- "%.0f%%" against a 0-1 fraction rounds to the nearest *whole
@@ -436,15 +452,22 @@ for col in ["Willful violator", "H-1B dependent"]:
     if col in g.columns:
         g[col] = g[col].map({True: "Yes", False: ""})
 
-display_cols = ["Filings", *share_cols, "Avg wage"]
+history_col = "PERM case history" if dataset == "H-1B (LCA)" else "H-1B LCA history"
+g[history_col] = g[history_col].map({True: "Yes", False: ""})
+role_for_search = ", ".join(sorted(selected)[:2]) if selected else "MBA"
+g["Search current openings"] = [
+    "https://www.google.com/search?q=" + quote_plus(f'{employer} {role_for_search} careers')
+    for employer in g.index
+]
+
+display_cols = ["Filings", *share_cols, "Median wage", history_col, "Search current openings"]
 if "Willful violator" in g.columns:
     display_cols += ["Willful violator", "H-1B dependent"]
 
 st.caption(
-    "A strong target employer combines a **high MBA mix** (business roles are a real part of "
-    "their hiring, not a rounding error), a **high cert rate** (few denials once they decide to "
-    "sponsor), and a **meaningful first-time-hire/external-hire share** (they're bringing in new "
-    "people, not just renewing staff already there)."
+    "Use this to prioritize research, not to rank your odds. A useful target usually has repeated "
+    "filings in your role, a meaningful new/transfer-case or external-hire signal, and a wage range "
+    "that fits your goals. Labor-certification rates are a process measure, not an offer or visa outcome."
 )
 st.dataframe(
     g[display_cols].head(300),
@@ -459,16 +482,30 @@ st.dataframe(
             min_value=0, max_value=100, format="%.0f%%",
             help="Share of decided cases that were certified, not denied",
         ),
-        "First-time hire share": st.column_config.ProgressColumn(
+        "New/transfer case signal": st.column_config.ProgressColumn(
             min_value=0, max_value=100, format="%.0f%%",
-            help="Share of filings that are a new position or an H-1B transfer in, not a renewal",
+            help="Share of cases containing NEW_EMPLOYMENT or CHANGE_EMPLOYER positions; a past-recruiting signal, not a first-time-hire rate.",
         ),
         "External hire share": st.column_config.ProgressColumn(
             min_value=0, max_value=100, format="%.0f%%",
             help="Share of filings for a worker NOT already employed there (most PERM filings are "
                  "for existing staff)",
         ),
-        "Avg wage": st.column_config.NumberColumn(format="$%d"),
+        "Median wage": st.column_config.NumberColumn(
+            format="$%d",
+            help="Median annualized lower-end disclosed wage; not cost-of-living adjusted.",
+        ),
+        "PERM case history": st.column_config.TextColumn(
+            help="This canonical employer also has a PERM case in this data period. That is historical activity, not a promise of a green-card policy for a new employee.",
+        ),
+        "H-1B LCA history": st.column_config.TextColumn(
+            help="This canonical employer also has an H-1B LCA in this data period. That is historical activity, not an open role.",
+        ),
+        "Search current openings": st.column_config.LinkColumn(
+            "Search current openings",
+            display_text="Search openings",
+            help="Searches the web for current careers pages using this employer and your selected role. Results are not sourced from DOL and must be verified.",
+        ),
         "Willful violator": st.column_config.TextColumn(
             help="DOL has flagged this employer as a willful violator of labor condition rules at "
                  "some point — a factual public record, not necessarily their current status."
@@ -481,17 +518,26 @@ st.dataframe(
 )
 
 st.divider()
-with st.expander("About this data — a few more details"):
+with st.expander("How to interpret this data"):
     st.markdown("""
-The most important caveats (what "first-time hire" means, why most PERM filings are for existing
-employees, what the MBA-relevance tiers mean) are called out next to the metric or chart they
-apply to, above. A few more that don't have a natural home:
+**What this can answer:** which employers have recently filed in roles and locations like yours,
+where filing activity is concentrated, and which employers have records in both the H-1B and PERM
+datasets. Use it to build a research shortlist, not to predict an outcome.
+
+**What it cannot answer:** whether an opening exists today; whether a role is cap-exempt; whether
+you will be selected in the H-1B lottery; USCIS petition or visa approval odds; an employer's
+current immigration policy; or whether a role specifically requires or prefers an MBA.
+
+Additional data limits:
 
 - **Employer names are canonicalized and known multi-subsidiary brands are rolled up** (e.g.
   Amazon's subsidiaries, Goldman Sachs's legal entities all combine into one row) — but a company
   can still appear more than once if one of its subsidiaries wasn't in that manual review. See
   `src/employer_brand_rollup.py` for the specific groups covered.
-- **Wage figures are means, not medians**, of annualized pay — a few very high or very low
-  offers can pull the average away from the "typical" number.
+- **Wage figures use the disclosed lower end of the wage range**, annualized and bounded to
+  $20,000–$500,000 to remove obvious data errors. They are not cost-of-living adjusted, and a
+  wage is not a total-compensation estimate.
+- **MBA relevance is a SOC/title heuristic, not a degree requirement.** Include the `excluded`
+  tier when your background is more technical or specialized.
 - Data covers full FY2025 plus FY2026 through Q3 (not the current fiscal year in full).
 """)
