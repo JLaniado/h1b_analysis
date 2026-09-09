@@ -10,4 +10,4 @@ pyarrow
 openpyxl
 pdfplumber
 jupytext
-streamlit
+streamlit>=1.30

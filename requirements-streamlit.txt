@@ -3,7 +3,7 @@
 # openpyxl, pdfplumber, jupytext), none of which app.py or its src/ imports
 # need. Point Streamlit Community Cloud's "requirements file" advanced
 # deploy setting at this file instead for a smaller, faster build.
-streamlit
+streamlit>=1.30
 pandas>=3.0
 numpy
 plotly
